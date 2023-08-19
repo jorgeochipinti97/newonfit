@@ -77,7 +77,7 @@ export const Navbar = ({isMobile}) => {
               </Button>
             </NextLink>
             <NextLink href="/mujeres" passHref>
-              <Button color={asPath === "/mujer" ? "secondary" : "info"}>
+              <Button color={asPath === "/mujeres" ? "secondary" : "info"}>
                 Mujeres
               </Button>
             </NextLink>
