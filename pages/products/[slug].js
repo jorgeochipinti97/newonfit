@@ -333,11 +333,11 @@ subtype:'short'
       setTempCartProduct({
         _id: product && product._id,
         image: product && product.images[0],
-        price: product && product.price,
+        price: product && product.precio,
         size: undefined,
         slug: product && product.slug,
-        title: product && product.title,
-        gender: product && product.gender,
+        title: product && product.titulo,
+        gender: product && product.categoria,
         quantity: 1,
       });
   }, [product]);
@@ -394,7 +394,7 @@ subtype:'short'
                   textAlign={"center"}
                   sx={{ width: 300 }}
                 >
-                  {product && capitalize(product.title)}
+                  {product && capitalize(product.titulo)}
                 </Typography>
               </Box>
 
@@ -414,7 +414,7 @@ subtype:'short'
                       variant="button"
                       sx={{ fontWeight: 800, fontSize: "20px" }}
                     >
-                      {product && `${formattwo(product.price)}`}
+                      {product && `${formattwo(product.precio)}`}
                     </Typography>
                   </Button>
                 </NextLink>
