@@ -23,7 +23,6 @@ import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
 
 export const ProductCard = ({ product, isMobile }) => {
-
   const formattwo = (value) => {
     // Crear formateador
     const formatter = new Intl.NumberFormat("en-US", {
@@ -32,10 +31,9 @@ export const ProductCard = ({ product, isMobile }) => {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
-  
+
     return formatter.format(value); //$2,500.00
   };
-  
 
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
@@ -48,6 +46,10 @@ export const ProductCard = ({ product, isMobile }) => {
 
   const productImage = useMemo(() => {
     try {
+      if (product.images.length <= 1) {
+        return product.images[0]; // O cualquier otro valor o acción que desees realizar
+      }
+
       return isHovered ? product.images[1] : product.images[0];
     } catch (err) {
       console.log(err);
@@ -90,28 +92,33 @@ export const ProductCard = ({ product, isMobile }) => {
         sx={{ overflow: "hidden", transform: isMobile ? "scale(0.8)" : "" }}
       >
         <Box sx={{ m: 1, overflow: "hidden" }}>
-          <Link>
-            <Box
-              display="flex"
-              justifyContent="center"
-              sx={{ overflow: "hidden" }}
-            >
-              <CardMedia
-                component="div"
-                className="fadeIn"
-                sx={{ overflow: "hidden" }}
-                // onLoad={() => setIsImageLoaded(true)}
-              >
-                <Image
-                  width={400}
-                  height={400}
-                  alt={product.titulo}
-                  src={productImage || ""}
-                />
-              </CardMedia>
-            </Box>
-          </Link>
+          <Card>
+            <CardActionArea>
+              <Link>
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  sx={{ overflow: "hidden" }}
+                >
+                  <CardMedia
+                    component="div"
+                    className="fadeIn"
+                    sx={{ overflow: "hidden" }}
+                    // onLoad={() => setIsImageLoaded(true)}
+                  >
+                    <Image
+                      width={400}
+                      height={400}
+                      alt={product.titulo}
+                      src={productImage || ""}
+                    />
+                  </CardMedia>
+                </Box>
+              </Link>
+            </CardActionArea>
+          </Card>
         </Box>
+
         <Box
           sx={{
             // display: isImageLoaded ? "block" : "none",

@@ -16,13 +16,33 @@ import {
   InputAdornment,
   Typography,
 } from "@mui/material";
+import axios from "axios";
 
 export const ProductFilterPage = () => {
-  const products = productos;
+  const [products, setProducts] = useState([]);
   const { asPath } = useRouter();
   const [_productsFiltered, setProductsFiltered] = useState([]);
   const [subtype_, setSubtype_] = useState([]);
   const [type_, setType_] = useState("");
+
+  const getProducts = async () => {
+    const data = await axios.get("/api/product");
+    setProducts(data.data);
+    const allProductos = data.data.filter(
+      (e) => e.categoria == asPath.replace("/", "")
+    );
+
+    console.log(data.data.map((e) => e.categoria == "accesorios"))
+    asPath.includes("accesorios")
+      ? setProductsFiltered(data.data.filter((e) => e.categoria == "accesorios"))
+      : setProductsFiltered(allProductos);
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+
+
 
   const todasCategoriasHombre = [
     "remera oversize",
@@ -48,13 +68,9 @@ export const ProductFilterPage = () => {
   const todasCategoriasMaquinas = ["maquinas", "fitness"];
 
   useEffect(() => {
-    const allProductos = products.filter(
-      (e) => e.type == asPath.replace("/", "")
-    );
-    setProductsFiltered(allProductos);
     setType_(asPath.replace("/", ""));
     asPath == "/hombre" && setCategories(todasCategoriasHombre);
-    asPath == "/mujer" && setCategories(todasCategoriasMujer);
+    asPath == "/mujeres" && setCategories(todasCategoriasMujer);
     asPath == "/suplementos" && setCategories(todasCategoriasSuplementos);
     asPath == "/equipamiento" && setCategories(todasCategoriasMaquinas);
     console.log(asPath.replace("/", ""));
@@ -65,11 +81,13 @@ export const ProductFilterPage = () => {
 
   const onChangeSubType = (subType__) => {
     const subtypeFilter = products.filter(
-      (e) => e.subtype == subType__ && e.type == type_
+      (e) => e.subcategoria == subType__ && e.categoria == type_
     );
     setProductsFiltered(subtypeFilter);
     setSubtype_(subType__);
+    console.log(subtypeFilter);
   };
+
   return (
     <>
       <Box sx={{ mt: 7 }}>
