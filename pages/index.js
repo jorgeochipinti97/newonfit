@@ -144,7 +144,7 @@ export default function Home() {
           <TextComponentHome />
           <Marquee>
             {products &&
-              products.slice(0, 10).map((e) => (
+              products.slice(0, 6).map((e) => (
                 <Box key={e.slug}>
                   <Box
                     sx={{
@@ -164,7 +164,6 @@ export default function Home() {
                               component="div"
                               className="fadeIn"
                               sx={{ overflow: "hidden" }}
-                              // onLoad={() => setIsImageLoaded(true)}
                             >
                               <Image
                                 width={400}
