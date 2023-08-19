@@ -40,6 +40,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   gsap.registerPlugin(ScrollTrigger);
   const isMobile = useMediaQuery("(max-width:600px)");
+  const router=useRouter()
   useEffect(() => {
     gsap.to(".loader", { transform: "scale(0)", delay: 2 });
     gsap.to(".loader", { display: "none", delay: 2.5 });
@@ -68,7 +69,7 @@ export default function Home() {
         <Marquee>
           {products &&
             products.slice(0, 9).map((e) => (
-              <Box key={e.slug}>
+              <Box key={e.slug} onClick={()=> router.push(`/products/${e.slug}`)}>
                 <Box
                   sx={{
                     overflow: "hidden",
