@@ -15,10 +15,12 @@ import {
   Input,
   InputAdornment,
   Typography,
+
 } from "@mui/material";
 import axios from "axios";
 
 export const ProductFilterPage = () => {
+
   const [products, setProducts] = useState([]);
   const { asPath } = useRouter();
   const [_productsFiltered, setProductsFiltered] = useState([]);
@@ -32,17 +34,16 @@ export const ProductFilterPage = () => {
       (e) => e.categoria == asPath.replace("/", "")
     );
 
-    console.log(data.data.map((e) => e.categoria == "accesorios"))
+    console.log(data.data.map((e) => e.categoria == "accesorios"));
     asPath.includes("accesorios")
-      ? setProductsFiltered(data.data.filter((e) => e.categoria == "accesorios"))
+      ? setProductsFiltered(
+          data.data.filter((e) => e.categoria == "accesorios")
+        )
       : setProductsFiltered(allProductos);
   };
   useEffect(() => {
     getProducts();
   }, []);
-
-
-
 
   const todasCategoriasHombre = [
     "remera oversize",

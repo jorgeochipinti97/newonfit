@@ -2,13 +2,14 @@
 
 
 import { useRouter } from 'next/router';
-import { Grid } from '@mui/material';
+import { Grid, useMediaQuery } from '@mui/material';
 import { ProductCard } from '../ProductCard';
 
 
-export const ProductList = ({ products,isMobile }) => {
+export const ProductList = ({ products }) => {
+    const isMobile = useMediaQuery("(max-width:600px)");
 
-    const { asPath } = useRouter()
+
 
 
     return (
