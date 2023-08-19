@@ -91,6 +91,11 @@ const ProductsSlugPage = () => {
       });
     isCheckauto &&
       gsap.to(".formContainerSlug", {
+display:'block',
+        delay: 1.3,
+      });
+    isCheckauto &&
+      gsap.to(".formContainerSlug", {
         transform: "scale(1)",
         delay: 1.5,
       });
@@ -245,16 +250,16 @@ const ProductsSlugPage = () => {
               <Button color="success" size="large" onClick={onAddProduct}>
                 Agregar al carrito
               </Button>
-              <Button color="success" size="large" onClick={() => onCheckOut()}>
+              {/* <Button color="success" size="large" onClick={() => onCheckOut()}>
                 Comprar ahora
-              </Button>
+              </Button> */}
             </Box>
           </Grid>
         </Grid>
       </Box>
       <Box
         className="formContainerSlug"
-        sx={{ transform: "scale(0)", mt: 10, mx: 2 }}
+        sx={{ transform: "scale(0)", mt: 10, mx: 2,display:"none" }}
       >
         <CartList />
         <OrderSummary />
