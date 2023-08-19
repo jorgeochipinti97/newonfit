@@ -106,7 +106,7 @@ export const CartList = ({ editable = false, products, isMobile }) => {
                   color="error"
                   onClick={() => {removeCartProduct(product)}}
                 >
-                  Remove
+                  Remover
                 </Button>
               )}
             </Grid>
