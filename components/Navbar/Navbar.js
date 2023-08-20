@@ -137,6 +137,7 @@ export const Navbar = ({isMobile}) => {
               <Badge
                 badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
                 color="secondary"
+                sx={{fontWeight:'600'}}
               >
                 <ShoppingCartOutlined />
               </Badge>
