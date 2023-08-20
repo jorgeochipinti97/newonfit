@@ -61,7 +61,7 @@ const CartPage = () => {
         <Grid item xs={12} sm={5}>
           <Card className="summary-card">
             <CardContent>
-              <Typography variant="h2">Order</Typography>
+              <Typography variant="h2">Orden</Typography>
               <Divider sx={{ my: 1 }} />
 
               <OrderSummary />
