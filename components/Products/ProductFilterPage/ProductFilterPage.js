@@ -129,7 +129,7 @@ export const ProductFilterPage = () => {
               </Select>
             </FormControl>
           </Box> */}
-          <Box>
+          {/* <Box>
             <Input
               sx={{ mt: 5 }}
               className="fadeIn"
@@ -138,7 +138,7 @@ export const ProductFilterPage = () => {
               type="text"
               placeholder="Search..."
             />
-          </Box>
+          </Box> */}
         </Box>
       </Box>
 
