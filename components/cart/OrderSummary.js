@@ -25,7 +25,7 @@ export const OrderSummary = ({ orderValues }) => {
       <Grid item xs={6} display="flex" justifyContent="end">
         <Typography>
           {summaryValues.numberOfItems}{" "}
-          {summaryValues.numberOfItems > 1 ? "products" : "product"}
+          {summaryValues.numberOfItems > 1 ? "productos" : "producto"}
         </Typography>
       </Grid>
       <Grid item xs={6} sx={{ mt: 2 }}>
