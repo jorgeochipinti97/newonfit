@@ -1,38 +1,21 @@
-
-
-
-import { useRouter } from 'next/router';
-import { Grid, useMediaQuery } from '@mui/material';
-import { ProductCard } from '../ProductCard';
-
+import { useRouter } from "next/router";
+import { Grid, useMediaQuery } from "@mui/material";
+import { ProductCard } from "../ProductCard";
 
 export const ProductList = ({ products }) => {
-    const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:600px)");
 
-
-
-
-    return (
-        <>
-
-            <Grid container spacing={1} sx={{mt:15}}>
-
-
-                {
-                    products.map(product => (
-
-
-                        <ProductCard
-                        isMobile={isMobile}
-                            key={product.slug}
-                            product={product}
-                        />
-
-                    ))
-                }
-       
-
-            </Grid>
-        </>
-    )
-}
+  return (
+    <>
+      <Grid container spacing={1} sx={{ mt: isMobile ? 0: 15 }}>
+        {products.map((product) => (
+          <ProductCard
+            isMobile={isMobile}
+            key={product.slug}
+            product={product}
+          />
+        ))}
+      </Grid>
+    </>
+  );
+};
