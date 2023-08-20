@@ -20,7 +20,7 @@ export const OrderSummary = ({ orderValues }) => {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Typography>Nº Products</Typography>
+        <Typography>Nº Productos</Typography>
       </Grid>
       <Grid item xs={6} display="flex" justifyContent="end">
         <Typography>
