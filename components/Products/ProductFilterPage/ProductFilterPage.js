@@ -24,7 +24,7 @@ export const ProductFilterPage = () => {
   const [_productsFiltered, setProductsFiltered] = useState([]);
   const [subtype_, setSubtype_] = useState([]);
   const [type_, setType_] = useState("");
-
+  const [isNtProcuts, setIsNtProcuts] = useState(false);
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
@@ -99,9 +99,11 @@ export const ProductFilterPage = () => {
             e.subcategoria === formattedSubType && e.categoria === "hombres"
         )
       );
-
     formattedSubType != "remera_oversize" && setProductsFiltered(subtypeFilter);
     setSubtype_(subType__);
+
+    subtypeFilter.length == 0 && subType__ != 'remera oversize' ? setIsNtProcuts(true) : setIsNtProcuts(false);
+    subtypeFilter.length == 0 && subType__ != 'remera oversize' ? setIsNtProcuts(true) : setIsNtProcuts(false);
   };
   const replaceSpacesWithUnderscores = (text) => {
     return text.replace(/\s+/g, "_");
@@ -158,10 +160,15 @@ export const ProductFilterPage = () => {
           </Box> */}
         </Box>
       </Box>
+      {isNtProcuts && (
+        <Box sx={{ display: "flex", justifyContent: "center", my: 5 }}>
+          <Typography sx={{ fontSize: "30px", fontWeight: "300" }}>
+            Proximamente..
+          </Typography>
+        </Box>
+      )}
 
-      <>
-        <ProductList products={_productsFiltered} />
-      </>
+      <ProductList products={_productsFiltered} />
     </>
   );
 };
