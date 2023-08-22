@@ -14,7 +14,7 @@ const FaqsPage = () => {
               <Box display="flex">
                 <QuizIcon />
                 <Typography variant="h1" sx={{ ml: 2 }}>
-                  FAQS
+Preguntas frecuentes
                 </Typography>
               </Box>
             </Box>
