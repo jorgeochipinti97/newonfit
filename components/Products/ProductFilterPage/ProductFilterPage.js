@@ -70,7 +70,7 @@ export const ProductFilterPage = () => {
 
   useEffect(() => {
     setType_(asPath.replace("/", ""));
-    asPath == "/hombres" && setCategories(todasCategoriasHombre);
+    asPath == "/hombre" && setCategories(todasCategoriasHombre);
     asPath == "/mujeres" && setCategories(todasCategoriasMujer);
     asPath == "/suplementos" && setCategories(todasCategoriasSuplementos);
     asPath == "/equipamiento" && setCategories(todasCategoriasMaquinas);
@@ -81,8 +81,9 @@ export const ProductFilterPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const onChangeSubType = (subType__) => {
+    const formattedSubType = subType__.replace(/\s+/g, '_'); // Reemplazar espacios con guiones bajos
     const subtypeFilter = products.filter(
-      (e) => e.subcategoria == subType__ && e.categoria == type_
+      (e) => e.subcategoria === formattedSubType && e.categoria === type_
     );
     setProductsFiltered(subtypeFilter);
     setSubtype_(subType__);
