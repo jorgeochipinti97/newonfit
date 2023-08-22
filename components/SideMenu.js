@@ -60,7 +60,7 @@ export const SideMenu = () => {
           <ListItem
             button
             sx={{ display: { xs: "", sm: "none" } }}
-            onClick={() => navigateTo("/hombre")}
+            onClick={() => navigateTo("/hombres")}
           >
             <ListItemIcon>
               <ManIcon />
