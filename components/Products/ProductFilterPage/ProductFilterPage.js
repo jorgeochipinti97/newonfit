@@ -70,7 +70,7 @@ export const ProductFilterPage = () => {
 
   useEffect(() => {
     setType_(asPath.replace("/", ""));
-    asPath == "/hombre" && setCategories(todasCategoriasHombre);
+    asPath == "/hombres" && setCategories(todasCategoriasHombre);
     asPath == "/mujeres" && setCategories(todasCategoriasMujer);
     asPath == "/suplementos" && setCategories(todasCategoriasSuplementos);
     asPath == "/equipamiento" && setCategories(todasCategoriasMaquinas);
