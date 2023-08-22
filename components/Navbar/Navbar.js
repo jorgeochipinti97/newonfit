@@ -105,7 +105,7 @@ export const Navbar = ({isMobile}) => {
 
           {/* Pantallas pantallas grandes */}
           <Box display="flex">
-            {isSearchVisible ? (
+            {/* {isSearchVisible ? (
               <Input
                 sx={{ display: { xs: "none", sm: "flex" } }}
                 className="fadeIn"
@@ -131,7 +131,7 @@ export const Navbar = ({isMobile}) => {
               >
                 <SearchOutlined />
               </IconButton>
-            )}
+            )} */}
 
             <IconButton onClick={() => push("/cart")}>
               <Badge
