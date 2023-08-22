@@ -1,7 +1,8 @@
 import { Box, Divider, Typography } from "@mui/material";
 import QuizIcon from "@mui/icons-material/Quiz";
-import { ShopLayout } from "@/components/Layout";
+
 import { AccordionFaqs } from "@/components/AccordionFaqs";
+import { ShopLayout } from "@/components/layout/shopLayout";
 
 const FaqsPage = () => {
   return (
