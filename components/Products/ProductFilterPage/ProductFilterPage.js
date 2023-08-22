@@ -15,12 +15,10 @@ import {
   Input,
   InputAdornment,
   Typography,
-
 } from "@mui/material";
 import axios from "axios";
 
 export const ProductFilterPage = () => {
-
   const [products, setProducts] = useState([]);
   const { asPath } = useRouter();
   const [_productsFiltered, setProductsFiltered] = useState([]);
@@ -30,17 +28,25 @@ export const ProductFilterPage = () => {
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
+
     const allProductos = data.data.filter(
       (e) => e.categoria == asPath.replace("/", "")
     );
 
-    console.log(data.data.map((e) => e.categoria == "accesorios"));
-    asPath.includes("accesorios")
-      ? setProductsFiltered(
-          data.data.filter((e) => e.categoria == "accesorios")
-        )
-      : setProductsFiltered(allProductos);
+    const oversizeWoman = data.data.filter(
+      (e) => e.subcategoria == "remera_oversize"
+    );
+
+    asPath == "/mujeres" &&
+      setProductsFiltered(oversizeWoman.concat(allProductos));
+    asPath.includes("accesorios") &&
+      setProductsFiltered(data.data.filter((e) => e.categoria == "accesorios"));
+
+    asPath != "/mujeres" &&
+      asPath != "/accesorios" &&
+      setProductsFiltered(allProductos);
   };
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -74,22 +80,32 @@ export const ProductFilterPage = () => {
     asPath == "/mujeres" && setCategories(todasCategoriasMujer);
     asPath == "/suplementos" && setCategories(todasCategoriasSuplementos);
     asPath == "/equipamiento" && setCategories(todasCategoriasMaquinas);
-    console.log(asPath.replace("/", ""));
   }, []);
   const [categories, setCategories] = useState([]);
   const [select_, setSelect_] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
   const onChangeSubType = (subType__) => {
-    const formattedSubType = subType__.replace(/\s+/g, '_'); // Reemplazar espacios con guiones bajos
+    const formattedSubType = replaceSpacesWithUnderscores(subType__);
+
     const subtypeFilter = products.filter(
       (e) => e.subcategoria === formattedSubType && e.categoria === type_
     );
-    setProductsFiltered(subtypeFilter);
-    setSubtype_(subType__);
-    console.log(subtypeFilter);
-  };
+    asPath == "/mujeres" &&
+      formattedSubType == "remera_oversize" &&
+      setProductsFiltered(
+        products.filter(
+          (e) =>
+            e.subcategoria === formattedSubType && e.categoria === "hombres"
+        )
+      );
 
+    formattedSubType != "remera_oversize" && setProductsFiltered(subtypeFilter);
+    setSubtype_(subType__);
+  };
+  const replaceSpacesWithUnderscores = (text) => {
+    return text.replace(/\s+/g, "_");
+  };
   return (
     <>
       <Box sx={{ mt: 7 }}>
