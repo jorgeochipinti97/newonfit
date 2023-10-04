@@ -28,7 +28,7 @@ export const SectionFourHome = () => {
         xl={6}
         ref={ref}
         className="sectionFour"
-        sx={{ opacity: 0 }}
+        sx={{ opacity: 0,scrollSnapAlign:'start' }}
       >
         <div
           data-aos="fade-right"

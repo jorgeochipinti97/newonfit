@@ -20,7 +20,7 @@ export const SectionOneHome = () => {
   }, [inView]);
   return (
     <>
-      <Grid item sm={6} lg={6} xl={6}>
+      <Grid item sm={6} lg={6} xl={6} sx={{scrollSnapAlign:'start',scrollMarginTop:'20px'}}>
         <Box
         ref={ref}
           className="sectionOne"

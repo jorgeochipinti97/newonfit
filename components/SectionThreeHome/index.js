@@ -23,7 +23,7 @@ export const SectionThreeHome = () => {
 
   return (
     <>
-      <Grid item sm={6} lg={6} xl={6} ref={ref}>
+      <Grid item sm={6} lg={6} xl={6} ref={ref} sx={{scrollSnapAlign:'start',scrollMarginTop:'20px'}}>
         <div >
           <Box
          className="sectionThree" sx={{ transform: "scale(0)",textAlign:'center' }}

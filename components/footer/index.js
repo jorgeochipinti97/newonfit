@@ -12,7 +12,7 @@ export const FooterComponent = ({ isMobile }) => {
     <>
       <Box sx={{ width: "100%", my: 4 }}>
         <Divider sc={{ my: 1 }} />
-        {/* <Box sx={{ width: "100%" }} display={"flex"} justifyContent={"center"}>
+        <Box sx={{ width: "100%" }} display={"flex"} justifyContent={"center"}>
           <Box
             sx={{ width: isMobile ? "20%" : "5%", cursor: "pointer" }}
             display={"flex"}
@@ -31,7 +31,7 @@ export const FooterComponent = ({ isMobile }) => {
           >
             <Lottie animationData={whatsapp} loop={true} />
           </Box>
-        </Box> */}
+        </Box>
 
         {/* <Box
           sx={{ width: "100%", mt: 6 }}
@@ -45,14 +45,14 @@ export const FooterComponent = ({ isMobile }) => {
           >
             <Lottie animationData={computer} loop={true} />
           </Box>
-        </Box>
+        </Box> */}
 
         <Typography
           varaint="subtitle1"
-          sx={{ textAlign: "center", fontWeight: 800 }}
+          sx={{ textAlign: "center", fontWeight: 300 }}
         >
-          Developmnet by Royer Store
-        </Typography> */}
+          © ONFIT. Todos los derechos reservados.
+        </Typography>
       </Box>
     </>
   );

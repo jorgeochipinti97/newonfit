@@ -26,7 +26,7 @@ export const SectionTwoHome = () => {
   }, [inView]);
   return (
     <>
-      <Grid item sm={6} lg={6} xl={6} ref={ref}>
+      <Grid item sm={6} lg={6} xl={6} ref={ref} sx={{scrollSnapAlign:'start',scrollMarginTop:'20px'}}>
         <div
           className="sectionTwo"
           style={{

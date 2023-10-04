@@ -35,12 +35,13 @@ import axios from "axios";
 import Marquee from "react-fast-marquee";
 import { ProductCard } from "@/components/Products/ProductCard";
 import Image from "next/image";
+import { formattwo } from "@/utils/currency";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   gsap.registerPlugin(ScrollTrigger);
   const isMobile = useMediaQuery("(max-width:600px)");
-  const router=useRouter()
+  const router = useRouter();
   useEffect(() => {
     gsap.to(".loader", { transform: "scale(0)", delay: 2 });
     gsap.to(".loader", { display: "none", delay: 2.5 });
@@ -62,93 +63,105 @@ export default function Home() {
         <Box className="loader">
           <LoadingComponent />
         </Box>
-        <Box className="mainContent" sx={{ transform: "scale(0)" }}>
+        <Box
+          className="mainContent"
+          sx={{ transform: "scale(0)", scrollSnapAlign: "start" }}
+        >
           <VideoComponent isMobile={isMobile} />
           <TextComponentHome />
         </Box>
-        <Marquee>
-          {products &&
-            products.slice(0, 9).map((e) => (
-              <Box key={e.slug} onClick={()=> router.push(`/products/${e.slug}`)}>
+        <Box sx={{ scrollSnapAlign: "start", background:'linear-gradient(90deg, rgba(254,221,45,1) 35%, rgba(255,240,157,1) 100%);' }}>
+          <Marquee>
+            {products &&
+              products.slice(0, 9).map((e) => (
                 <Box
-                  sx={{
-                    overflow: "hidden",
-                    transform: isMobile ? "scale(0.8)" : "",
-                  }}
+                  key={e.slug}
+                  onClick={() => router.push(`/products/${e.slug}`)}
                 >
-                  <Box sx={{ m: 1, overflow: "hidden" }}>
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      sx={{ overflow: "hidden" }}
-                    >
-                      <Card>
-                        <CardActionArea>
-                          <CardMedia
-                            component="div"
-                            className="fadeIn"
-                            sx={{ overflow: "hidden" }}
-                          >
-                            <Image
-                              width={200}
-                              height={200}
-                              alt={e.titulo}
-                              src={e.images[0]}
-                            />
-                          </CardMedia>
-                        </CardActionArea>
-                      </Card>
-                    </Box>
-                  </Box>
                   <Box
                     sx={{
-                      position: "relative",
                       overflow: "hidden",
+                      transform: isMobile ? "scale(0.8)" : "",
                     }}
                   >
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      sx={{ overflow: "hidden" }}
-                    >
-                      <Typography
-                        variant="subtitle1"
-                        textAlign={"center"}
-                        fontWeight={700}
-                        fontSize={'15px'}
-                        color="primary"
-                      >
-                        {capitalize(`${e.titulo}`)}
-                      </Typography>
-                    </Box>
-                    <Box sx={{ overflow: "hidden" }}>
+                    <Box sx={{ m: 1, overflow: "hidden" }}>
                       <Box
                         display="flex"
                         justifyContent="center"
-                        sx={{ mb: 1, mt: 2, overflow: "hidden" }}
+                        sx={{ overflow: "hidden" }}
                       >
-                        <Link sx={{ overflow: "hidden" }}>
-                          <Button color="primary" sx={{ width: "130px" }}>
-                            <Typography
-                              variant="body2"
-                              textAlign={"center"}
-                              fontWeight={700}
+                        <Card>
+                          <CardActionArea>
+                            <CardMedia
+                              component="div"
+                              className="fadeIn"
+                              sx={{ overflow: "hidden" }}
                             >
-                              {e.precio}
-                            </Typography>
-                          </Button>
-                        </Link>
-                      </Box>{" "}
+                              <Image
+                                width={200}
+                                height={200}
+                                alt={e.titulo}
+                                src={e.images[0]}
+                              />
+                            </CardMedia>
+                          </CardActionArea>
+                        </Card>
+                      </Box>
                     </Box>
-                  </Box>
+                    <Box
+                      sx={{
+                        position: "relative",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        sx={{ overflow: "hidden" }}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          textAlign={"center"}
+                          fontWeight={700}
+                          fontSize={"15px"}
+                          color="primary"
+                        >
+                          {capitalize(`${e.titulo}`)}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ overflow: "hidden" }}>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          sx={{ mb: 1, mt: 2, overflow: "hidden" }}
+                        >
+                          <Link sx={{ overflow: "hidden" }}>
+                            <Button color="primary" sx={{ width: "130px" }}>
+                              <Typography
+                                variant="body2"
+                                textAlign={"center"}
+                                fontWeight={700}
+                              >
+                                {formattwo(e.precio)}
+                              </Typography>
+                            </Button>
+                          </Link>
+                        </Box>{" "}
+                      </Box>
+                    </Box>
 
-                  <Divider sx={{ my: 2 }} />
+
+                  </Box>
                 </Box>
-              </Box>
-            ))}
-        </Marquee>
-        <Grid container sx={{ display: isMobile ? "none" : "auto" }}>
+              ))}
+          </Marquee>
+        </Box>
+          <Divider sx={{my:2, scrollSnapAlign:'start'}}/>
+        <Grid container sx={{ display: isMobile ? "none" : "auto", }}>
+
+
           <SectionOneHome />
+
           <SectionTwoHome />
           <SectionThreeHome />
           <SectionFourHome />
