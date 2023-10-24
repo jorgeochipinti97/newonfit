@@ -39,19 +39,13 @@ import { formattwo } from "@/utils/currency";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  gsap.registerPlugin(ScrollTrigger);
   const isMobile = useMediaQuery("(max-width:600px)");
   const router = useRouter();
-  useEffect(() => {
-    gsap.to(".loader", { transform: "scale(0)", delay: 2 });
-    gsap.to(".loader", { display: "none", delay: 2.5 });
-    gsap.to(".mainContent", { transform: "scale(1)", delay: 3 });
-  }, []);
+
 
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
-    console.log(data.data);
   };
   useEffect(() => {
     getProducts();
@@ -60,43 +54,45 @@ export default function Home() {
   return (
     <>
       <ShopLayout>
-        <Box className="loader">
-          <LoadingComponent />
-        </Box>
-        <Box
-          className="mainContent"
-          sx={{ transform: "scale(0)", scrollSnapAlign: "start" }}
-        >
+    
+        <Box sx={{ scrollSnapAlign: "start" }}>
           <VideoComponent isMobile={isMobile} />
           <TextComponentHome />
         </Box>
-        <Box sx={{ scrollSnapAlign: "start", background:'linear-gradient(90deg, rgba(254,221,45,1) 35%, rgba(255,240,157,1) 100%);' }}>
+        <Box sx={{ scrollSnapAlign: "start" }}>
           <Marquee>
             {products &&
               products.slice(0, 9).map((e) => (
                 <Box
                   key={e.slug}
                   onClick={() => router.push(`/products/${e.slug}`)}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    cursor: "pointer",
+                  }}
                 >
                   <Box
                     sx={{
                       overflow: "hidden",
                       transform: isMobile ? "scale(0.8)" : "",
+
+                      borderRadius: "30px 30px 20px 20px",
+                      background:
+                        "linear-gradient(190deg, rgba(235,235,100,1) , rgba(235,235,100,.1));",
+                      mx: 2,
                     }}
                   >
-                    <Box sx={{ m: 1, overflow: "hidden" }}>
-                      <Box
-                        display="flex"
-                        justifyContent="center"
-                        sx={{ overflow: "hidden" }}
+                    <Box sx={{ overflow: "hidden" }}>
+                      <Card
+                        sx={{
+                          border: ".1px solid black",
+                          borderRadius: "30px",
+                        }}
                       >
-                        <Card>
-                          <CardActionArea>
-                            <CardMedia
-                              component="div"
-                              className="fadeIn"
-                              sx={{ overflow: "hidden" }}
-                            >
+                        <CardActionArea>
+                          <Box sx={{ overflow: "hidden" }}>
+                            <CardMedia sx={{ overflow: "hidden" }}>
                               <Image
                                 width={200}
                                 height={200}
@@ -104,13 +100,12 @@ export default function Home() {
                                 src={e.images[0]}
                               />
                             </CardMedia>
-                          </CardActionArea>
-                        </Card>
-                      </Box>
+                          </Box>
+                        </CardActionArea>
+                      </Card>
                     </Box>
                     <Box
                       sx={{
-                        position: "relative",
                         overflow: "hidden",
                       }}
                     >
@@ -149,17 +144,13 @@ export default function Home() {
                         </Box>{" "}
                       </Box>
                     </Box>
-
-
                   </Box>
                 </Box>
               ))}
           </Marquee>
         </Box>
-          <Divider sx={{my:2, scrollSnapAlign:'start'}}/>
-        <Grid container sx={{ display: isMobile ? "none" : "auto", }}>
-
-
+        <Divider sx={{ my: 2, scrollSnapAlign: "start" }} />
+        <Grid container sx={{ display: isMobile ? "none" : "auto" }}>
           <SectionOneHome />
 
           <SectionTwoHome />

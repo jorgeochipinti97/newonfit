@@ -91,7 +91,7 @@ const ProductsSlugPage = () => {
       });
     isCheckauto &&
       gsap.to(".formContainerSlug", {
-display:'block',
+        display: "block",
         delay: 1.3,
       });
     isCheckauto &&
@@ -112,6 +112,16 @@ display:'block',
         title: product && product.titulo,
         gender: product && product.categoria,
         quantity: 1,
+      });
+
+    product &&
+      gsap.to(".slugContainer", {
+        display: "auto",
+      });
+    product &&
+      gsap.to(".slugContainer", {
+        opacity: 1,
+        delay: .1,
       });
   }, [product]);
 
@@ -136,7 +146,10 @@ display:'block',
   };
   return (
     <ShopLayout>
-      <Box sx={{ mx: 2 }} className="slugContainer">
+      <Box
+        sx={{ mx: 2,opacity:0 }}
+        className="slugContainer"
+      >
         <Box
           sx={{ mt: 10, mb: 2 }}
           display="flex"
@@ -259,7 +272,7 @@ display:'block',
       </Box>
       <Box
         className="formContainerSlug"
-        sx={{ transform: "scale(0)", mt: 10, mx: 2,display:"none" }}
+        sx={{ transform: "scale(0)", mt: 10, mx: 2, display: "none" }}
       >
         <CartList />
         <OrderSummary />

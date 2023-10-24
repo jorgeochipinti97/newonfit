@@ -1,68 +1,92 @@
 import {
-    AppBar,
-    Badge,
-    Box,
-    Button,
-    IconButton,
-    Input,
-    InputAdornment,
-    Link,
-    Toolbar,
-    Typography,
-  } from "@mui/material";import Image from "next/image";
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  Input,
+  InputAdornment,
+  Link,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import {
-    ClearOutlined,
-    SearchOutlined,
-    ShoppingCartOutlined,
-  } from "@mui/icons-material";
+  ClearOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
 
-  import ManIcon from '@mui/icons-material/Man';
+import ManIcon from "@mui/icons-material/Man";
 import { UiContext } from "@/context/ui/UiContext";
 import { CartContext } from "@/context/cart/CartContext";
-export const Navbar = ({isMobile}) => {
-    const { asPath, push } = useRouter();
-    const { toggleSideMenu } = useContext(UiContext);
-    const { numberOfItems } = useContext(CartContext);
-  
-  
-    const [searchTerm, setSearchTerm] = useState("");
-    const [isSearchVisible, setIsSearchVisible] = useState(false);
-  
-    const onSearchTerm = () => {
-      if (searchTerm.trim().length === 0) return;
-      push(`/search/${searchTerm}`);
-    };
-  
-    // useEffect(() => {
-    //   console.log(numberOfItems);
-    // }, []);
-  
+export const Navbar = ({ isMobile }) => {
+  const { asPath, push } = useRouter();
+  const { toggleSideMenu } = useContext(UiContext);
+  const { numberOfItems } = useContext(CartContext);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+
+  const onSearchTerm = () => {
+    if (searchTerm.trim().length === 0) return;
+    push(`/search/${searchTerm}`);
+  };
+
+  // useEffect(() => {
+  //   console.log(numberOfItems);
+  // }, []);
 
   return (
+    <AppBar
+      sx={{
+        textDecoration: "none",
+        overflow: "hidden",
+        backgroundColor: "transparent",
+        display: "flex",
+        justifyContent: "center",
+        backdropFilter:'sepia(100%)'
+      }}
+    >
+      <Toolbar
+        sx={{
+          textDecoration: "none",
+          overflow: "hidden",
+          backgroundColor: "rgba(0,0,0,0.1)",
+          display:'flex', justifyContent:'auto'
+        }}
+      >
 
-    <AppBar sx={{ textDecoration: "none", overflow: "hidden" }}>
-      <Toolbar sx={{ textDecoration: "none", overflow: "hidden" }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Box sx={{ mt: 2, mb: 2, transform: isMobile ? "scale(0.7)" : "" }}>
-            {/* <Typography variant="h6">Onfit |</Typography> */}
+<Box sx={{ display: isMobile ? "none" : "auto", px:2,borderRadius:'10px' }}>
             <Image src="/logo.png" width={125} height={125} alt="" />
           </Box>
-          <Box
-            sx={{
-              display: { xs: "none", sm: "block" },
+<Box flex={1}/>
+        {/* <Button
+          onClick={toggleSideMenu}
+          sx={{
+            display: { xs: "block", sm: "block", md: "none" },
+            backgroundColor: "transparent",
+          }}
+        >
+          <span
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              padding: 4,
+              borderRadius: "90px",
             }}
-            className="fadeIn"
-            alignSelf="center"
           >
+            Menu
+          </span>
+        </Button> */}
+
+
+    
+
+          <Box sx={{}} className="fadeIn" alignSelf="center" justifySelf={'center'}>
             <NextLink href="/" passHref>
               <Button
                 sx={{ textDecoration: "none" }}
@@ -72,84 +96,69 @@ export const Navbar = ({isMobile}) => {
               </Button>
             </NextLink>
             <NextLink href="/hombres" passHref>
-              <Button color={asPath === "/hombres" ? "secondary" : "info"}>
+              <Button
+                sx={{ mx: 1 }}
+                color={asPath === "/hombres" ? "secondary" : "info"}
+              >
                 Hombres
               </Button>
             </NextLink>
             <NextLink href="/mujeres" passHref>
-              <Button color={asPath === "/mujeres" ? "secondary" : "info"}>
+              <Button
+                sx={{ mx: 1 }}
+                color={asPath === "/mujeres" ? "secondary" : "info"}
+              >
                 Mujeres
               </Button>
             </NextLink>
             <NextLink href="/suplementos" passHref>
-              <Button color={asPath === "/suplementos" ? "secondary" : "info"}>
+              <Button
+                sx={{ mx: 1 }}
+                color={asPath === "/suplementos" ? "secondary" : "info"}
+              >
                 Suplementos
               </Button>
             </NextLink>
             <NextLink href="/equipamiento" passHref>
-              <Button color={asPath === "/equipamiento" ? "secondary" : "info"}>
+              <Button
+                sx={{ mx: 1 }}
+                color={asPath === "/equipamiento" ? "secondary" : "info"}
+              >
                 Equipamiento
               </Button>
             </NextLink>
             <NextLink href="/accesorios" passHref>
-              <Button color={asPath === "/accesorios" ? "secondary" : "info"}>
+              <Button
+                sx={{ mx: 1 }}
+                color={asPath === "/accesorios" ? "secondary" : "info"}
+              >
                 Accesorios
               </Button>
             </NextLink>
             <NextLink href="/faqs" passHref>
-              <Button color={asPath === "/faqs" ? "secondary" : "info"}>
+              <Button
+                sx={{ mx: 1 }}
+                color={asPath === "/faqs" ? "secondary" : "info"}
+              >
                 FAQS
               </Button>
             </NextLink>
           </Box>
-
-          {/* Pantallas pantallas grandes */}
-          <Box display="flex">
-            {/* {isSearchVisible ? (
-              <Input
-                sx={{ display: { xs: "none", sm: "flex" } }}
-                className="fadeIn"
-                autoFocus
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyPress={(e) => (e.key === "Enter" ? onSearchTerm() : null)}
-                type="text"
-                placeholder="Buscar..."
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setIsSearchVisible(false)}>
-                      <ClearOutlined />
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            ) : (
-              <IconButton
-                onClick={() => setIsSearchVisible(true)}
-                className="fadeIn"
-                sx={{ display: { xs: "none", sm: "flex" } }}
-              >
-                <SearchOutlined />
-              </IconButton>
-            )} */}
-
-            <IconButton onClick={() => push("/cart")}>
-              <Badge
-                badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
-                color="secondary"
-                sx={{fontWeight:'800'}}
-              >
-                <ShoppingCartOutlined />
-              </Badge>
-            </IconButton>
-            <Button
-              onClick={toggleSideMenu}
-              sx={{ display: { xs: "block", sm: "block", md: "none" } }}
+          <Box flex={1}/>
+          <IconButton sx={{ mx: 1 }} onClick={() => push("/cart")}>
+            <Badge
+              badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
+              color="secondary"
+              sx={{
+                backgroundColor: "rgba(0,0,0,0.4)",
+                p: 1,
+                borderRadius: "90px",
+              }}
             >
-              Menu
-            </Button>
-          </Box>
-        </Box>
+              <ShoppingCartOutlined sx={{ color: "white" }} />
+            </Badge>
+          </IconButton>
+      
       </Toolbar>
     </AppBar>
   );

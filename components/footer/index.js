@@ -10,7 +10,7 @@ import { Box, Divider, Typography } from "@mui/material";
 export const FooterComponent = ({ isMobile }) => {
   return (
     <>
-      <Box sx={{ width: "100%", my: 4 }}>
+      <Box sx={{ width: "100%", py: 4,  height:'40vh',display:'flex', flexDirection:'column', justifyContent:'space-around' }}>
         <Divider sc={{ my: 1 }} />
         <Box sx={{ width: "100%" }} display={"flex"} justifyContent={"center"}>
           <Box

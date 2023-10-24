@@ -84,6 +84,7 @@ export const ProductCard = ({ product, isMobile }) => {
         transformStyle: "preserve-3d",
         transform: "rotateY(180deg)",
         opacity: 0,
+        borderRadius: "90px",
       }}
     >
       <Box
@@ -92,8 +93,8 @@ export const ProductCard = ({ product, isMobile }) => {
         sx={{ overflow: "hidden", transform: isMobile ? "scale(0.8)" : "" }}
       >
         <Box sx={{ m: 1, overflow: "hidden" }}>
-          <Card>
-            <CardActionArea>
+          <Card sx={{ backgroundColor: "transparent" }}>
+            <CardActionArea sx={{ borderRadius: "90px" , background:'linear-gradient(190deg, rgba(235,235,100,.1) , rgba(235,235,100,.1))'}}>
               <Link>
                 <Box
                   display="flex"
@@ -103,65 +104,65 @@ export const ProductCard = ({ product, isMobile }) => {
                   <CardMedia
                     component="div"
                     className="fadeIn"
-                    sx={{ overflow: "hidden" }}
-                    // onLoad={() => setIsImageLoaded(true)}
+                    sx={{ overflow: "hidden", borderRadius: "90px" }}
                   >
                     <Image
                       width={400}
                       height={400}
+                      loading="lazy"
                       alt={product.titulo}
                       src={productImage || ""}
+                      style={{ width:'100%' }}
                     />
                   </CardMedia>
                 </Box>
               </Link>
+
+              <Box
+                sx={{
+                  // display: isImageLoaded ? "block" : "none",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  sx={{ overflow: "hidden" }}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    textAlign={"center"}
+                    fontWeight={700}
+                    color="primary"
+                    sx={{}}
+                  >
+                    {capitalize(`${product.titulo}`)}
+                  </Typography>
+                </Box>
+                <Box sx={{ overflow: "hidden" }}>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    sx={{ mb: 1, mt: 2, overflow: "hidden" }}
+                  >
+                    <Link sx={{ overflow: "hidden" }}>
+                      <Button color="primary" sx={{ width: "130px" }}>
+                        <Typography
+                          variant="body2"
+                          textAlign={"center"}
+                          fontWeight={700}
+                        >
+                          {formattwo(product.precio)}
+                        </Typography>
+                      </Button>
+                    </Link>
+                  </Box>{" "}
+                </Box>
+              </Box>
             </CardActionArea>
           </Card>
         </Box>
-
-        <Box
-          sx={{
-            // display: isImageLoaded ? "block" : "none",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <Box
-            display="flex"
-            justifyContent="center"
-            sx={{ overflow: "hidden" }}
-          >
-            <Typography
-              variant="subtitle1"
-              textAlign={"center"}
-              fontWeight={700}
-              color="primary"
-              sx={{}}
-            >
-              {capitalize(`${product.titulo}`)}
-            </Typography>
-          </Box>
-          <Box sx={{ overflow: "hidden" }}>
-            <Box
-              display="flex"
-              justifyContent="center"
-              sx={{ mb: 1, mt: 2, overflow: "hidden" }}
-            >
-              <Link sx={{ overflow: "hidden" }}>
-                <Button color="primary" sx={{ width: "130px" }}>
-                  <Typography
-                    variant="body2"
-                    textAlign={"center"}
-                    fontWeight={700}
-                  >
-                    {formattwo(product.precio)}
-                  </Typography>
-                </Button>
-              </Link>
-            </Box>{" "}
-          </Box>
-        </Box>
-
         <Divider sx={{ my: 2 }} />
       </Box>
     </Grid>

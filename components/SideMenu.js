@@ -42,10 +42,10 @@ export const SideMenu = () => {
     <Drawer
       open={isMenuOpen}
       anchor="right"
-      sx={{ backdropFilter: "blur(4px)", transition: "all 0.5s ease-out" }}
+      sx={{ backdropFilter: "blur(4px)", transition: "all 0.5s ease-out",  }}
       onClose={toggleSideMenu}
     >
-      <Box sx={{ width: 250, paddingTop: 5 }}>
+      <Box sx={{ width: 250, paddingTop: 5,backgroundColor:'rgba(0,0,0,0.1)',height:'100vh' }}>
         <List>
           <ListItem
             button
