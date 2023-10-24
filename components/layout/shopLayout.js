@@ -38,14 +38,14 @@ export const ShopLayout = ({
 
       <Box
         sx={{
-          background: "radial-gradient(at center, rgba(254, 221, 45,0.1), white,white)",
+          background:       "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
           // animation: "randomGradient 5s linear infinite;",
         }}
       >
         <main
           style={{
             padding: "0px 0px",
-            minHeight:'100vh'
+
           }}
         >
           {children}

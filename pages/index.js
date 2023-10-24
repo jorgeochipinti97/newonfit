@@ -42,7 +42,6 @@ export default function Home() {
   const isMobile = useMediaQuery("(max-width:600px)");
   const router = useRouter();
 
-
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
@@ -54,12 +53,18 @@ export default function Home() {
   return (
     <>
       <ShopLayout>
-    
         <Box sx={{ scrollSnapAlign: "start" }}>
           <VideoComponent isMobile={isMobile} />
           <TextComponentHome />
         </Box>
-        <Box sx={{ scrollSnapAlign: "start" }}>
+        <Box
+          sx={{
+            scrollSnapAlign: "start",
+            background:
+              "radial-gradient(ellipse at top, pink, transparent), radial-gradient(ellipse at bottom, white, rgb(254, 221, 45));",
+            py: 2,
+          }}
+        >
           <Marquee>
             {products &&
               products.slice(0, 9).map((e) => (
@@ -76,10 +81,10 @@ export default function Home() {
                     sx={{
                       overflow: "hidden",
                       transform: isMobile ? "scale(0.8)" : "",
-
                       borderRadius: "30px 30px 20px 20px",
-                      background:
-                        "linear-gradient(190deg, rgba(235,235,100,1) , rgba(235,235,100,.1));",
+                      border: "1px solid black",
+                      backdropFilter: "  saturate(150%)",
+                      backgroundColor: "rgba(255,255,255,.4)",
                       mx: 2,
                     }}
                   >
@@ -120,6 +125,7 @@ export default function Home() {
                           fontWeight={700}
                           fontSize={"15px"}
                           color="primary"
+                          sx={{ textShadow: "2px 2px 2px 4px", width: "80%" }}
                         >
                           {capitalize(`${e.titulo}`)}
                         </Typography>
@@ -131,7 +137,7 @@ export default function Home() {
                           sx={{ mb: 1, mt: 2, overflow: "hidden" }}
                         >
                           <Link sx={{ overflow: "hidden" }}>
-                            <Button color="primary" sx={{ width: "130px" }}>
+                            <Button color="success" sx={{ width: "130px" }}>
                               <Typography
                                 variant="body2"
                                 textAlign={"center"}

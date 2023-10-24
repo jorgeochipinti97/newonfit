@@ -53,7 +53,7 @@ export const CartList = ({ editable = false, products, isMobile }) => {
                     <CardMedia
                       image={product.image}
                       component="img"
-                      sx={{ borderRadius: "5px" }}
+                      sx={{ borderRadius: "5px", }}
                     />
                   </CardActionArea>
                 </Link>

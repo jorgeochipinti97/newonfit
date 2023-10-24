@@ -48,7 +48,7 @@ export const Navbar = ({ isMobile }) => {
         backgroundColor: "transparent",
         display: "flex",
         justifyContent: "center",
-        backdropFilter:'sepia(100%)'
+        backdropFilter:'hue-rotate(120deg) blur(1px)'
       }}
     >
       <Toolbar
@@ -64,29 +64,12 @@ export const Navbar = ({ isMobile }) => {
             <Image src="/logo.png" width={125} height={125} alt="" />
           </Box>
 <Box flex={1}/>
-        {/* <Button
-          onClick={toggleSideMenu}
-          sx={{
-            display: { xs: "block", sm: "block", md: "none" },
-            backgroundColor: "transparent",
-          }}
-        >
-          <span
-            style={{
-              backgroundColor: "black",
-              color: "white",
-              padding: 4,
-              borderRadius: "90px",
-            }}
-          >
-            Menu
-          </span>
-        </Button> */}
+
 
 
     
 
-          <Box sx={{}} className="fadeIn" alignSelf="center" justifySelf={'center'}>
+          <Box sx={{display:{xs:'none', sm:'block'}}} className="fadeIn" alignSelf="center" justifySelf={'center'} >
             <NextLink href="/" passHref>
               <Button
                 sx={{ textDecoration: "none" }}
@@ -95,22 +78,22 @@ export const Navbar = ({ isMobile }) => {
                 Inicio
               </Button>
             </NextLink>
-            <NextLink href="/hombres" passHref>
+            <NextLink href="/indumentaria" passHref>
               <Button
                 sx={{ mx: 1 }}
-                color={asPath === "/hombres" ? "secondary" : "info"}
+                color={asPath === "/indumentaria" ? "secondary" : "info"}
               >
-                Hombres
+                Indumentaria
               </Button>
             </NextLink>
-            <NextLink href="/mujeres" passHref>
+            {/* <NextLink href="/mujeres" passHref>
               <Button
                 sx={{ mx: 1 }}
                 color={asPath === "/mujeres" ? "secondary" : "info"}
               >
                 Mujeres
               </Button>
-            </NextLink>
+            </NextLink> */}
             <NextLink href="/suplementos" passHref>
               <Button
                 sx={{ mx: 1 }}
@@ -158,7 +141,24 @@ export const Navbar = ({ isMobile }) => {
               <ShoppingCartOutlined sx={{ color: "white" }} />
             </Badge>
           </IconButton>
-      
+          <Button
+          onClick={toggleSideMenu}
+          sx={{
+            display: { xs: "block", sm: "block", md: "none" },
+            backgroundColor: "transparent",
+          }}
+        >
+          <span
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              padding: 4,
+              borderRadius: "90px",
+            }}
+          >
+            Menu
+          </span>
+        </Button>
       </Toolbar>
     </AppBar>
   );

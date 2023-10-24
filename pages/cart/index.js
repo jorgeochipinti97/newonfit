@@ -44,6 +44,11 @@ const CartPage = () => {
       });
     isCheckauto &&
       gsap.to(".formContainerCart", {
+        display: "block",
+        delay: 1.2,
+      });
+    isCheckauto &&
+      gsap.to(".formContainerCart", {
         transform: "scale(1)",
         delay: 1.5,
       });
@@ -54,19 +59,23 @@ const CartPage = () => {
       title="Cart"
       pageDescription={"Carrito de compras de la tienda"}
     >
-      <Grid container sx={{ my: 15 }} className="containerCart">
-        <Grid item xs={12} sm={7}>
-          <CartList editable isMobile={isMobile} />
-        </Grid>
-        <Grid item xs={12} sm={5}>
-          <Card className="summary-card">
-            <CardContent>
+      <Box className="containerCart" sx={{border:'1px solid black',display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}>
+        <Box className="containerCart" sx={{ mx: 2, width: "50%", }}>
+          <Card className="summary-card" sx={{minHeight:'50vh',}}>
+            <CardContent sx={{display:'flex', flexDirection:'column', justifyContent:'space-between', minHeight:'50vh'}}>
               <Typography variant="h2">Orden</Typography>
+
+              <Divider sx={{ my: 1 }} />
+              <Box sx={{ mx: 2 }}>
+                <Box sx={{ width: "60%" }}>
+                  <CartList editable isMobile={isMobile} />
+                </Box>
+              </Box>
               <Divider sx={{ my: 1 }} />
 
               <OrderSummary />
 
-              <Box sx={{ mt: 3 }}>
+              <Box sx={{ pt: 2 }}>
                 <Button
                   color="secondary"
                   className="circular-btn"
@@ -78,14 +87,18 @@ const CartPage = () => {
               </Box>
             </CardContent>
           </Card>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
+
       <Box
         className="formContainerCart"
-        sx={{ transform: "scale(0)", mt: 10, mx: 2 }}
+        sx={{ transform: "scale(0)", pt: 10, mx: 2 ,display:'none'}}
       >
-        <CartList />
-        <OrderSummary />
+        <Box sx={{ width: "100vw", display: "flex", justifyContent: "center" }}>
+          <Box sx={{ width: "20%" }}>
+            <OrderSummary />
+          </Box>
+        </Box>
         <FormCheckout />
       </Box>
     </ShopLayout>

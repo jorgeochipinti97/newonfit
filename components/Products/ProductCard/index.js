@@ -90,22 +90,22 @@ export const ProductCard = ({ product, isMobile }) => {
       <Box
         data-aos="flip-left"
         onClick={() => router.push(`/products/${product.slug}`)}
-        sx={{ overflow: "hidden", transform: isMobile ? "scale(0.8)" : "" }}
+        sx={{ overflow: "hidden", transform: isMobile ? "scale(0.8)" : "",width:'100%', display:'flex', justifyContent:'center' }}
       >
         <Box sx={{ m: 1, overflow: "hidden" }}>
-          <Card sx={{ backgroundColor: "transparent" }}>
-            <CardActionArea sx={{ borderRadius: "90px" , background:'linear-gradient(190deg, rgba(235,235,100,.1) , rgba(235,235,100,.1))'}}>
+          <Card sx={{ backgroundColor: "transparent",  }}>
+            <CardActionArea sx={{ borderRadius: "90px 90px 20px 90px" ,border:'1px solid black', background:'rgba(0,0,0,0.9)',pb:2,backdropFilter:'blur(4px)'}}>
               <Link>
                 <Box
                   display="flex"
                   justifyContent="center"
-                  sx={{ overflow: "hidden" }}
+                  sx={{ overflow: "hidden", borderRadius: "90px 20px 90px 20px" }}
                 >
                   <CardMedia
                     component="div"
                     className="fadeIn"
-                    sx={{ overflow: "hidden", borderRadius: "90px" }}
-                  >
+                    sx={{ overflow: "hidden", borderRadius: "90px 90px 90px 20px" }}
+                    >
                     <Image
                       width={400}
                       height={400}
@@ -128,14 +128,15 @@ export const ProductCard = ({ product, isMobile }) => {
                 <Box
                   display="flex"
                   justifyContent="center"
-                  sx={{ overflow: "hidden" }}
+                  sx={{ overflow: "hidden",mx:2, px:2,mt:2 }}
                 >
                   <Typography
                     variant="subtitle1"
                     textAlign={"center"}
                     fontWeight={700}
                     color="primary"
-                    sx={{}}
+
+                    sx={{color:'#f5f5f7',textShadow:'2px 2px 2px 2px 4px'}}
                   >
                     {capitalize(`${product.titulo}`)}
                   </Typography>
@@ -147,7 +148,7 @@ export const ProductCard = ({ product, isMobile }) => {
                     sx={{ mb: 1, mt: 2, overflow: "hidden" }}
                   >
                     <Link sx={{ overflow: "hidden" }}>
-                      <Button color="primary" sx={{ width: "130px" }}>
+                      <Button color="success" sx={{ width: "130px" }}>
                         <Typography
                           variant="body2"
                           textAlign={"center"}

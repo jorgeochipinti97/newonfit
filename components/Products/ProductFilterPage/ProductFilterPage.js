@@ -7,13 +7,6 @@ import {
   Box,
   Button,
   Divider,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-  IconButton,
-  Input,
-  InputAdornment,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -32,18 +25,25 @@ export const ProductFilterPage = () => {
     const allProductos = data.data.filter(
       (e) => e.categoria == asPath.replace("/", "")
     );
-
+    const allProductosMen = data.data.filter(
+      (e) => 'hombres' == e.categoria
+    );
     const oversizeWoman = data.data.filter(
       (e) => e.subcategoria == "remera_oversize"
     );
 
     asPath == "/mujeres" &&
       setProductsFiltered(oversizeWoman.concat(allProductos));
+
+    asPath == "/indumentaria" &&     setProductsFiltered(data.data.filter((e) => e.categoria == "hombres"));
+
+
     asPath.includes("accesorios") &&
       setProductsFiltered(data.data.filter((e) => e.categoria == "accesorios"));
 
     asPath != "/mujeres" &&
       asPath != "/accesorios" &&
+      asPath != "/indumentaria" &&
       setProductsFiltered(allProductos);
   };
 
@@ -59,6 +59,11 @@ export const ProductFilterPage = () => {
     "buzo",
     "short",
     "medias",
+  ];
+  const todasCategoriasIndumentaria = [
+    "remera oversize",
+    "buzo",
+    "short",
   ];
   const todasCategoriasMujer = [
     "remera oversize",
@@ -77,6 +82,7 @@ export const ProductFilterPage = () => {
   useEffect(() => {
     setType_(asPath.replace("/", ""));
     asPath == "/hombres" && setCategories(todasCategoriasHombre);
+    asPath == "/indumentaria" && setCategories(todasCategoriasIndumentaria);
     asPath == "/mujeres" && setCategories(todasCategoriasMujer);
     asPath == "/suplementos" && setCategories(todasCategoriasSuplementos);
     asPath == "/equipamiento" && setCategories(todasCategoriasMaquinas);
@@ -89,9 +95,9 @@ export const ProductFilterPage = () => {
     const formattedSubType = replaceSpacesWithUnderscores(subType__);
 
     const subtypeFilter = products.filter(
-      (e) => e.subcategoria === formattedSubType && e.categoria === type_
+      (e) => e.subcategoria === formattedSubType
     );
-    asPath == "/mujeres" &&
+    asPath == "/mujeres" || asPath == 'indumentaria'
       formattedSubType == "remera_oversize" &&
       setProductsFiltered(
         products.filter(
@@ -99,8 +105,10 @@ export const ProductFilterPage = () => {
             e.subcategoria === formattedSubType && e.categoria === "hombres"
         )
       );
+
     formattedSubType != "remera_oversize" && setProductsFiltered(subtypeFilter);
     setSubtype_(subType__);
+
 
     subtypeFilter.length == 0 && subType__ != 'remera oversize' ? setIsNtProcuts(true) : setIsNtProcuts(false);
     subtypeFilter.length == 0 && subType__ != 'remera oversize' ? setIsNtProcuts(true) : setIsNtProcuts(false);
@@ -110,7 +118,7 @@ export const ProductFilterPage = () => {
   };
   return (
     <>
-      <Box sx={{ mt: 7 }}>
+      <Box sx={{ pt: 7 }}>
         <Box>
           <Divider sx={{ my: 1 }} />
           <Box flex={1} />
@@ -122,43 +130,18 @@ export const ProductFilterPage = () => {
         >
           {categories.map((e) => (
             // eslint-disable-next-line react/jsx-key
-            <Box key={e} color={subtype_ === e ? "primary" : "info"}>
+            <Box sx={{mx:1}} key={e} color={subtype_ === e ? "primary" : "info"}>
               <Button
-                color={subtype_ === e ? "secondary" : "info"}
+                color={subtype_ === e ? "secondary" : "primary"}
                 onClick={() => onChangeSubType(e)}
+
               >
                 {capitalize(e)}
               </Button>
             </Box>
           ))}
         </Box>
-        <Box display="flex" justifyContent="space-around">
-          {/* <Box>
-            <FormControl sx={{ m: 3, minWidth: 120 }}>
-              <InputLabel id="select-label">Sort By</InputLabel>
-              <Select
-                labelId="select-label"
-                id="select"
-                label="sort by"
-                value={select_}
-                // onChange={(e) => handleSelectChange(e.target.value)}
-              >
-                <MenuItem value={"low"}>Price: low to high </MenuItem>
-                <MenuItem value={"high"}>Price: high to low </MenuItem>
-              </Select>
-            </FormControl>
-          </Box> */}
-          {/* <Box>
-            <Input
-              sx={{ mt: 5 }}
-              className="fadeIn"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              type="text"
-              placeholder="Search..."
-            />
-          </Box> */}
-        </Box>
+    
       </Box>
       {isNtProcuts && (
         <Box sx={{ display: "flex", justifyContent: "center", my: 5 }}>

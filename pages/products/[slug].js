@@ -151,7 +151,7 @@ const ProductsSlugPage = () => {
         className="slugContainer"
       >
         <Box
-          sx={{ mt: 10, mb: 2 }}
+          sx={{ pt: 10, mb: 2 }}
           display="flex"
           justifyContent={"space-between"}
         >
