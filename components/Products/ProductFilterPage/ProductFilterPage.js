@@ -126,7 +126,7 @@ export const ProductFilterPage = () => {
         <Box
           display="flex"
           justifyContent="center"
-          sx={{ flexWrap: { xs: "wrap", sm: "wrap",minHeight:'100vh' } }}
+          sx={{ flexWrap: { xs: "wrap", sm: "wrap", } }}
         >
           {categories.map((e) => (
             // eslint-disable-next-line react/jsx-key
