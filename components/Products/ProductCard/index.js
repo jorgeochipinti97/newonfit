@@ -85,7 +85,7 @@ export const ProductCard = ({ product, isMobile }) => {
         transform: "rotateY(180deg)",
         opacity: 0,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "start",
         flexDirection:'column', alignItems:'center'
       }}
     >
