@@ -48,7 +48,7 @@ export const Navbar = ({ isMobile }) => {
         backgroundColor: "transparent",
         display: "flex",
         justifyContent: "center",
-        backdropFilter:'hue-rotate(120deg) blur(1px)'
+        backdropFilter:' blur(1px)'
       }}
     >
       <Toolbar

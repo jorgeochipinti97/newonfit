@@ -84,40 +84,43 @@ export const ProductCard = ({ product, isMobile }) => {
         transformStyle: "preserve-3d",
         transform: "rotateY(180deg)",
         opacity: 0,
-        borderRadius: "90px",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection:'column', alignItems:'center'
       }}
     >
       <Box
-        data-aos="flip-left"
         onClick={() => router.push(`/products/${product.slug}`)}
-        sx={{ overflow: "hidden", transform: isMobile ? "scale(0.8)" : "",width:'100%', display:'flex', justifyContent:'center' }}
-      >
-        <Box sx={{ m: 1, overflow: "hidden" }}>
-          <Card sx={{ backgroundColor: "transparent",  }}>
-            <CardActionArea sx={{ borderRadius: "90px 90px 20px 90px" ,border:'1px solid black', background:'rgba(0,0,0,0.9)',pb:2,backdropFilter:'blur(4px)'}}>
-              <Link>
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  sx={{ overflow: "hidden", borderRadius: "90px 20px 90px 20px" }}
-                >
-                  <CardMedia
-                    component="div"
-                    className="fadeIn"
-                    sx={{ overflow: "hidden", borderRadius: "90px 90px 90px 20px" }}
-                    >
-                    <Image
-                      width={400}
-                      height={400}
-                      loading="lazy"
-                      alt={product.titulo}
-                      src={productImage || ""}
-                      style={{ width:'100%' }}
-                    />
-                  </CardMedia>
-                </Box>
-              </Link>
+        sx={{
+          overflow: "hidden",
+          transform: isMobile ? "scale(0.8)" : "",
+          width: "80%",
 
+        }}
+      >
+        <Card sx={{}}>
+          <CardActionArea sx={{}}>
+            <Link>
+              <Box
+                display="flex"
+                justifyContent="center"
+                sx={{ overflow: "hidden" }}
+              >
+                <CardMedia
+                  component="div"
+                  className="fadeIn"
+                  sx={{ overflow: "hidden" }}
+                >
+                  <img
+                    loading="lazy"
+                    alt={product.titulo}
+                    src={productImage || ""}
+                    style={{ width: "100%" }}
+                  />
+                </CardMedia>
+              </Box>
+            </Link>
+            {/* 
               <Box
                 sx={{
                   // display: isImageLoaded ? "block" : "none",
@@ -160,11 +163,13 @@ export const ProductCard = ({ product, isMobile }) => {
                     </Link>
                   </Box>{" "}
                 </Box>
-              </Box>
-            </CardActionArea>
-          </Card>
-        </Box>
-        <Divider sx={{ my: 2 }} />
+              </Box> */}
+          </CardActionArea>
+        </Card>
+      </Box>
+      <Box sx={{ width:'80%', py:3, borderRadius:'0px 0px 10px 10px',px:2, backdropFilter:'blur(4px)', backgroundColor:'rgba(0,0,0,0.5)', position:'relative',bottom:10,display:'flex', justifyContent:'space-around'}}>
+        <Typography variant="body1" sx={{color:'#f5f5f7', fontWeight:'800'}}>{product.titulo}</Typography>
+        <span  style={{backgroundColor:'green', paddingRight:'10px', paddingLeft:'10px',color:'white', fontWeight:'800', borderRadius:'90px'}}>{formattwo(product.precio)}</span>
       </Box>
     </Grid>
   );
