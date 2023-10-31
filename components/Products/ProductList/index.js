@@ -7,7 +7,7 @@ export const ProductList = ({ products }) => {
 
   return (
     <>
-      <Grid container spacing={1} sx={{ mt: isMobile ? 0: 15,minHeight:'100vh' }}>
+      <Grid container spacing={1} sx={{ minHeight:'100vh',mt:2 }}>
         {products.map((product) => (
           <ProductCard
             isMobile={isMobile}

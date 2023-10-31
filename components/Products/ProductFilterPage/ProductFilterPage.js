@@ -144,7 +144,7 @@ export const ProductFilterPage = () => {
     
       </Box>
       {isNtProcuts && (
-        <Box sx={{ display: "flex", justifyContent: "center", my: 5 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", }}>
           <Typography sx={{ fontSize: "30px", fontWeight: "300" }}>
             Proximamente..
           </Typography>

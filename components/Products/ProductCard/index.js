@@ -86,16 +86,17 @@ export const ProductCard = ({ product, isMobile }) => {
         opacity: 0,
         display: "flex",
         justifyContent: "start",
-        flexDirection:'column', alignItems:'center'
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
+
       <Box
         onClick={() => router.push(`/products/${product.slug}`)}
         sx={{
           overflow: "hidden",
           transform: isMobile ? "scale(0.8)" : "",
           width: "80%",
-
         }}
       >
         <Card sx={{}}>
@@ -167,9 +168,49 @@ export const ProductCard = ({ product, isMobile }) => {
           </CardActionArea>
         </Card>
       </Box>
-      <Box sx={{ width:'80%', py:3, borderRadius:'0px 0px 10px 10px',px:2, backdropFilter:'blur(4px)', backgroundColor:'rgba(0,0,0,0.5)', position:'relative',bottom:10,display:'flex', justifyContent:'space-around'}}>
-        <Typography variant="body1" sx={{color:'#f5f5f7', fontWeight:'800'}}>{product.titulo}</Typography>
-        <span  style={{backgroundColor:'green', paddingRight:'10px', paddingLeft:'10px',color:'white', fontWeight:'800', borderRadius:'90px'}}>{formattwo(product.precio)}</span>
+      <Box
+        sx={{
+          width: "80%",
+          py: 3,
+          borderRadius: "0px 0px 10px 10px",
+          px: 2,
+          backdropFilter: "blur(4px)",
+          backgroundColor: "rgba(0,0,0,0.5)",
+          position: "relative",
+          bottom: 10,
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <div sx={{width:'50%'}}>
+          <Typography
+            variant="body1"
+            sx={{ color: "#f5f5f7", fontWeight: "800" }}
+          >
+            {product.titulo}
+          </Typography>
+        </div>
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",width:'50%'
+          }}
+        >
+          <span
+            style={{
+              backgroundColor: "green",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              color: "white",
+              fontWeight: "800",
+              borderRadius: "90px",
+paddingTop:'2px',paddingBottom:'2px'
+            }}
+          >
+            {formattwo(product.precio)}
+          </span>
+        </div>
       </Box>
     </Grid>
   );

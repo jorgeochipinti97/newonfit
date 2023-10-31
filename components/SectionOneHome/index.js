@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useInView } from "react-intersection-observer";
-import { Elastic, gsap, Power4, Power1, Back } from "gsap";
+import {  gsap   } from "gsap";
 import { useRouter } from "next/router";
 
 
@@ -23,6 +23,7 @@ export const SectionOneHome = () => {
       <Grid item sm={6} lg={6} xl={6} sx={{scrollSnapAlign:'start',scrollMarginTop:'20px'}}>
         <Box
         ref={ref}
+        id='sectionOne'
           className="sectionOne"
           sx={{ textAlign: "center", opacity: 0 }}
           display="flex"
