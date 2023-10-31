@@ -130,7 +130,6 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           alignItems: "center",
           flex: 1,
           background: "transparent",
-
         }}
       >
         <Marquee style={{ background: "transparent", overflow: "hidden" }}>
@@ -154,9 +153,12 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                     borderRadius: "30px",
                     maxWidth: { xs: "30vw", lg: "10vw" },
                     background: "transparent",
-
                   }}
                 >
+                  <div className="container">
+                    <span className="loaderImage "></span>
+                  </div>
+
                   <CardActionArea sx={{ background: "transparent" }}>
                     <Box sx={{ overflow: "hidden", background: "transparent" }}>
                       <CardMedia
@@ -167,7 +169,10 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                         }}
                       >
                         <img
-                          style={{ width: "100%",height:{ xs: "30vw", lg: "10vw" } }}
+                          style={{
+                            width: "100%",
+                            height: { xs: "30vw", lg: "10vw" },
+                          }}
                           alt={e.titulo}
                           loading="lazy"
                           src={e.images[0]}

@@ -37,7 +37,7 @@ export default function Home() {
     <>
       <ShopLayout>
         <Box sx={{ scrollSnapAlign: "start" }}>
-          <HeroSectionComponent products={products} isMobile={isMobile} />
+          <HeroSectionComponent products={products.filter(e=> e.subcategoria == 'remera_oversize')} isMobile={isMobile} />
           {/* <TextComponentHome /> */}
         </Box>
         <Grid container sx={{ display: isMobile ? "none" : "auto" }}>
