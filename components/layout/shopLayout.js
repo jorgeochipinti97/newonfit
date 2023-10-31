@@ -5,6 +5,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { FooterComponent } from "../footer";
 import { SideMenu } from "../SideMenu";
 import { LoadingComponent } from "../Loading";
+import { Wpp } from "../Wpp";
 // import { SideMenu } from '../ui/SideMenu';
 // import { SideMenu } from '../SideMenu';
 // import { Footer } from '../Footer';
@@ -34,6 +35,7 @@ export const ShopLayout = ({
       </nav>
       <SideMenu />
           <LoadingComponent />
+      <Wpp/>
           
 
       <Box

@@ -28,7 +28,7 @@ export default function Home() {
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
-    console.log(data.data.filter(e=> e.subcategoria == 'remera_oversize'))
+
   };
   useEffect(() => {
     getProducts();
