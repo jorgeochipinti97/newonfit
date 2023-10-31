@@ -151,7 +151,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   sx={{
                     border: ".1px solid rgba(1,1,1,0.3)",
                     borderRadius: "30px",
-                    maxWidth: { xs: "30vw", lg: "10vw" },
+                    maxWidth: { xs: "30vw", lg: "15vw" },
                     background: "transparent",
                   }}
                 >

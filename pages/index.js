@@ -28,6 +28,7 @@ export default function Home() {
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
+    console.log(data.data.filter(e=> e.subcategoria == 'remera_oversize'))
   };
   useEffect(() => {
     getProducts();
@@ -38,7 +39,7 @@ export default function Home() {
       <ShopLayout>
         <Box sx={{ scrollSnapAlign: "start" }}>
           <HeroSectionComponent products={products.filter(e=> e.subcategoria == 'remera_oversize')} isMobile={isMobile} />
-          {/* <TextComponentHome /> */}
+
         </Box>
         <Grid container sx={{ display: isMobile ? "none" : "auto" }}>
           <SectionOneHome />
