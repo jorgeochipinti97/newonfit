@@ -127,6 +127,7 @@ export const ProductFilterPage = () => {
               // eslint-disable-next-line react/jsx-key
 
               <Button
+              key={e}
                 sx={{ backgroundColor: subtype_ == e ? "rgba(0,0,0,0.9)" : "white",color: subtype_ == e ? "yellow" : "black", '&:hover': {
                   color: 'black',
                   backgroundColor: 'gray',
