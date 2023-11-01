@@ -90,7 +90,6 @@ export const ProductCard = ({ product, isMobile }) => {
         alignItems: "center",
       }}
     >
-
       <Box
         onClick={() => router.push(`/products/${product.slug}`)}
         sx={{
@@ -121,95 +120,42 @@ export const ProductCard = ({ product, isMobile }) => {
                 </CardMedia>
               </Box>
             </Link>
-            {/* 
-              <Box
-                sx={{
-                  // display: isImageLoaded ? "block" : "none",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                  sx={{ overflow: "hidden",mx:2, px:2,mt:2 }}
-                >
-                  <Typography
-                    variant="subtitle1"
-                    textAlign={"center"}
-                    fontWeight={700}
-                    color="primary"
-
-                    sx={{color:'#f5f5f7',textShadow:'2px 2px 2px 2px 4px'}}
-                  >
-                    {capitalize(`${product.titulo}`)}
-                  </Typography>
-                </Box>
-                <Box sx={{ overflow: "hidden" }}>
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    sx={{ mb: 1, mt: 2, overflow: "hidden" }}
-                  >
-                    <Link sx={{ overflow: "hidden" }}>
-                      <Button color="success" sx={{ width: "130px" }}>
-                        <Typography
-                          variant="body2"
-                          textAlign={"center"}
-                          fontWeight={700}
-                        >
-                          {formattwo(product.precio)}
-                        </Typography>
-                      </Button>
-                    </Link>
-                  </Box>{" "}
-                </Box>
-              </Box> */}
           </CardActionArea>
         </Card>
       </Box>
       <Box
+              onClick={() => router.push(`/products/${product.slug}`)}
+
         sx={{
           width: "80%",
           py: 3,
           borderRadius: "0px 0px 10px 10px",
-          px: 2,
+
           backdropFilter: "blur(4px)",
-          backgroundColor: "rgba(0,0,0,0.5)",
+          backgroundColor: 'black',
           position: "relative",
           bottom: 10,
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent:'space-around'
         }}
       >
-        <div sx={{width:'50%'}}>
+        <div sx={{ width: "20%" }}>
           <Typography
             variant="body1"
-            sx={{ color: "#f5f5f7", fontWeight: "800" }}
+            sx={{ color: "#f5f5f7", fontWeight: "800",width:'80%' }}
           >
-            {product.titulo}
+            {product.titulo.slice(0,30)}..
           </Typography>
         </div>
         <div
           sx={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",width:'50%'
+            alignItems: "center",
+
           }}
         >
-          <span
-            style={{
-              backgroundColor: "green",
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              color: "white",
-              fontWeight: "800",
-              borderRadius: "90px",
-paddingTop:'2px',paddingBottom:'2px'
-            }}
-          >
-            {formattwo(product.precio)}
-          </span>
+          <Button>Comprar ahora</Button>
         </div>
       </Box>
     </Grid>

@@ -8,6 +8,7 @@ import {
   Button,
   Divider,
   Typography,
+  ButtonGroup,
 } from "@mui/material";
 import axios from "axios";
 
@@ -25,9 +26,7 @@ export const ProductFilterPage = () => {
     const allProductos = data.data.filter(
       (e) => e.categoria == asPath.replace("/", "")
     );
-    const allProductosMen = data.data.filter(
-      (e) => 'hombres' == e.categoria
-    );
+    const allProductosMen = data.data.filter((e) => "hombres" == e.categoria);
     const oversizeWoman = data.data.filter(
       (e) => e.subcategoria == "remera_oversize"
     );
@@ -35,8 +34,8 @@ export const ProductFilterPage = () => {
     asPath == "/mujeres" &&
       setProductsFiltered(oversizeWoman.concat(allProductos));
 
-    asPath == "/indumentaria" &&     setProductsFiltered(data.data.filter((e) => e.categoria == "hombres"));
-
+    asPath == "/indumentaria" &&
+      setProductsFiltered(data.data.filter((e) => e.categoria == "hombres"));
 
     asPath.includes("accesorios") &&
       setProductsFiltered(data.data.filter((e) => e.categoria == "accesorios"));
@@ -60,11 +59,7 @@ export const ProductFilterPage = () => {
     "short",
     "medias",
   ];
-  const todasCategoriasIndumentaria = [
-    "remera oversize",
-    "buzo",
-    "short",
-  ];
+  const todasCategoriasIndumentaria = ["remera oversize", "buzo", "short"];
   const todasCategoriasMujer = [
     "remera oversize",
     "remera deportiva",
@@ -97,8 +92,8 @@ export const ProductFilterPage = () => {
     const subtypeFilter = products.filter(
       (e) => e.subcategoria === formattedSubType
     );
-    asPath == "/mujeres" || asPath == 'indumentaria'
-      formattedSubType == "remera_oversize" &&
+    asPath == "/mujeres" || asPath == "indumentaria";
+    formattedSubType == "remera_oversize" &&
       setProductsFiltered(
         products.filter(
           (e) =>
@@ -109,9 +104,12 @@ export const ProductFilterPage = () => {
     formattedSubType != "remera_oversize" && setProductsFiltered(subtypeFilter);
     setSubtype_(subType__);
 
-
-    subtypeFilter.length == 0 && subType__ != 'remera oversize' ? setIsNtProcuts(true) : setIsNtProcuts(false);
-    subtypeFilter.length == 0 && subType__ != 'remera oversize' ? setIsNtProcuts(true) : setIsNtProcuts(false);
+    subtypeFilter.length == 0 && subType__ != "remera oversize"
+      ? setIsNtProcuts(true)
+      : setIsNtProcuts(false);
+    subtypeFilter.length == 0 && subType__ != "remera oversize"
+      ? setIsNtProcuts(true)
+      : setIsNtProcuts(false);
   };
   const replaceSpacesWithUnderscores = (text) => {
     return text.replace(/\s+/g, "_");
@@ -123,28 +121,27 @@ export const ProductFilterPage = () => {
           <Divider sx={{ my: 1 }} />
           <Box flex={1} />
         </Box>
-        <Box
-          display="flex"
-          justifyContent="center"
-          sx={{ flexWrap: { xs: "wrap", sm: "wrap", } }}
-        >
-          {categories.map((e) => (
-            // eslint-disable-next-line react/jsx-key
-            <Box sx={{mx:1}} key={e} color={subtype_ === e ? "primary" : "info"}>
-              <Button
-                color={subtype_ === e ? "secondary" : "primary"}
-                onClick={() => onChangeSubType(e)}
+        <Box display={"flex"} justifyContent={"center"}>
+          <ButtonGroup variant="outlined" color="primary">
+            {categories.map((e) => (
+              // eslint-disable-next-line react/jsx-key
 
+              <Button
+                sx={{ backgroundColor: subtype_ == e ? "rgba(0,0,0,0.9)" : "white",color: subtype_ == e ? "yellow" : "black", '&:hover': {
+                  color: 'black',
+                  backgroundColor: 'gray',
+                },  }}
+                color={"primary"}
+                onClick={() => onChangeSubType(e)}
               >
                 {capitalize(e)}
               </Button>
-            </Box>
-          ))}
+            ))}
+          </ButtonGroup>
         </Box>
-    
       </Box>
       {isNtProcuts && (
-        <Box sx={{ display: "flex", justifyContent: "center", }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography sx={{ fontSize: "30px", fontWeight: "300" }}>
             Proximamente..
           </Typography>

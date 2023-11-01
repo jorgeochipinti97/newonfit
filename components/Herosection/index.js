@@ -89,7 +89,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 Estamos comprometidos con tu bienestar y tu pasión por el
                 fitness. Ofrecemos una amplia gama de equipos deportivos y ropa
                 de la marca OnFit para que alcances tus metas. Ya sea que estés
-                buscando entrenar en casa o en uno de nuestros gimnasios, ¡te
+                buscando entrenar en casa o en uno de nuestros gimnasios, ¡Te
                 tenemos cubierto!{" "}
               </Typography>
             </div>
