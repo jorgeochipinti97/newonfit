@@ -41,7 +41,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
   return (
     <section
       style={{
-        background: "black",
+        background:       "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
         color: "white",
         width: "100vw",
         minHeight: "100vh",
@@ -74,21 +74,21 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 component="h1"
                 style={{
                   fontWeight: "bold",
-                  fontSize: "3rem",
-                  color: "#f5f5f7",
+                  fontSize: "2.5rem",
+                  color: "black",lineHeight:'39px',marginBottom:10
                 }}
               >
                 Donde Tu Transformación Comienza
               </Typography>
-              <Typography variant="body1" style={{ maxWidth: "600px" }}>
+              <Typography variant="body1" style={{ maxWidth: "600px",color:'black' }}>
                 Convierte tus Sueños Fitness en Realidad
               </Typography>
             </div>
-            <div style={{ marginBottom: "1rem", color: "#f5f5f7" }}>
+            <div style={{ marginBottom: "1rem", color: "black" }}>
               <Typography variant="body1" style={{ fontSize: "1rem" }}>
-                Estamos comprometidos con tu bienestar y tu pasión por el
+                Estamos <span style={{fontWeight:'700'}}> comprometidos </span>con tu <span style={{fontWeight:550}}>bienestar y tu pasión</span> por el
                 fitness. Ofrecemos una amplia gama de equipos deportivos y ropa
-                de la marca OnFit para que alcances tus metas. Ya sea que estés
+                de la marca OnFit para que <span style={{fontWeight:'700'}}>alcances tus metas</span>. Ya sea que estés
                 buscando entrenar en casa o en uno de nuestros gimnasios, ¡Te
                 tenemos cubierto!{" "}
               </Typography>
