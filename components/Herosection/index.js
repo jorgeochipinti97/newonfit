@@ -78,7 +78,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   color: "black",lineHeight:'39px',marginBottom:10
                 }}
               >
-                Donde Tu Transformación Comienza
+Eleva tu estilo, potencia tu rendimiento
               </Typography>
               <Typography variant="body1" style={{ maxWidth: "600px",color:'black' }}>
                 Convierte tus Sueños Fitness en Realidad
