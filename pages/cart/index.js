@@ -44,7 +44,7 @@ const CartPage = () => {
       });
     isCheckauto &&
       gsap.to(".formContainerCart", {
-        display: "block",
+        display: "flex",
         delay: 1.2,
       });
     isCheckauto &&
@@ -59,10 +59,25 @@ const CartPage = () => {
       title="Cart"
       pageDescription={"Carrito de compras de la tienda"}
     >
-      <Box className="containerCart" sx={{border:'1px solid black',display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}>
-        <Box className="containerCart" sx={{ mx: 2, width: "50%", }}>
-          <Card className="summary-card" sx={{minHeight:'50vh',}}>
-            <CardContent sx={{display:'flex', flexDirection:'column', justifyContent:'space-between', minHeight:'50vh'}}>
+      <Box
+        className="containerCart"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <Box className="containerCart" sx={{ mx: 2, width: "50%" }}>
+          <Card className="summary-card" sx={{ minHeight: "50vh" }}>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                minHeight: "50vh",
+              }}
+            >
               <Typography variant="h2">Orden</Typography>
 
               <Divider sx={{ my: 1 }} />
@@ -89,17 +104,25 @@ const CartPage = () => {
           </Card>
         </Box>
       </Box>
-
       <Box
         className="formContainerCart"
-        sx={{ transform: "scale(0)", pt: 10, mx: 2 ,display:'none'}}
+        sx={{
+          transform: "scale(0)",
+          pt: 10,
+          mx: 2,
+          display: "none",
+          width: "100vw",
+          justifyContent:'center'
+        }}
       >
-        <Box sx={{ width: "100vw", display: "flex", justifyContent: "center" }}>
-          <Box sx={{ width: "20%" }}>
-            <OrderSummary />
+        <div style={{width:'50%',  borderRadius:'10px', backgroundColor:'white',padding:5}}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ width: "80%" }}>
+              <OrderSummary />
+            </Box>
           </Box>
-        </Box>
-        <FormCheckout />
+          <FormCheckout />
+        </div>
       </Box>
     </ShopLayout>
   );

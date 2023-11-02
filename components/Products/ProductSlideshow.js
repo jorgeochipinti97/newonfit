@@ -15,7 +15,7 @@ export const ProductSlideshow = ({
   width,
 }) => {
   return (
-    <Slide easing="ease" duration={seconds}>
+    <Slide easing="ease" duration={seconds} arrows={false} className='shadow'>
       {images && images.map((image) => {
         return (
           <div className={styles["each-slide"]} key={image}>
