@@ -172,7 +172,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           >
             {products &&
               products.map((e) => (
-                <SwiperSlide style={{borderRadius: "30px",}} key={e.titulo}>
+                <SwiperSlide style={{}} key={e.titulo}>
                   <Box
                     key={e.slug}
                     onClick={() => push(`/products/${e.slug}`)}
@@ -182,22 +182,23 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                       justifyContent: "space-between",
                       cursor: "pointer",
 
-                      borderRadius: "15px",
+                      borderRadius: "22px",
                     }}
                   >
+                       <div className="container">
+                        <span className="loaderImage "></span>
+                      </div>
                     <Card
                       sx={{
                         border: isMobile ? "none" : "1px solid rgba(255,255,255,0.5)",
-                        borderRadius: "30px",
+                        borderRadius: "22px",
                         maxWidth: { xs: "80vw", lg: "15vw" },
                         background: "transparent",
 
                         m: 1,
                       }}
                     >
-                      <div className="container">
-                        <span className="loaderImage "></span>
-                      </div>
+                   
 
                       <CardActionArea sx={{ background: "transparent" }}>
                         <Box
