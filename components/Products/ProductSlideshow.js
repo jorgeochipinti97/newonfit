@@ -27,7 +27,7 @@ export const ProductSlideshow = ({ images, seconds, height, width }) => {
         {images &&
           images.map((image) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={image}>
                 <Image width={width} height={height} src={image} alt={image}  />
               </SwiperSlide>
             );

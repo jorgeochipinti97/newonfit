@@ -104,6 +104,7 @@ export const Navbar = () => {
           {
             sections.map((e) => (
               <Box
+              key={e}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={() => push(`/${e.toLowerCase()}`)}

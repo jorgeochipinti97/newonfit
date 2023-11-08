@@ -172,7 +172,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           >
             {products &&
               products.map((e) => (
-                <SwiperSlide style={{borderRadius: "30px",}}>
+                <SwiperSlide style={{borderRadius: "30px",}} key={e.titulo}>
                   <Box
                     key={e.slug}
                     onClick={() => push(`/products/${e.slug}`)}
