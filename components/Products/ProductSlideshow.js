@@ -1,32 +1,38 @@
-import { Box, Grid, Link } from "@mui/material";
+import { Grid } from "@mui/material";
 import Image from "next/image";
-import NextLink from "next/link";
-import { FC, useEffect } from "react";
-import { Slide } from "react-slideshow-image";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import "react-slideshow-image/dist/styles.css";
-import styles from "./ProductSlideshow.module.css";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-flip";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
+// import required modules
+import { EffectFlip, Pagination, Navigation } from "swiper/modules";
 
-export const ProductSlideshow = ({
-  images,
-  seconds,
-  height,
-  width,
-}) => {
+export const ProductSlideshow = ({ images, seconds, height, width }) => {
   return (
-    <Slide easing="ease" duration={seconds} arrows={false} className='shadow'>
-      {images && images.map((image) => {
-        return (
-          <div className={styles["each-slide"]} key={image}>
-            <Grid container>
-              <Grid item justifyContent="center">
-                <Image width={width} height={height} src={image} alt={image} />
-              </Grid>
-            </Grid>
-          </div>
-        );
-      })}
-    </Slide>
+    <div style={{maxWidth:width}}> 
+      <Swiper
+        effect={"flip"}
+        grabCursor={true}
+        pagination={true}
+
+        modules={[EffectFlip, Pagination, Navigation]}
+        className="mySwiper"
+
+      >
+        {" "}
+        {images &&
+          images.map((image) => {
+            return (
+              <SwiperSlide>
+                <Image width={width} height={height} src={image} alt={image}  />
+              </SwiperSlide>
+            );
+          })}
+      </Swiper>
+    </div>
   );
 };

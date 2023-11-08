@@ -162,7 +162,7 @@ const ProductsSlugPage = () => {
           </Box>
         </Box>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={7}>
+          <Grid item xs={12} sm={6} sx={{display:'flex', justifyContent:'center'}}>
             {product && product.images.length > 0 ? (
               <>
                 <ProductSlideshow
