@@ -82,10 +82,10 @@ export const Navbar = () => {
             onClick={() => push(`/`)}
             sx={{
               px: 1,
-              borderRadius: "90px",
-
-              backgroundColor:
-                asPath == "/" ? "rgb(254, 221, 45)" : "transparent",
+              borderRadius: "30px",
+              borderBottom: asPath == '/'
+              ? "1px solid rgb(254, 221, 45)"
+              : "transparent",
             }}
           >
             <Typography
@@ -93,9 +93,10 @@ export const Navbar = () => {
               sx={{
                 mx: 1,
                 fontSize: "16px",
-                color: asPath == "/" ? "black" : "white",
+                color: "white",
                 fontWeight: "600",
                 cursor: "pointer",
+            
               }}
             >
               Inicio
@@ -110,10 +111,10 @@ export const Navbar = () => {
                 onClick={() => push(`/${e.toLowerCase()}`)}
                 sx={{
                   px: 1,
-                  borderRadius: "90px",
+                  borderRadius: "150px",
 
-                  backgroundColor: asPath.includes(e.toLowerCase())
-                    ? "rgb(254, 221, 45)"
+                  borderBottom: asPath.includes(e.toLowerCase())
+                    ? "1px solid rgb(254, 221, 45)"
                     : "transparent",
                 }}
               >
@@ -122,7 +123,7 @@ export const Navbar = () => {
                   sx={{
                     mx: 1,
                     fontSize: "16px",
-                    color: asPath.includes(e.toLowerCase()) ? "black" : "white",
+                    color:  "white",
                     fontWeight: "600",
                     cursor: "pointer",
                   }}
