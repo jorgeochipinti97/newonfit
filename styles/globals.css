@@ -1,5 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;700;900&display=swap");
 
+:root {
+  --facebook: #3b5998;
+    --instagram: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    --youtube: #FF0000;
+    --x: #333;
+    --linkedin: #0072b1;
+    --whatsapp: #25d366;
+}
+
+
+.icons {
+  transform: scale(0.6);
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.icons .icon {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  transition: background-color 300ms, border-width 300ms;
+}
+
+.icons .icon svg {
+  transition: transform 300ms;
+}
+
+.icons .facebook {
+  --color: var(--facebook);
+}
+
+.icons .instagram {
+  --color: var(--instagram);
+}
+
+.icons .youtube {
+  --color: var(--youtube);
+}
+
+.icons .x {
+  --color: var(--x);
+}
+
+.icons .linkedin {
+  --color: var(--linkedin);
+}
+.icons .whatsapp {
+  --color: var(--whatsapp);
+}
+
+.icons .icon:hover {
+  background: var(--color);
+  border-width: 1px;
+}
+
+.icons .icon:hover svg {
+  transform: scale(1.4);
+}
+
+
+
 * {
   box-sizing: border-box;
   padding: 0;
