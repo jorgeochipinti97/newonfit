@@ -6,10 +6,14 @@ import instagram from "../../animations/lf20_vnqzcze6.json";
 import error from "../../animations/lf20_qpwbiyxf.json";
 import whatsapp from "../../animations/lf20_lfauq3rq.json";
 import { Box, Divider, Typography } from "@mui/material";
+import useRadialBackground from "@/Hooks/useRadialBackground";
+
+
 
 export const FooterComponent = ({ isMobile }) => {
+const radialStyle= useRadialBackground(isMobile)
   return (
-    <>
+    <footer style={radialStyle}>
       <Box
         sx={{
           width: "100%",
@@ -17,11 +21,11 @@ export const FooterComponent = ({ isMobile }) => {
           height: "40vh",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
-          backgroundColor: "black",
+          justifyContent: "end",
+          alignItems:'center'
+
         }}
       >
-        <Divider sc={{ my: 1 }} />
         <div class="icons">
           <a href="#" class="icon facebook">
             <svg
@@ -100,7 +104,7 @@ export const FooterComponent = ({ isMobile }) => {
             </svg>
           </a>
         </div>
-        <Box sx={{ width: "100%" }} display={"flex"} justifyContent={"center"}>
+        {/* <Box sx={{ width: "100%" }} display={"flex"} justifyContent={"center"}> */}
           {/* <Box
             sx={{ width: isMobile ? "20%" : "5%", cursor: "pointer" }}
             display={"flex"}
@@ -119,7 +123,7 @@ export const FooterComponent = ({ isMobile }) => {
           >
             <Lottie animationData={whatsapp} loop={true} />
           </Box> */}
-        </Box>
+        {/* </Box> */}
 
         {/* <Box
           sx={{ width: "100%", mt: 6 }}
@@ -137,11 +141,11 @@ export const FooterComponent = ({ isMobile }) => {
 
         <Typography
           varaint="subtitle1"
-          sx={{ textAlign: "center", fontWeight: 300 }}
+          sx={{ textAlign: "center", fontWeight: 300,color:'#f5f5f7' }}
         >
           © ONFIT. Todos los derechos reservados.
         </Typography>
       </Box>
-    </>
+    </ footer>
   );
 };
