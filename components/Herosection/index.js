@@ -109,11 +109,8 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               </Typography>
             </div>
             <div>
-              <a href="#sectionOne">
-                <Button variant="contained" color="primary">
-                  ¡Descubre OnFit Ahora!
-                </Button>
-              </a>
+         <Typography variant='subtitle1' sx={{color:'black',fontSize:'20px'}}>            Te presentamos nuestros diseños de selección.
+</Typography>
             </div>
           </Grid>
           <Grid item xs={12} lg={6} xl={6}>
@@ -138,22 +135,8 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           </Grid>
         </Grid>
       </Container>
-      <div style={{ width: "100%" }}>
-        <Box>
-          <Typography
-            variant="body1"
-            sx={{
-              color: "black",
-              textAlign: "center",
-              fontSize: "30px",
-              my: 2,
-              fontWeight: 500,
-            }}
-          >
-            Te presentamos nuestros diseños de selección.
-          </Typography>
-        </Box>
-        <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", display:'flex', justifyContent:'center',alignItems:'center',flex:1 }}>
+        <div style={{ width: "100%", }}>
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -175,12 +158,12 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 <SwiperSlide style={{}} key={e.titulo}>
                   <Box
                     key={e.slug}
-                    onClick={() => push(`/products/${e.slug}`)}
+
                     style={radialStyle}
                     sx={{
                       display: "flex",
                       justifyContent: "space-between",
-                      cursor: "pointer",
+
 
                       borderRadius: "22px",
                     }}

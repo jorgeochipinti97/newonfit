@@ -11,8 +11,8 @@ export const LoadingComponent = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
-    gsap.to(".loader", { opacity: 0, delay: .5 });
-    gsap.to(".loader", { display: "none", delay: 1.8 });
+    gsap.to(".loader", { opacity: 0, delay: .8 });
+    gsap.to(".loader", { display: "none", delay: .9 });
   }, []);
 
   return (
