@@ -55,7 +55,7 @@ export const SectionThreeHome = ({isMobile}) => {
               
             }}
           >
-            <Typography sx={{ mt: 1, width: "80%",color:'rgb(254, 221, 45)',fontWeight:'800' }}              variant="h5"
+            <Typography sx={{ mt: 1, width: "80%",color:'rgb(254, 221, 45)',fontWeight:'800',lineHeight: "25px" }}              variant="h5"
 >
             Suplementos de Calidad para Potenciar Tu Entrenamiento
             </Typography>
