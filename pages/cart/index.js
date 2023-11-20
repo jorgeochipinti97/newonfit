@@ -59,83 +59,86 @@ const CartPage = () => {
       title="Cart"
       pageDescription={"Carrito de compras de la tienda"}
     >
-
+      <Box
+        className="containerCart"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          width: "100vw",
+        }}
+      >
         <Box
           className="containerCart"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100vh",
-            width:'100vw'
-          }}
+          sx={{ mx: 2, width: isMobile ? "90%" : "50%" }}
         >
-          <Box className="containerCart" sx={{ mx: 2, width: isMobile ? '90%':"50%" }}>
-            <Card className="summary-card" sx={{ minHeight: "50vh" }}>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  minHeight: "50vh",
-                }}
-              >
-                <Typography variant="h2">Orden</Typography>
+          <Card className="summary-card" sx={{ minHeight: "50vh" }}>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                minHeight: "50vh",
+              }}
+            >
+              <Typography variant="h2">Orden</Typography>
 
-                <Divider sx={{ my: 1 }} />
-                <Box sx={{ mx: 2 }}>
-                  <Box sx={{ width: isMobile ? '100%':"60%" }}>
-                    <CartList editable isMobile={isMobile} />
-                  </Box>
+              <Divider sx={{ my: 1 }} />
+              <Box sx={{ mx: 2 }}>
+                <Box sx={{ width: isMobile ? "100%" : "60%" }}>
+                  <CartList editable isMobile={isMobile} />
                 </Box>
-                <Divider sx={{ my: 1 }} />
-
-                <OrderSummary />
-
-                <Box sx={{ pt: 2 }}>
-                  <Button
-                    color="secondary"
-                    className="circular-btn"
-                    fullWidth
-                    onClick={() => setIsCheckaut(true)}
-                  >
-                    Checkout
-                  </Button>
-                </Box>
-              </CardContent>
-            </Card>
-          </Box>
-        </Box>
-        <Box
-          className="formContainerCart"
-          sx={{
-            transform: "scale(0)",
-            pt: 10,pb:5,
-
-            display: "none",
-            width: "100vw",
-minHeight:'120vh',
-            justifyContent: "center",
-            alignItems:'center'
-          }}
-        >
-          <div
-            style={{
-              width: isMobile ? '80%':"50%",
-              borderRadius: "10px",
-              backgroundColor: "white",
-              padding: 5, height:'fit-content'
-            }}
-          >
-            <Box sx={{ display: "flex", justifyContent: "center", }}>
-              <Box sx={{ width: "80%" }}>
-                <OrderSummary />
               </Box>
-            </Box>
-            <FormCheckout />
-          </div>
-        </Box>
+              <Divider sx={{ my: 1 }} />
 
+              <OrderSummary />
+
+              <Box sx={{ pt: 2 }}>
+                <Button
+                  color="secondary"
+                  className="circular-btn"
+                  fullWidth
+                  onClick={() => setIsCheckaut(true)}
+                >
+                  Checkout
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      </Box>
+      <Box
+        className="formContainerCart"
+        sx={{
+          transform: "scale(0)",
+          pt: 10,
+          pb: 5,
+
+          display: "none",
+          width: "100vw",
+          minHeight: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: isMobile ? "80%" : "50%",
+            borderRadius: "10px",
+            backgroundColor: "white",
+            padding: 5,
+            height: "fit-content",
+          }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ width: "80%" }}>
+              <OrderSummary />
+            </Box>
+          </Box>
+          <FormCheckout />
+        </div>
+      </Box>
     </ShopLayout>
   );
 };
