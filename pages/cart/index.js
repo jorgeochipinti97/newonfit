@@ -114,7 +114,7 @@ const CartPage = () => {
 
             display: "none",
             width: "100vw",
-
+minHeight:'120vh',
             justifyContent: "center",
             alignItems:'center'
           }}
