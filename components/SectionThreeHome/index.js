@@ -8,8 +8,8 @@ import { useInView } from "react-intersection-observer";
 import { Elastic, gsap, Power4, Power1, Back } from "gsap";
 import { useRouter } from "next/router";
 
-export const SectionThreeHome = () => {
-  const router = useRouter()
+export const SectionThreeHome = ({isMobile}) => {
+  const router = useRouter();
   gsap.registerPlugin(ScrollTrigger);
 
   const { ref, inView, entry } = useInView({
@@ -23,57 +23,79 @@ export const SectionThreeHome = () => {
 
   return (
     <>
-      <Grid item sm={6} lg={6} xl={6} ref={ref} sx={{scrollSnapAlign:'start',scrollMarginTop:'20px'}}>
-        <div >
+        <Grid
+        item
+        sm={12}
+        lg={12}
+        xl={12}
+        sx={{
+          scrollSnapAlign: "start",
+          scrollMarginTop: "20px",
+
+          display: "flex",
+          justifyContent:'center', 
+
+        }}
+      >
+                <Box className="modern-gradient"  sx={{py: isMobile ? 2 :0}} style={{width: isMobile? '98%':"80%", display:'flex',    borderRadius: isMobile ? "10px" :'90px', backgroundImage: isMobile ?"linear-gradient(to bottom, rgba(0,0,0,.3) 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dcvieavco/image/upload/v1678771074/AnyConv.com__colageno_ex4c02.jpg)": 'none',backgroundSize:'cover'
+
+}}>
+    
+          <div
+            ref={ref}
+            className="sectionOne"
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              textAlign: "center",
+              
+            }}
+          >
+            <Typography sx={{ mt: 1, width: "80%",color:'rgb(254, 221, 45)',fontWeight:'800' }}              variant="h5"
+>
+            Suplementos de Calidad para Potenciar Tu Entrenamiento
+            </Typography>
+            <Typography               sx={{ mt: 1, width: "80%", color: "black",fontSize:'16px',color:'#f5f5f7',display:isMobile ?'none':'auto' }}
+ variant="body1">
+            Descubre nuestra selección de suplementos de alta calidad diseñados
+            para optimizar tu rendimiento y maximizar los resultados de tu
+            entrenamiento. Te ofrecemos una amplia gama de suplementos
+            esenciales, desde proteínas hasta pre-work y más, para ayudarte a
+            alcanzar tus metas fitness de manera efectiva.{" "}
+            </Typography>
+            <Box sx={{ mt: 3 }}>
+              <Button
+
+size={isMobile? "small":'large'}
+                onClick={() => router.push("/hombre")}
+              >
+                ¡Potenciarme ahora!
+              </Button>
+            </Box>
+          </div>
           <Box
-         className="sectionThree" sx={{ transform: "scale(0)",textAlign:'center' }}
+            ref={ref}
+            id="sectionOne"
+            className="sectionOne"
+            sx={{ textAlign: "center", }}
             display="flex"
             justifyContent="center"
           >
             <Image
-              src="https://res.cloudinary.com/dcvieavco/image/upload/v1678770982/stainless-steel-water-bottle-black-17oz-front-640d672f77c6b_gxmaz7.jpg"
-              width={500}
-              height={500}
+              src="https://res.cloudinary.com/dcvieavco/image/upload/v1678771074/AnyConv.com__colageno_ex4c02.jpg"
+              width={400}
+              height={400}
+              style={{ borderRadius: "80px", backgroundColor: "#f5f5f7",display:isMobile?'none':'auto' }}
               alt="asd"
             />
           </Box>
-        </div>
+        </Box>
       </Grid>
-      <Grid item sm={6} lg={6} xl={6} ref={ref}>
-        <div
-          className="sectionThree"
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            textAlign: "center",
-            transform: "scale(0)",
-          }}
-        >
-          <Typography sx={{ mt: 1, width: "80%" }} variant="subtitle1">
-            Accesorios de Alto Rendimiento para Potenciar Tu Entrenamiento
-          </Typography>
-          <Typography sx={{ mt: 1, width: "80%" }} variant="body1">
-            Descubre nuestra amplia gama de accesorios de alta calidad que
-            complementarán y potenciarán tu rutina de ejercicios. En OnFit, la
-            cadena de gimnasios líder en Buenos Aires, te ofrecemos una cuidada
-            selección de accesorios diseñados para ayudarte a alcanzar tus metas
-            de acondicionamiento físico de manera efectiva y cómoda.
-          </Typography>
-          <Box sx={{ mt: 5 }}>
-            <Button
-              color="secondary"
-              size="large"
-              onClick={() => router.push("/accesorios")}
-            >
-              Descubre nuestros accesorios
-            </Button>
-          </Box>
-        </div>
-      </Grid>
+
     </>
   );
 };

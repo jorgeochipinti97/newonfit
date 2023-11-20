@@ -1,10 +1,6 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import {
-  Box,
-  Grid,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Grid, useMediaQuery } from "@mui/material";
 
 import { ShopLayout } from "@/components/layout/shopLayout";
 import { SectionOneHome } from "@/components/SectionOneHome";
@@ -28,7 +24,6 @@ export default function Home() {
   const getProducts = async () => {
     const data = await axios.get("/api/product");
     setProducts(data.data);
-
   };
   useEffect(() => {
     getProducts();
@@ -38,16 +33,19 @@ export default function Home() {
     <>
       <ShopLayout>
         <Box sx={{ scrollSnapAlign: "start" }}>
-          <HeroSectionComponent products={products.filter(e=> e.subcategoria == 'remera_oversize')} isMobile={isMobile} />
-
+          <HeroSectionComponent
+            products={products.filter(
+              (e) => e.subcategoria == "remera_oversize"
+            )}
+            isMobile={isMobile}
+          />
         </Box>
-        <Grid container sx={{ display: isMobile ? "none" : "auto" }}>
-          <SectionOneHome />
-          <SectionTwoHome />
-          <SectionThreeHome />
-          <SectionFourHome />
-        </Grid>
-        <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
+
+        <SectionOneHome  isMobile={isMobile}/>
+        <SectionTwoHome isMobile={isMobile}/>
+        <SectionThreeHome isMobile={isMobile} />
+
+        {/* <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
           <SectionOneResponsive />{" "}
         </Box>
         <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
@@ -58,7 +56,7 @@ export default function Home() {
         </Box>
         <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
           <SectionFourResponmsive />{" "}
-        </Box>
+        </Box> */}
       </ShopLayout>
     </>
   );

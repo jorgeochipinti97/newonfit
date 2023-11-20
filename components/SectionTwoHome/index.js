@@ -8,8 +8,8 @@ import { useInView } from "react-intersection-observer";
 import { Elastic, gsap, Power4, Power1, Back } from "gsap";
 import { useRouter } from "next/router";
 
-export const SectionTwoHome = () => {
-  const router = useRouter()
+export const SectionTwoHome = ({isMobile}) => {
+  const router = useRouter();
   gsap.registerPlugin(ScrollTrigger);
   const { ref, inView, entry } = useInView({
     threshold: 0.9,
@@ -17,63 +17,140 @@ export const SectionTwoHome = () => {
   });
 
   useEffect(() => {
-    inView &&
-      gsap.fromTo(
-        ".sectionTwo",
-        { xPercent: 100 },
-        { xPercent: 0, opacity: 1 }
-      );
+    inView && gsap.fromTo(".sectionTwo", { xPercent: 100 }, { xPercent: 0 });
   }, [inView]);
   return (
     <>
-      <Grid item sm={6} lg={6} xl={6} ref={ref} sx={{scrollSnapAlign:'start',scrollMarginTop:'20px'}}>
+      <Grid
+        item
+        sm={12}
+        lg={12}
+        xl={12}
+        sx={{
+          scrollSnapAlign: "start",
+          scrollMarginTop: "20px",
+mx:1,
+          display: "flex",
+          justifyContent: "center",my:isMobile ? 1:5
+        }}
+      >
         <div
-          className="sectionTwo"
           style={{
-            width: "100%",
+            width: isMobile ? '100%': "80%",
             display: "flex",
-            flexDirection: "column",
-            opacity: 0,
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            textAlign: "center",
+            borderRadius: "90px",
+            justifyContent:'space-between'
           }}
+          
         >
-          <Typography sx={{ mt: 1, width: "80%" }} variant="subtitle1">
-            Equipamiento de Última Generación
-          </Typography>
-          <Typography sx={{ mt: 1, width: "80%" }} variant="body1">
-            Descubre nuestra variedad de equipos de vanguardia para
-            entrenamiento funcional, cardio y fuerza. Confía en la calidad y el
-            respaldo de OnFit para disfrutar de una experiencia de gimnasio
-            excepcional.
-          </Typography>
-          <Box sx={{ mt: 5 }} justifyContent="center">
-            <Button
-              color="secondary"
-              size="large"
-              onClick={() => router.push("/equipamiento")}
-            >
-              Explora nuestro catálogo
-            </Button>
-          </Box>
-        </div>
-      </Grid>
-      <Grid item sm={6} lg={6} xl={6} ref={ref}>
-        <div className="sectionTwo" style={{ opacity: 0 }}>
-          <Box
-            sx={{ textAlign: "center" }}
-            display="flex"
-            justifyContent="center"
+          <div
+ className="modern-gradient"
+            style={{
+              width: "48%",
+              display: "flex",
+              borderRadius: isMobile?'10px':"90px",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "black",
+              marginRight: "2px",
+              height:isMobile ? '48vw':'600px',
+              backgroundImage:"linear-gradient(to bottom, rgba(0,0,0,.3) 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.5)),url('https://res.cloudinary.com/dcvieavco/image/upload/v1678771084/AnyConv.com__D_NQ_NP_984611-MLA31466353739_072019-O_plmihi.jpg')",backgroundSize:'cover'
+            }}
           >
-            <Image
-              src="https://res.cloudinary.com/dcvieavco/image/upload/v1678771084/AnyConv.com__D_NQ_NP_984611-MLA31466353739_072019-O_plmihi.jpg"
-              width={500}
-              height={500}
-              alt="asd"
-            />
-          </Box>
+
+            <div
+              className="sectionTwo"
+              style={{
+                width: "75%",
+                display: "flex",
+                flexDirection: "column",
+
+                justifyContent: "start",
+                alignItems: "center",
+
+                textAlign: "center",
+              }}
+            >
+              <Typography
+                sx={{ mt: 1, width: "90%", color: "#f5f5f7",fontWeight:'800',fontSize:isMobile?'15px':'auto' }}
+                variant="h4"
+              >
+                Equipamiento de Última Generación
+              </Typography>
+              <Typography
+                sx={{ mt: 1, width: "80%", color: "#f5f5f7" ,fontWeight:'500',display:isMobile? "none":'auto'}}
+                variant="body1"
+              >
+                Descubre nuestra variedad de equipos de vanguardia para
+                entrenamiento funcional, cardio y fuerza. Confía en la calidad y
+                el respaldo de OnFit para disfrutar de una experiencia de
+                gimnasio excepcional.
+              </Typography>
+              <Box sx={{ my: 2 }} justifyContent="center">
+                <Button
+                  color="secondary"
+                  size={isMobile ? 'small':"large"}
+                  onClick={() => router.push("/equipamiento")}
+                >
+                  Explora más
+                </Button>
+              </Box>
+            </div>
+          </div>
+          <div
+ className="modern-gradient"
+            style={{
+              width: "48%",
+              display: "flex",
+              borderRadius: isMobile?'10px' :"90px",
+
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundImage:"linear-gradient(to bottom, rgba(0,0,0,.3) 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.5)),url('https://res.cloudinary.com/dcvieavco/image/upload/v1678770982/stainless-steel-water-bottle-black-17oz-front-640d672f77c6b_gxmaz7.jpg')",backgroundSize:'cover'
+
+            }}
+          >
+
+            <div
+              className="sectionTwo"
+              style={{
+
+                display: "flex",
+                flexDirection: "column",
+
+                justifyContent: "center",
+                alignItems: "center",
+
+                textAlign: "center",
+              }}
+            >
+             <Typography
+                sx={{ mt: 1, width: "100%", color: "#f5f5f7",fontWeight:'800', fontSize:isMobile?'15px':'auto' }}
+                variant="h4"
+              >
+                Accesorios de Alto Rendimiento 
+              </Typography>
+              <Typography
+                sx={{ mt: 1, width: "80%", color: "#f5f5f7" ,display:isMobile?'none':'auto'}}
+                variant="body1"
+              >
+                Explora en OnFit, líder en Buenos Aires, accesorios de alta
+                calidad para mejorar tu rutina de ejercicios y alcanzar tus
+                metas de forma efectiva y cómoda.
+              </Typography>
+              <Box sx={{ my: 2 }} justifyContent="center">
+                <Button
+                  color="secondary"
+                  size={isMobile ? 'small':"large"}
+                  onClick={() => router.push("/equipamiento")}
+                >
+                  Descubre más
+                </Button>
+              </Box>
+            </div>
+          </div>
         </div>
       </Grid>
     </>

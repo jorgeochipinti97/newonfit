@@ -13,7 +13,7 @@ export const Wpp = () => {
           width: "50px",
           height: "50px",
           borderRadius: "50%",
-          bottom:'20px', right:'20px'
+          bottom:'80px', right:'20px'
           ,zIndex:'10',cursor:'pointer'
          
         }}

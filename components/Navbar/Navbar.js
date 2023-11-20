@@ -16,7 +16,10 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { CartContext } from "@/context/cart/CartContext";
-export const Navbar = () => {
+
+
+
+export const Navbar = ({isMobile}) => {
   const theme = useTheme();
   const isXlUp = useMediaQuery(theme.breakpoints.up("xl"));
   const [menuBackdropStyle, setMenuBackdropStyle] = useState({});
@@ -70,12 +73,14 @@ export const Navbar = () => {
           justifyContent: "auto",
         }}
       >
-        <div style={{  display: "flex" }}>
+        <div style={{  display: "flex" }}             onClick={() => push(`/`)}
+>
+
           <Image src="/logo.png" width={125} height={125} alt="" />
         </div>
 
         <Box flex={1} />
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex",display:isMobile ? 'none':'flex'  }}>
           <Box
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -136,10 +141,10 @@ export const Navbar = () => {
 
     
         <Box flex={1} />
-        <IconButton sx={{ mx: 1 }} onClick={() => push("/cart")}>
+        <IconButton sx={{ mx: 1,  }} onClick={() => push("/cart")}>
             <Badge
               badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
-              color="secondary"
+color="info"
               sx={{
                 '& .MuiBadge-badge': {
                   fontWeight: 'bold', // Cambia 'bold' por el grosor de fuente que prefieras
@@ -148,7 +153,7 @@ export const Navbar = () => {
                 backgroundColor: "rgba(0,0,0,0.4)",
               }}
             >
-              <ShoppingCartOutlined sx={{ color: "white" }} />
+              <ShoppingCartOutlined sx={{ color: "rgb(254, 221, 45)" }} />
             </Badge>
           </IconButton>
       </Toolbar>

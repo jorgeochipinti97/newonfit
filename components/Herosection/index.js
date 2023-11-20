@@ -47,8 +47,6 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
   return (
     <section
       style={{
-        background:
-          "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
         color: "white",
         width: "100vw",
         minHeight: "100vh",
@@ -62,7 +60,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           container
           spacing={6}
           justifyContent="center"
-          sx={{ width: "80vw" }}
+          sx={{ width: isMobile ?'100vw' :"80vw" }}
         >
           <Grid
             item
@@ -226,7 +224,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                               lineHeight: "15px",
                               color: "#f5f5f7",
                               py: 2,
-                              color: isMobile ? "black" : "#f5f5f7",
+
                             }}
                           >
                             {capitalize(`${e.titulo}`)}

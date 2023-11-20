@@ -32,7 +32,7 @@ import Image from "next/image";
 
 const ProductsSlugPage = () => {
   gsap.registerPlugin(ScrollTrigger);
-
+  const [selectedCustom, setSelectedCustom] = useState("details");
   const { ref, inView, entry } = useInView({
     threshold: 0.9,
     triggerOnce: true,
@@ -76,7 +76,6 @@ const ProductsSlugPage = () => {
 
     const product_ = data.data.filter((e) => e.slug == query.slug);
     setProduct(product_[0]);
-    console.log(product_[0].images);
   };
 
   useEffect(() => {
@@ -121,8 +120,9 @@ const ProductsSlugPage = () => {
     product &&
       gsap.to(".slugContainer", {
         opacity: 1,
-        delay: .1,
+        delay: 0.1,
       });
+    product && console.log(product);
   }, [product]);
 
   const onAddProduct = () => {
@@ -147,7 +147,7 @@ const ProductsSlugPage = () => {
   return (
     <ShopLayout>
       <Box
-        sx={{ mx: 2,opacity:0 }}
+        sx={{ mx: 2, opacity: 0, minHeight: "130vh" }}
         className="slugContainer"
       >
         <Box
@@ -162,14 +162,19 @@ const ProductsSlugPage = () => {
           </Box>
         </Box>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} sx={{display:'flex', justifyContent:'center'}}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             {product && product.images.length > 0 ? (
               <>
                 <ProductSlideshow
                   images={product && product.images}
                   seconds={7000}
-                  height={isMobile ? 300 : 600}
-                  width={isMobile ? 300 : 600}
+                  height={isMobile ? 300 : 450}
+                  width={isMobile ? 300 : 450}
                 />
               </>
             ) : (
@@ -189,28 +194,79 @@ const ProductsSlugPage = () => {
             <Box display="flex" flexDirection="column">
               {/* titulos */}
               <Box display="flex" justifyContent="center">
-                <Typography
-                  variant="h1"
-                  textAlign={"center"}
-                  sx={{ width: 300 }}
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  sx={{
+
+                    width: "fit-content",
+                    borderRadius: "19px",
+                    p: 2,
+
+                  }}
                 >
-                  {product && capitalize(product.titulo)}
+                  <Typography
+                    variant="h1"
+                    textAlign={"center"}
+                    sx={{ width: 300, color: "black" }}
+                  >
+                    {product && capitalize(product.titulo)}
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Box
+                display="flex"
+                justifyContent="center"
+                sx={{ mt: 3, width: "100%" }}
+              >
+                <Typography
+                  variant="button"
+                  sx={{
+                    fontWeight: 800,
+                    fontSize: "15px",
+
+                    px: 2,
+                    py: 1,
+                    mx: 2,
+                    borderRadius: "19px",
+                  }}
+                >
+                  {product && `${formattwo(product.precio)}`}
                 </Typography>
+                <Box display="flex" justifyContent="space-around">
+                  <Button
+                    color="success"
+                    size={isMobile ? "small" : "large"}
+                    onClick={onAddProduct}
+                    sx={{ mx: 2 }}
+                    startIcon={
+                      <svg
+                        width={20}
+                        fill="white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>cart-plus</title>
+                        <path d="M11 9H13V6H16V4H13V1H11V4H8V6H11M7 18C5.9 18 5 18.9 5 20S5.9 22 7 22 9 21.1 9 20 8.1 18 7 18M17 18C15.9 18 15 18.9 15 20S15.9 22 17 22 19 21.1 19 20 18.1 18 17 18M7.2 14.8V14.7L8.1 13H15.5C16.2 13 16.9 12.6 17.2 12L21.1 5L19.4 4L15.5 11H8.5L4.3 2H1V4H3L6.6 11.6L5.2 14C5.1 14.3 5 14.6 5 15C5 16.1 5.9 17 7 17H19V15H7.4C7.3 15 7.2 14.9 7.2 14.8Z" />
+                      </svg>
+                    }
+                  >
+                    Agregar al carrito
+                  </Button>
+                  {/* <Button color="success" size="large" onClick={() => onCheckOut()}>
+                Comprar ahora
+              </Button> */}
+                </Box>
               </Box>
-
-              <Box display="flex" justifyContent="space-around" sx={{ m: 3 }}>
-                <NextLink href={`#`} passHref prefetch={false}>
-
-                    <Typography
-                      variant="button"
-                      sx={{ fontWeight: 800, fontSize: "20px" }}
-                    >
-                      {product && `${formattwo(product.precio)}`}
-                    </Typography>
-
-                </NextLink>
+              <Divider sx={{ my: 2 }} />
+              <Box>
+                <SizeSelector
+                  sizes={["XS", "S", "M", "L", "XL"]}
+                  selectedSize={tempCartProduct.size}
+                  onSelectedSize={selectedSize}
+                />
               </Box>
-              <Divider sx={{}} />
               <Box sx={{}}>
                 <Typography variant="subtitle2" sx={{ m: 2 }}>
                   Cantidad
@@ -223,40 +279,68 @@ const ProductsSlugPage = () => {
                   />
                 </Box>
               </Box>
+            </Box>
+          </Grid>
+          <Grid item lg={12}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Divider sx={{ width: "90%" }} />
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
               <Box
                 sx={{
-                  display:
-                    product && (product.type == "mujer") | "hombre"
-                      ? "auto"
-                      : "none",
+                  display: "flex",
+                  width: isMobile ? "90vw" : "60%",
+                  justifyContent: "space-between",
                 }}
               >
-                <SizeSelector
-                  sizes={["XS", "S", "M", "L", "XL"]}
-                  selectedSize={tempCartProduct.size}
-                  onSelectedSize={selectedSize}
-                />
-              </Box>
-
-              {/* Descripción */}
-
-              <Box sx={{}} display="flex" justifyContent="center">
-                <Typography
-                  variant="body2"
-                  align="justify"
-                  sx={{ mx: 2, mb: 4 }}
+                <Box
+                  sx={{
+                    fontSize: isMobile ? "15px" : "30px",
+                    cursor: "pointer",
+                    borderBottom: selectedCustom == "details" ? 2 : 0,
+                    borderColor: "rgb(254, 221, 45)",
+                    fontWeight: "800",
+                  }}
+                  onClick={() => setSelectedCustom("details")}
                 >
-                  {product && product.descripcion}
-                </Typography>
+                  Detalles
+                </Box>
+                <Box
+                  sx={{
+                    fontSize: isMobile ? "15px" : "30px",
+                    cursor: "pointer",
+                    borderBottom: selectedCustom == "shipping" ? 2 : 0,
+                    borderColor: "rgb(254, 221, 45)",
+                    fontWeight: "800",
+                  }}
+                  onClick={() => setSelectedCustom("shipping")}
+                >
+                  Envios
+                </Box>
+                <Box
+                  sx={{
+                    fontSize: isMobile ? "15px" : "30px",
+                    cursor: "pointer",
+                    borderBottom: selectedCustom == "faqs" ? 2 : 0,
+                    borderColor: "rgb(254, 221, 45)",
+                    fontWeight: "800",
+                  }}
+                  onClick={() => setSelectedCustom("faqs")}
+                >
+                  Preguntas frecuentes
+                </Box>
               </Box>
             </Box>
-            <Box display="flex" justifyContent="space-around">
-              <Button color="success" size="large" onClick={onAddProduct} startIcon={<svg width={20} fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>cart-plus</title><path d="M11 9H13V6H16V4H13V1H11V4H8V6H11M7 18C5.9 18 5 18.9 5 20S5.9 22 7 22 9 21.1 9 20 8.1 18 7 18M17 18C15.9 18 15 18.9 15 20S15.9 22 17 22 19 21.1 19 20 18.1 18 17 18M7.2 14.8V14.7L8.1 13H15.5C16.2 13 16.9 12.6 17.2 12L21.1 5L19.4 4L15.5 11H8.5L4.3 2H1V4H3L6.6 11.6L5.2 14C5.1 14.3 5 14.6 5 15C5 16.1 5.9 17 7 17H19V15H7.4C7.3 15 7.2 14.9 7.2 14.8Z" /></svg>}>
-                Agregar al carrito
-              </Button>
-              {/* <Button color="success" size="large" onClick={() => onCheckOut()}>
-                Comprar ahora
-              </Button> */}
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  width: isMobile ? '90%':"60%",
+                  justifyContent: "start",
+                }}
+              >
+                {product && selectedCustom == "details" && product.descripcion}
+              </Box>
             </Box>
           </Grid>
         </Grid>

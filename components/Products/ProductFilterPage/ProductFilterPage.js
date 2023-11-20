@@ -9,8 +9,19 @@ import {
   Divider,
   Typography,
   ButtonGroup,
+  Grid,
+  Slider,
+  useMediaQuery,
 } from "@mui/material";
 import axios from "axios";
+import { BorderRight } from "@mui/icons-material";
+
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+const minDistance = 10;
 
 export const ProductFilterPage = () => {
   const [products, setProducts] = useState([]);
@@ -85,7 +96,40 @@ export const ProductFilterPage = () => {
   const [categories, setCategories] = useState([]);
   const [select_, setSelect_] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [value1, setValue1] = React.useState([20, 37]);
+  const isMobile = useMediaQuery("(max-width:600px)");
 
+  const handleChange1 = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+    } else {
+      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
+    }
+  };
+
+  const [value2, setValue2] = React.useState([20, 37]);
+
+  const handleChange2 = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 100 - minDistance);
+        setValue2([clamped, clamped + minDistance]);
+      } else {
+        const clamped = Math.max(newValue[1], minDistance);
+        setValue2([clamped - minDistance, clamped]);
+      }
+    } else {
+      setValue2(newValue);
+    }
+  };
   const onChangeSubType = (subType__) => {
     const formattedSubType = replaceSpacesWithUnderscores(subType__);
 
@@ -116,40 +160,90 @@ export const ProductFilterPage = () => {
   };
   return (
     <>
-      <Box sx={{ pt: 7 }}>
-        <Box>
-          <Divider sx={{ my: 1 }} />
-          <Box flex={1} />
-        </Box>
-        <Box display={"flex"} justifyContent={"center"}>
-          <ButtonGroup variant="outlined" color="primary">
-            {categories.map((e) => (
-              // eslint-disable-next-line react/jsx-key
-
-              <Button
-              key={e}
-                sx={{ backgroundColor: subtype_ == e ? "rgba(0,0,0,0.9)" : "white",color: subtype_ == e ? "yellow" : "black", '&:hover': {
-                  color: 'black',
-                  backgroundColor: 'gray',
-                },  }}
-                color={"primary"}
-                onClick={() => onChangeSubType(e)}
-              >
-                {capitalize(e)}
-              </Button>
-            ))}
-          </ButtonGroup>
-        </Box>
-      </Box>
-      {isNtProcuts && (
+      <Box sx={{ pt:isMobile ? 2: 7 }}></Box>
+      {/* {isNtProcuts && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography sx={{ fontSize: "30px", fontWeight: "300" }}>
             Proximamente..
           </Typography>
         </Box>
-      )}
+      )} */}
+      <Grid container >
+        <Grid item lg={3} xl={3} sm={12} xs={12} >
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            sx={{
+              position: isMobile ? 'auto':"fixed",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: isMobile ? "100%" :'25%',
+              pt: 7,
+            }}
+          >
+            <ButtonGroup variant="outlined" color="primary">
+              {categories.map((e) => (
+                // eslint-disable-next-line react/jsx-key
 
-      <ProductList products={_productsFiltered} />
+                <Button
+                  key={e}
+                  sx={{
+                    backgroundColor:
+                      subtype_ == e ? "rgba(0,0,0,0.9)" : "white",
+                    color: subtype_ == e ? "yellow" : "black",
+                    "&:hover": {
+                      color: "black",
+                      backgroundColor: "gray",
+                    },
+                  }}
+                  color={"primary"}
+                  onClick={() => onChangeSubType(e)}
+                >
+                  {capitalize(e)}
+                </Button>
+              ))}
+            </ButtonGroup>
+
+            {/* <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: 4,
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="subtitle1">Filtrar por precio</Typography>
+              <Box sx={{ width: 300 }}>
+
+                <Slider
+                  getAriaLabel={() => "Minimum distance shift"}
+                  value={value2}
+                  onChange={handleChange2}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                  disableSwap
+                />
+              </Box>
+            </Box> */}
+          </Box>
+        </Grid>
+        <Grid
+          item
+          lg={9}
+          xl={9}
+          sm={12}
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            borderLeft: "1px solid black",
+          }}
+        >
+          <ProductList products={_productsFiltered} />
+        </Grid>
+      </Grid>
     </>
   );
 };

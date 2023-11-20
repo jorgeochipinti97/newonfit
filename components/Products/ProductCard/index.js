@@ -124,27 +124,31 @@ export const ProductCard = ({ product, isMobile }) => {
         </Card>
       </Box>
       <Box
-              onClick={() => router.push(`/products/${product.slug}`)}
-
+        onClick={() => router.push(`/products/${product.slug}`)}
         sx={{
           width: "80%",
-          py: 3,
+          py: 1,
           borderRadius: "0px 0px 10px 10px",
 
           backdropFilter: "blur(4px)",
-          backgroundColor: 'black',
+          backgroundColor: "black",
           position: "relative",
           bottom: 10,
           display: "flex",
-          justifyContent:'space-around'
+
+          alignItems: "center",
+          justifyContent: "space-around",
         }}
       >
-        <div sx={{ width: "20%" }}>
-          <Typography
-            variant="body1"
-            sx={{ color: "#f5f5f7", fontWeight: "800",width:'80%' }}
-          >
-            {product.titulo.slice(0,30)}..
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="subtitle1" sx={{ color: "white" }}>
+            {formattwo(product.precio)}
           </Typography>
         </div>
         <div
@@ -152,10 +156,23 @@ export const ProductCard = ({ product, isMobile }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-
           }}
         >
-          <Button startIcon={<svg xmlns="http://www.w3.org/2000/svg" width={20} viewBox="0 0 24 24"><title>shopping</title><path d="M12,13A5,5 0 0,1 7,8H9A3,3 0 0,0 12,11A3,3 0 0,0 15,8H17A5,5 0 0,1 12,13M12,3A3,3 0 0,1 15,6H9A3,3 0 0,1 12,3M19,6H17A5,5 0 0,0 12,1A5,5 0 0,0 7,6H5C3.89,6 3,6.89 3,8V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V8C21,6.89 20.1,6 19,6Z" /></svg>}>Comprar ahora</Button>
+          <Button
+            sx={{ fontSize: "15px" }}
+            startIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={20}
+                viewBox="0 0 24 24"
+              >
+                <title>shopping</title>
+                <path d="M12,13A5,5 0 0,1 7,8H9A3,3 0 0,0 12,11A3,3 0 0,0 15,8H17A5,5 0 0,1 12,13M12,3A3,3 0 0,1 15,6H9A3,3 0 0,1 12,3M19,6H17A5,5 0 0,0 12,1A5,5 0 0,0 7,6H5C3.89,6 3,6.89 3,8V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V8C21,6.89 20.1,6 19,6Z" />
+              </svg>
+            }
+          >
+            Comprar ahora
+          </Button>
         </div>
       </Box>
     </Grid>
