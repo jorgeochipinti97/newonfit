@@ -175,7 +175,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                         borderRadius: "22px",
                         maxWidth: { xs: "80vw", lg: "15vw" },
                         background: "transparent",
-
+                        height: { xs: "20vw", lg: "10vw" },
                         m: 1,
                       }}
                     >
