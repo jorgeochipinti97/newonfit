@@ -71,7 +71,7 @@ export const SectionThreeHome = ({isMobile}) => {
               <Button
 
 size={isMobile? "small":'large'}
-                onClick={() => router.push("/hombre")}
+                onClick={() => router.push("/suplementos")}
               >
                 ¡Potenciarme ahora!
               </Button>

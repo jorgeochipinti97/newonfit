@@ -144,7 +144,7 @@ mx:1,
                 <Button
                   color="secondary"
                   size={isMobile ? 'small':"large"}
-                  onClick={() => router.push("/equipamiento")}
+                  onClick={() => router.push("/accesorios")}
                 >
                   Descubre más
                 </Button>

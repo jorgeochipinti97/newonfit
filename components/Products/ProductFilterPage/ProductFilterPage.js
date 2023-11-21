@@ -16,7 +16,6 @@ import {
 import axios from "axios";
 import { BorderRight } from "@mui/icons-material";
 
-
 function valuetext(value) {
   return `${value}°C`;
 }
@@ -160,7 +159,7 @@ export const ProductFilterPage = () => {
   };
   return (
     <>
-      <Box sx={{ pt:isMobile ? 2: 7 }}></Box>
+      <Box sx={{ pt: isMobile ? 2 : 7 }}></Box>
       {/* {isNtProcuts && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography sx={{ fontSize: "30px", fontWeight: "300" }}>
@@ -168,17 +167,24 @@ export const ProductFilterPage = () => {
           </Typography>
         </Box>
       )} */}
-      <Grid container >
-        <Grid item lg={3} xl={3} sm={12} xs={12} >
+      <Grid container>
+        <Grid
+          item
+          lg={3}
+          xl={3}
+          sm={12}
+          xs={12}
+          sx={{ display: asPath == "accesorios" ? "none" : "auto" }}
+        >
           <Box
             display={"flex"}
             justifyContent={"center"}
             sx={{
-              position: isMobile ? 'auto':"fixed",
+              position: isMobile ? "auto" : "fixed",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              width: isMobile ? "100%" :'25%',
+              width: isMobile ? "100%" : "25%",
               pt: 7,
             }}
           >
@@ -231,8 +237,8 @@ export const ProductFilterPage = () => {
         </Grid>
         <Grid
           item
-          lg={9}
-          xl={9}
+          lg={asPath == "/accesorios" ? 12 : 9}
+          xl={asPath == "/accesorios" ? 12 : 9}
           sm={12}
           xs={12}
           sx={{

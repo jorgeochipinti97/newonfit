@@ -43,7 +43,7 @@ mt:isMobile ? 5:0,
         >
           <Box
             ref={ref}
-            id="sectionOne"
+
             sx={{ textAlign: "center" }}
             display="flex"
             justifyContent="center"
@@ -58,7 +58,7 @@ mt:isMobile ? 5:0,
           </Box>
           <div
             ref={ref}
-            className="sectionOne"
+
             style={{
               width: "100%",
               display: "flex",
@@ -67,7 +67,7 @@ mt:isMobile ? 5:0,
               alignItems: "center",
               height: "100%",
               textAlign: "center",
-              opacity: 0,
+              // opacity: 0,
             }}
           >
             <Typography

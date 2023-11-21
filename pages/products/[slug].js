@@ -198,11 +198,9 @@ const ProductsSlugPage = () => {
                   display="flex"
                   justifyContent="center"
                   sx={{
-
                     width: "fit-content",
                     borderRadius: "19px",
                     p: 2,
-
                   }}
                 >
                   <Typography
@@ -260,13 +258,24 @@ const ProductsSlugPage = () => {
                 </Box>
               </Box>
               <Divider sx={{ my: 2 }} />
-              <Box>
-                <SizeSelector
-                  sizes={["XS", "S", "M", "L", "XL"]}
-                  selectedSize={tempCartProduct.size}
-                  onSelectedSize={selectedSize}
-                />
-              </Box>
+              {product && (
+                <>
+                  <Box
+                    display={
+                      product.categoria == "hombres" ||
+                      product.categora == "mujeres"
+                        ? "auto"
+                        : "none"
+                    }
+                  >
+                    <SizeSelector
+                      sizes={["XS", "S", "M", "L", "XL"]}
+                      selectedSize={tempCartProduct.size}
+                      onSelectedSize={selectedSize}
+                    />
+                  </Box>
+                </>
+              )}
               <Box sx={{}}>
                 <Typography variant="subtitle2" sx={{ m: 2 }}>
                   Cantidad
@@ -335,7 +344,7 @@ const ProductsSlugPage = () => {
               <Box
                 sx={{
                   display: "flex",
-                  width: isMobile ? '90%':"60%",
+                  width: isMobile ? "90%" : "60%",
                   justifyContent: "start",
                 }}
               >
