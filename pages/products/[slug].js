@@ -30,6 +30,10 @@ import { FormCheckout } from "@/components/FormCheckout";
 import axios from "axios";
 import Image from "next/image";
 
+const ProductDescription = ({ descripcion }) => {
+  return <div dangerouslySetInnerHTML={{ __html: descripcion }} />;
+};
+
 const ProductsSlugPage = () => {
   gsap.registerPlugin(ScrollTrigger);
   const [selectedCustom, setSelectedCustom] = useState("details");
@@ -348,7 +352,11 @@ const ProductsSlugPage = () => {
                   justifyContent: "start",
                 }}
               >
-                {product && selectedCustom == "details" && product.descripcion}
+                {product && selectedCustom == "details" && (
+                  <>
+                    <ProductDescription descripcion={product.descripcion} />
+                  </>
+                )}
               </Box>
             </Box>
           </Grid>

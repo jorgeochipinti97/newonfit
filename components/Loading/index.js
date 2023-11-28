@@ -4,15 +4,15 @@ import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../animations/lf20_ZyCSQa.json";
 import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
-import { Elastic, gsap, Power4, Power1, Back } from "gsap";
+import { gsap,  } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 export const LoadingComponent = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
-    gsap.to(".loader", { opacity: 0, delay: .8 });
-    gsap.to(".loader", { display: "none", delay: .9 });
+    gsap.to(".loader", { opacity: 0, delay: .2 });
+    gsap.to(".loader", { display: "none", delay: .3});
   }, []);
 
   return (
