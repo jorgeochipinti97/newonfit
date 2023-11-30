@@ -202,7 +202,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                                 height: { xs: "20vw", lg: "10vw" },
                               }}
                               alt={e.titulo}
-                              loading="lazy"
+
                               src={e.images[0]}
                             />
                           </CardMedia>
