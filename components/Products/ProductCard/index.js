@@ -112,7 +112,7 @@ export const ProductCard = ({ product, isMobile }) => {
                   sx={{ overflow: "hidden" }}
                 >
                   <img
-                    loading="lazy"
+
                     alt={product.titulo}
                     src={productImage || ""}
                     style={{ width: "100%" }}
