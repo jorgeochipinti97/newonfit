@@ -40,6 +40,7 @@ export const ShopLayout = ({
       <nav>
         <Navbar isMobile={isMobile} />
       </nav>
+      <Box sx={{height:'100vh', width:'100vw', backgroundColor:'rgba(0,0,0,0.5)', backdropFilter:'blur(4px)', position:'fixed',zIndex:100}}/>
 
       <SideMenu />
       <LoadingComponent />

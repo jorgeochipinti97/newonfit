@@ -1,17 +1,12 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { Box, Grid, useMediaQuery } from "@mui/material";
+import {  useEffect, useState } from "react";
+import { Box,  useMediaQuery } from "@mui/material";
 
 import { ShopLayout } from "@/components/layout/shopLayout";
 import { SectionOneHome } from "@/components/SectionOneHome";
 import { SectionTwoHome } from "@/components/SectionTwoHome";
 import { SectionThreeHome } from "@/components/SectionThreeHome";
-import { SectionFourHome } from "@/components/SectionFourHome";
 
-import { SectionOneResponsive } from "@/components/sectionOneResponsive";
-import { SectionTwoResponsive } from "@/components/sectionTwoResponsive";
-import { SectionThreeResponsive } from "@/components/sectionThreeResponsive";
-import { SectionFourResponmsive } from "@/components/sectionFourResponsive";
 import axios from "axios";
 
 import { HeroSectionComponent } from "@/components/Herosection";

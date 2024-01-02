@@ -47,11 +47,11 @@ export const Navbar = ({isMobile}) => {
     }));
   };
   const sections = [
-    "Indumentaria",
-    "Suplementos",
-    "Equipamiento",
-    "Accesorios",
-    "FAQS",
+    // "Indumentaria",
+    // "Suplementos",
+    // "Equipamiento",
+    // "Accesorios",
+    // "FAQS",
   ];
   return (
     <AppBar
@@ -81,7 +81,7 @@ export const Navbar = ({isMobile}) => {
 
         <Box flex={1} />
         <Box sx={{ display: "flex",display:isMobile ? 'none':'flex'  }}>
-          <Box
+          {/* <Box
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={() => push(`/`)}
@@ -136,7 +136,7 @@ export const Navbar = ({isMobile}) => {
                   {e}
                 </Typography>
               </Box>
-            ))}
+            ))} */}
         </Box>
 
     

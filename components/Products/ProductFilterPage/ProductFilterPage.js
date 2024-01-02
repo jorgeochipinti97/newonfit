@@ -211,7 +211,7 @@ export const ProductFilterPage = () => {
               ))}
             </ButtonGroup>
 
-            {/* <Box
+            <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -222,7 +222,6 @@ export const ProductFilterPage = () => {
             >
               <Typography variant="subtitle1">Filtrar por precio</Typography>
               <Box sx={{ width: 300 }}>
-
                 <Slider
                   getAriaLabel={() => "Minimum distance shift"}
                   value={value2}
@@ -232,7 +231,7 @@ export const ProductFilterPage = () => {
                   disableSwap
                 />
               </Box>
-            </Box> */}
+            </Box>
           </Box>
         </Grid>
         <Grid
