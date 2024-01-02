@@ -12,14 +12,10 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import {
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 import { CartContext } from "@/context/cart/CartContext";
 
-
-
-export const Navbar = ({isMobile}) => {
+export const Navbar = ({ isMobile }) => {
   const theme = useTheme();
   const isXlUp = useMediaQuery(theme.breakpoints.up("xl"));
   const [menuBackdropStyle, setMenuBackdropStyle] = useState({});
@@ -73,24 +69,24 @@ export const Navbar = ({isMobile}) => {
           justifyContent: "auto",
         }}
       >
-        <div style={{  display: "flex" }}             onClick={() => push(`/`)}
->
-
+        <div
+          style={{ display: "flex", position: "fixed" }}
+          onClick={() => push(`/`)}
+        >
           <Image src="/logo.png" width={125} height={125} alt="" />
         </div>
 
         <Box flex={1} />
-        <Box sx={{ display: "flex",display:isMobile ? 'none':'flex'  }}>
-          {/* <Box
+        <Box sx={{ display: "flex", display: isMobile ? "none" : "flex" }}>
+          <Box
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={() => push(`/`)}
             sx={{
               px: 1,
               borderRadius: "30px",
-              borderBottom: asPath == '/'
-              ? "1px solid rgb(254, 221, 45)"
-              : "transparent",
+              borderBottom:
+                asPath == "/" ? "1px solid rgb(254, 221, 45)" : "transparent",
             }}
           >
             <Typography
@@ -101,13 +97,12 @@ export const Navbar = ({isMobile}) => {
                 color: "white",
                 fontWeight: "600",
                 cursor: "pointer",
-            
               }}
             >
-              Inicio
+              Proximamente
             </Typography>
           </Box>
-          {
+          {/* {
             sections.map((e) => (
               <Box
               key={e}
@@ -139,23 +134,41 @@ export const Navbar = ({isMobile}) => {
             ))} */}
         </Box>
 
-    
         <Box flex={1} />
-        <IconButton sx={{ mx: 1,  }} onClick={() => push("/cart")}>
-            <Badge
-              badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
-color="info"
-              sx={{
-                '& .MuiBadge-badge': {
-                  fontWeight: 'bold', // Cambia 'bold' por el grosor de fuente que prefieras
-                  // Puedes agregar más estilos personalizados aquí
-                },padding:1,borderRadius:'90px',
-                backgroundColor: "rgba(0,0,0,0.4)",
-              }}
-            >
-              <ShoppingCartOutlined sx={{ color: "rgb(254, 221, 45)" }} />
-            </Badge>
-          </IconButton>
+        {isMobile ? (
+          <Typography
+            variant="body1"
+            sx={{
+              mx: 1,
+              fontSize: "16px",
+              color: "white",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            Proximamente
+          </Typography>
+        ) : (
+          <>
+            <IconButton sx={{ mx: 1 }} onClick={() => push("/cart")}>
+              <Badge
+                badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
+                color="info"
+                sx={{
+                  "& .MuiBadge-badge": {
+                    fontWeight: "bold", // Cambia 'bold' por el grosor de fuente que prefieras
+                    // Puedes agregar más estilos personalizados aquí
+                  },
+                  padding: 1,
+                  borderRadius: "90px",
+                  backgroundColor: "rgba(0,0,0,0.4)",
+                }}
+              >
+                <ShoppingCartOutlined sx={{ color: "rgb(254, 221, 45)" }} />
+              </Badge>
+            </IconButton>
+          </>
+        )}
       </Toolbar>
 
       <div

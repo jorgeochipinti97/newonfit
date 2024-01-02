@@ -61,7 +61,7 @@ export const ShopLayout = ({
           {children}
         </main>
         <FooterComponent isMobile={isMobile} />
-        <Paper
+        {/* <Paper
           sx={{
             position: "fixed",
             bottom: 0,
@@ -141,7 +141,7 @@ export const ShopLayout = ({
               }
             />
           </BottomNavigation>
-        </Paper>
+        </Paper> */}
       </Box>
     </>
   );
