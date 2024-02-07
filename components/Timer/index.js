@@ -43,7 +43,7 @@ const CountdownTimer = ({ targetDate }) => {
     <div style={{height:'100vh', width:'100vw', fontSize:'20px', backgroundColor:'black',color:'#f5f5f7', display:'flex', alignItems:'center', justifyContent:'center'}}>
       {Object.keys(timeLeft).length === 0 && <span>¡Tiempo terminado!</span>}
       {Object.keys(timeLeft).map(interval => (
-        <span key={interval} style={{marginRight:'10px'}}>
+        <span key={interval} style={{marginRight:'10px',fontWeight:'800'}}>
           {timeLeft[interval]} {interval}{" "}
         </span>
       ))}
