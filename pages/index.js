@@ -49,7 +49,7 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <CountdownTimer targetDate="2024-01-31T23:59:59" />
+          <CountdownTimer targetDate="2024-02-7T23:59:59" />
         </Box>
       </ShopLayout>
     </>
