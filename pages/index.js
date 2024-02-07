@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import {  useEffect, useState } from "react";
-import { Box,  useMediaQuery } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, useMediaQuery } from "@mui/material";
 
 import { ShopLayout } from "@/components/layout/shopLayout";
 import { SectionOneHome } from "@/components/SectionOneHome";
@@ -10,6 +10,7 @@ import { SectionThreeHome } from "@/components/SectionThreeHome";
 import axios from "axios";
 
 import { HeroSectionComponent } from "@/components/Herosection";
+import CountdownTimer from "@/components/Timer";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -27,7 +28,7 @@ export default function Home() {
   return (
     <>
       <ShopLayout>
-        <Box sx={{ scrollSnapAlign: "start" }}>
+        {/* <Box sx={{ scrollSnapAlign: "start" }}>
           <HeroSectionComponent
             products={products.filter(
               (e) => e.subcategoria == "remera_oversize"
@@ -38,20 +39,18 @@ export default function Home() {
 
         <SectionOneHome  isMobile={isMobile}/>
         <SectionTwoHome isMobile={isMobile}/>
-        <SectionThreeHome isMobile={isMobile} />
-
-        {/* <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
-          <SectionOneResponsive />{" "}
+        <SectionThreeHome isMobile={isMobile} /> */}
+        <Box
+          sx={{
+            heigh: "100vh",
+            width: "100vw",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CountdownTimer targetDate="2024-01-31T23:59:59" />
         </Box>
-        <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
-          <SectionTwoResponsive />{" "}
-        </Box>
-        <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
-          <SectionThreeResponsive />{" "}
-        </Box>
-        <Box sx={{ my: 3, display: isMobile ? "auto" : "none" }}>
-          <SectionFourResponmsive />{" "}
-        </Box> */}
       </ShopLayout>
     </>
   );

@@ -28,7 +28,7 @@ export const ShopLayout = ({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>Tiend Onfit | Potencia tu estilo Eleva tu rendimiento</title>
 
         <meta name="description" content={pageDescription} />
         <meta name="og:title" content={title} />
@@ -37,12 +37,11 @@ export const ShopLayout = ({
         {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
       </Head>
 
-      <nav>
+      {/* <nav>
         <Navbar isMobile={isMobile} />
       </nav>
-      <Box sx={{height:'100vh', width:'100vw', backgroundColor:'rgba(0,0,0,0.5)', backdropFilter:'blur(4px)', position:'fixed',zIndex:100}}/>
 
-      <SideMenu />
+      <SideMenu /> */}
       <LoadingComponent />
       <Wpp />
 
@@ -50,7 +49,6 @@ export const ShopLayout = ({
         sx={{
           background:
             "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
-          // animation: "randomGradient 5s linear infinite;",
         }}
       >
         <main
@@ -60,8 +58,8 @@ export const ShopLayout = ({
         >
           {children}
         </main>
-        <FooterComponent isMobile={isMobile} />
-        {/* <Paper
+        {/* <FooterComponent isMobile={isMobile} />
+        <Paper
           sx={{
             position: "fixed",
             bottom: 0,

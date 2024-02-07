@@ -43,11 +43,11 @@ export const Navbar = ({ isMobile }) => {
     }));
   };
   const sections = [
-    // "Indumentaria",
-    // "Suplementos",
-    // "Equipamiento",
-    // "Accesorios",
-    // "FAQS",
+    "Indumentaria",
+    "Suplementos",
+    "Equipamiento",
+    "Accesorios",
+    "FAQS",
   ];
   return (
     <AppBar
@@ -102,7 +102,7 @@ export const Navbar = ({ isMobile }) => {
               Proximamente
             </Typography>
           </Box>
-          {/* {
+          {
             sections.map((e) => (
               <Box
               key={e}
@@ -131,7 +131,7 @@ export const Navbar = ({ isMobile }) => {
                   {e}
                 </Typography>
               </Box>
-            ))} */}
+            ))}
         </Box>
 
         <Box flex={1} />
