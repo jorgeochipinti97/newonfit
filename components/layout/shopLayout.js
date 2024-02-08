@@ -43,7 +43,7 @@ export const ShopLayout = ({
 
       <SideMenu /> */}
       <LoadingComponent />
-      <Wpp />
+      {/* <Wpp /> */}
 
       <Box
         sx={{
