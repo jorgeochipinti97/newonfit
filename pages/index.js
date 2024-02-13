@@ -51,8 +51,8 @@ export default function Home() {
   
   return (
     <>
-      <ShopLayout>
-        <Box sx={{ scrollSnapAlign: "start" }}>
+      {/* <ShopLayout> */}
+        {/* <Box sx={{ scrollSnapAlign: "start" }}>
           <HeroSectionComponent
             products={products.filter(
               (e) => e.subcategoria == "remera_oversize"
@@ -63,8 +63,8 @@ export default function Home() {
 <button onClick={getZipValue}>obtener </button>
         <SectionOneHome  isMobile={isMobile}/>
         <SectionTwoHome isMobile={isMobile}/>
-        <SectionThreeHome isMobile={isMobile} />
-        {/* <Box
+        <SectionThreeHome isMobile={isMobile} /> */}
+        <Box
           sx={{
             heigh: "100vh",
             width: "100vw",
@@ -74,8 +74,8 @@ export default function Home() {
           }}
         >
           <CountdownTimer targetDate="2024-02-14T23:59:59" />
-        </Box> */}
-      </ShopLayout>
+        </Box>
+      {/* </ShopLayout> */}
     </>
   );
 }
