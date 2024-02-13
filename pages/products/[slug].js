@@ -330,18 +330,6 @@ const ProductsSlugPage = () => {
                 >
                   Envios
                 </Box>
-                <Box
-                  sx={{
-                    fontSize: isMobile ? "15px" : "30px",
-                    cursor: "pointer",
-                    borderBottom: selectedCustom == "faqs" ? 2 : 0,
-                    borderColor: "rgb(254, 221, 45)",
-                    fontWeight: "800",
-                  }}
-                  onClick={() => setSelectedCustom("faqs")}
-                >
-                  Preguntas frecuentes
-                </Box>
               </Box>
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>

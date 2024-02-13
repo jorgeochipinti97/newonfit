@@ -37,13 +37,13 @@ export const ShopLayout = ({
         {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
       </Head>
 
-      {/* <nav>
+      <nav>
         <Navbar isMobile={isMobile} />
       </nav>
 
-      <SideMenu /> */}
+      <SideMenu />
       <LoadingComponent />
-      {/* <Wpp /> */}
+      <Wpp />
 
       <Box
         sx={{
@@ -58,7 +58,7 @@ export const ShopLayout = ({
         >
           {children}
         </main>
-        {/* <FooterComponent isMobile={isMobile} />
+        <FooterComponent isMobile={isMobile} />
         <Paper
           sx={{
             position: "fixed",
@@ -68,12 +68,13 @@ export const ShopLayout = ({
             zIndex: 1000,
             display: isMobile ? "auto" : "none",
             background: "transparent",
+            orderRadius:'9px 9px 0px 0px'
           }}
           elevation={3}
         >
           <BottomNavigation
             showLabels
-            sx={{ background: "rgba(0,0,0,0.9)", backdropFilter: "blur(4px)" }}
+            sx={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)", borderRadius:'9px 9px 0px 0px' }}
           >
             <BottomNavigationAction
               sx={{ color: "#f5f5f7" }}
@@ -139,7 +140,7 @@ export const ShopLayout = ({
               }
             />
           </BottomNavigation>
-        </Paper> */}
+        </Paper>
       </Box>
     </>
   );

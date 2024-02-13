@@ -25,10 +25,34 @@ export default function Home() {
     getProducts();
   }, []);
 
+  const getZipValue = async () => {
+    try {
+      const getValorTraifa = await axios.post(
+        "https://apis.urbano.com.ar/consulta_tarifa_rest",
+        {
+          codigoPostal: 1842,
+          pesoEspecifico: 1.5,
+          pesoVolumetrico: 1.5,
+          alto: 1,
+          largo: 1,
+          ancho: 1,
+          autentificacion: {
+            shipper: 3575,
+            password: "yFXGj8WIrB8dNLH",
+          },
+        }
+      );
+      console.log(getValorTraifa);
+    } catch (error) {
+      console.error("Error realizando la solicitud:", error);
+      // Aquí podrías manejar el error, como mostrar un mensaje al usuario
+    }
+  };
+  
   return (
     <>
       <ShopLayout>
-        {/* <Box sx={{ scrollSnapAlign: "start" }}>
+        <Box sx={{ scrollSnapAlign: "start" }}>
           <HeroSectionComponent
             products={products.filter(
               (e) => e.subcategoria == "remera_oversize"
@@ -36,11 +60,11 @@ export default function Home() {
             isMobile={isMobile}
           />
         </Box>
-
+<button onClick={getZipValue}>obtener </button>
         <SectionOneHome  isMobile={isMobile}/>
         <SectionTwoHome isMobile={isMobile}/>
-        <SectionThreeHome isMobile={isMobile} /> */}
-        <Box
+        <SectionThreeHome isMobile={isMobile} />
+        {/* <Box
           sx={{
             heigh: "100vh",
             width: "100vw",
@@ -50,7 +74,7 @@ export default function Home() {
           }}
         >
           <CountdownTimer targetDate="2024-02-14T23:59:59" />
-        </Box>
+        </Box> */}
       </ShopLayout>
     </>
   );

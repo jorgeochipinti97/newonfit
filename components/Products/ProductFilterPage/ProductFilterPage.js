@@ -211,7 +211,7 @@ export const ProductFilterPage = () => {
               ))}
             </ButtonGroup>
 
-            <Box
+            {/* <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -231,7 +231,7 @@ export const ProductFilterPage = () => {
                   disableSwap
                 />
               </Box>
-            </Box>
+            </Box> */}
           </Box>
         </Grid>
         <Grid

@@ -1,11 +1,7 @@
 import React, { useContext, useState } from "react";
-import {
-  Box,
-  Button,
-  Grid,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import { CartContext } from "@/context/cart/CartContext";
+import axios from "axios";
 
 export const FormCheckout = ({}) => {
   const [firstName, setName] = useState("");
@@ -16,8 +12,7 @@ export const FormCheckout = ({}) => {
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
-  const {  createOrder, updateAddress } =
-    useContext(CartContext);
+  const { createOrder, updateAddress } = useContext(CartContext);
 
   const onCreateOrder = async () => {
     const { hasError, message } = await createOrder();
@@ -32,21 +27,20 @@ export const FormCheckout = ({}) => {
   };
 
   const onSubmitAddress = async () => {
-    updateAddress({
-      firstName,
-      lastName,
-      dni,
-      address,
-      zip,
-      phone,
-      city,
-      email,
-    });
-    try {
-      await onCreateOrder();
-    } catch (err) {
-      alert(err);
-    }
+    // updateAddress({
+    //   firstName,
+    //   lastName,
+    //   dni,
+    //   address,
+    //   zip,
+    //   phone,
+    //   city,
+    //   email,
+    // });
+    // await onCreateOrder();
+
+ 
+
   };
 
   return (

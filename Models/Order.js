@@ -27,7 +27,7 @@ const orderSchema = new mongoose.Schema({
   transactionId: { type: String },
   discountCode: { type: String },
   discountPrice: { type: Number, default: 0 },
-  isShipping: { type: Boolean, default: false }
+  tracking: { type: String, default: false }
 }, {
   timestamps: true,
 });

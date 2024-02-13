@@ -99,7 +99,7 @@ export const Navbar = ({ isMobile }) => {
                 cursor: "pointer",
               }}
             >
-              Proximamente
+Inicio
             </Typography>
           </Box>
           {
@@ -146,7 +146,7 @@ export const Navbar = ({ isMobile }) => {
               cursor: "pointer",
             }}
           >
-            Proximamente
+Inicio
           </Typography>
         ) : (
           <>
