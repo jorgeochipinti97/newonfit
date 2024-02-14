@@ -37,7 +37,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
     }
   };
 
-  useEffect(()=>{console.log(products)},[products])
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
 
   useEffect(() => {
     const link = document.querySelector('a[href="#sectionOne"]');
@@ -154,7 +156,6 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
-            pagination={isMobile ? true : false}
             slidesPerView={isMobile ? 1.5 : 1.6}
             coverflowEffect={{
               rotate: 50,
@@ -162,7 +163,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               depth: 100,
               modifier: 1,
             }}
-            modules={[EffectCoverflow, Pagination, Navigation]}
+            modules={[EffectCoverflow]}
           >
             {products &&
               products.map((e) => (
@@ -244,12 +245,14 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                       </CardActionArea>
                       <Box
                         sx={{
-                          display: "flex" ,
+                          display: "flex",
                           justifyContent: "center",
                           width: "100%",
                         }}
                       >
-                        <Button sx={{mt:2,fontSize:'14px'}}>Ver más</Button>
+                        <Button sx={{ mt: 2, fontSize: "14px" }} onClick={()=> push(`/products/${e.slug}`)}>
+                          Ver más
+                        </Button>
                       </Box>
                     </Card>
                   </Box>

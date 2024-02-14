@@ -186,3 +186,8 @@ a {
 /* border: 2px solid rgb(254, 221, 45); */
 
 }
+
+
+.swiper-pagination-bullet-active{
+  background-color: rgb(254, 221, 45) !important;
+}

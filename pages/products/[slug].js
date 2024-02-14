@@ -1,20 +1,18 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
 import NextLink from "next/link";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import { useInView } from "react-intersection-observer";
 
-import { Elastic, gsap, Power4, Power1, Back } from "gsap";
+import { gsap } from "gsap";
 
-import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
 import {
   Box,
   Button,
   Divider,
   Grid,
-  IconButton,
   Typography,
   useMediaQuery,
   capitalize,
@@ -27,7 +25,7 @@ import { ShopLayout } from "@/components/layout/shopLayout";
 import { SizeSelector } from "@/components/Products/SizeSelector";
 import { ItemCounter } from "@/components/ItemCounter";
 import { FormCheckout } from "@/components/FormCheckout";
-import axios from "axios";
+
 import Image from "next/image";
 import { useProduct } from "@/Hooks/UseProducts";
 
@@ -37,12 +35,12 @@ const ProductDescription = ({ descripcion }) => {
 
 const ProductsSlugPage = () => {
   gsap.registerPlugin(ScrollTrigger);
-  const [selectedCustom, setSelectedCustom] = useState("details");
+
   const { ref, inView, entry } = useInView({
     threshold: 0.9,
     triggerOnce: true,
   });
-  const { asPath, push, query } = useRouter();
+  const { push, query } = useRouter();
   const [product, setProduct] = useState();
   const [talles_, setTalles] = useState();
 

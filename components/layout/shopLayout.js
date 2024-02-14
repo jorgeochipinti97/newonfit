@@ -28,11 +28,12 @@ export const ShopLayout = ({
   return (
     <>
       <Head>
-        <title>Tiend Onfit | Potencia tu estilo Eleva tu rendimiento</title>
+        <title>Tienda Onfit | Potencia tu estilo Eleva tu rendimiento</title>
 
         <meta name="description" content={pageDescription} />
         <meta name="og:title" content={title} />
         <meta name="og:description" content={pageDescription} />
+        <link rel="icon" href="/favicon.png" type="image/png" />
 
         {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
       </Head>
