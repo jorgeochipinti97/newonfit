@@ -7,7 +7,7 @@ export const FooterComponent = ({ isMobile }) => {
   return (
     <footer
       style={{
-        paddingTop: "30px",
+        paddingTop: "30px",paddingBottom:'300px'
       }}
     >
       <Box

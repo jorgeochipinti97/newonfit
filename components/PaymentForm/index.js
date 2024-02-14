@@ -136,6 +136,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
       token: token,
     });
 
+    callback(true);
+    
     const stockUpdatePromises = cart.map((item) =>
       axios.put("/api/product", {
         _id: item._id,
@@ -146,14 +148,13 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
 
     await Promise.all(stockUpdatePromises);
     Cookies.set("orderId", createOrder.data._id);
-    callback(true);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const [mesExpiracion, anioExpiracion] = fechaExpiracion.split("/");
-    
-    setIsProcesing(true)
+
+    setIsProcesing(true);
 
     const datosTarjeta = {
       tarjetaSeleccionada,
