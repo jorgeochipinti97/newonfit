@@ -91,6 +91,17 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
       getPayment(response.data.id); // Aquí tendrás el token generado
     } catch (error) {
       console.error(error);
+
+      gsap.to(".isError", {
+        opacity: 1,
+        ease: Power1.easeIn,
+      });
+      setTimeout(() => {
+        gsap.to(".isError", {
+          opacity: 0,
+          ease: Power1.easeIn,
+        });
+      }, 10000);
     }
   };
 
@@ -107,7 +118,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
       token: token,
       payment_method_id: parseInt(tarjetaSeleccionada),
       bin: "450799",
-      amount: parseInt(totalPesos),
+      // amount: parseInt(totalPesos),
+      amount: 2900,
       currency: "ARS",
       site_id: "00270150",
       establishment_name: "Tienda Onfit",
@@ -210,6 +222,19 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
         className="isPaid"
       >
         Su pago fue confirmado
+      </Alert>
+
+      <Alert
+        sx={{
+          position: "fixed",
+          bottom: 50,
+          right: 10,
+          opacity: "0",
+        }}
+        severity="error"
+        className="isError"
+      >
+        Hubo un problema al procesar su pago
       </Alert>
 
       <form onSubmit={handleSubmit}>

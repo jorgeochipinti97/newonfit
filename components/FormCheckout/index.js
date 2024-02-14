@@ -18,7 +18,6 @@ export const FormCheckout = ({}) => {
   const [altura, setAltura] = useState("");
   const [departamento, setDepartamento] = useState("");
   const [obs, setObs] = useState("");
-
   const [city, setCity] = useState("");
   const [provincia, setProvincia] = useState("");
   const [email, setEmail] = useState("");
