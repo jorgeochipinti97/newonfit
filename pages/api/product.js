@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     default:
       res.status(405).json({ error: "Método no permitido" });
   }
-}
+} 
 
 async function handleGet(req, res) {
   try {
