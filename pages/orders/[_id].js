@@ -25,7 +25,7 @@ const OrdersPage = () => {
             marginLeft: "2px",
           }}
         >
-          ¡Muchas gracias por confiar en nosotros!
+          Compra finalizada con éxito.
         </p>
         {order && (
           <div style={{ marginTop: "50px" }}>
@@ -82,7 +82,6 @@ const OrdersPage = () => {
                   </p>
                 </div>
               ))}
-
             </div>
           </div>
         )}
