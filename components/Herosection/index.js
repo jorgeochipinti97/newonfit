@@ -179,7 +179,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                       display: "flex",
                       justifyContent: "space-between",
                       borderRadius: "22px",
-                      height: isMobile ? "70vh" : "auto",
+                      minHeight: isMobile ? "70vh" : "auto",
                     }}
                   >
                     <div className="container">
@@ -249,10 +249,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                           justifyContent: "center",
                           width: "100%",
                         }}
+                        onClick={() => push(`/products/${e.slug}`)}
                       >
-                        <Button sx={{ my: 3, fontSize: "14px" }} onClick={()=> push(`/products/${e.slug}`)}>
-                          Ver más
-                        </Button>
+                        <Button sx={{ fontSize: "14px" }}>Ver más</Button>
                       </Box>
                     </Card>
                   </Box>
