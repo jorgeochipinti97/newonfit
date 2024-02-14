@@ -18,6 +18,7 @@ export default async function handler(req, res) {
 async function handleGet(req, res) {
   try {
     const productos = await ProductOnfit.find();
+    console.log(productos)
     res.status(200).json(productos);
   } catch (error) {
     console.error("Error al obtener los productos:", error);

@@ -10,6 +10,8 @@ const ProductSchema = new mongoose.Schema({
   categoria: { type: String, required: true },
   subcategoria: { type: String},
   productosRelacionados: [{ type: String }],
+  tracking: { type: String },
+  sku: { type: String },
   talles: [
     {
       nombre: { type: String,  },
