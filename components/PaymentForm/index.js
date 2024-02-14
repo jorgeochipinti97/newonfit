@@ -8,7 +8,7 @@ import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import gsap, { Power1 } from "gsap";
 
-export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
+export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState("");
   const [numeroTarjeta, setNumeroTarjeta] = useState("");
   const [codigoSeguridad, setCodigoSeguridad] = useState("");
@@ -19,6 +19,30 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
   const [totalPesos, setTotalpesos] = useState(0);
   const [cuotas, setcuotas] = useState(1);
   const [isProcesing, setIsProcesing] = useState(false);
+
+  const [isCheckauto, setIsCheckaut] = useState(false);
+
+  useEffect(() => {
+    isCheckauto &&
+      gsap.to(".containerCart", {
+        transform: "scale(0)",
+      });
+    isCheckauto &&
+      gsap.to(".containerCart", {
+        display: "none",
+        delay: 1,
+      });
+    isCheckauto &&
+      gsap.to(".formContainerCart", {
+        display: "flex",
+        delay: 1.2,
+      });
+    isCheckauto &&
+      gsap.to(".formContainerCart", {
+        transform: "scale(1)",
+        delay: 1.5,
+      });
+  }, [isCheckauto]);
 
   useEffect(() => {
     setTotalpesos(Math.round(total * 100));
@@ -136,8 +160,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
       token: token,
     });
 
-    callback(true);
-    
+    setIsCheckaut(true);
+
     const stockUpdatePromises = cart.map((item) =>
       axios.put("/api/product", {
         _id: item._id,
