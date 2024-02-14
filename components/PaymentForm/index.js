@@ -197,7 +197,7 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
     //   })
     // );
 
-    await Promise.all(stockUpdatePromises);
+    // await Promise.all(stockUpdatePromises);
     // Cookies.set("orderId", createOrder.data._id);
     localStorage.setItem("orderId", createOrder_.data._id);
   };
