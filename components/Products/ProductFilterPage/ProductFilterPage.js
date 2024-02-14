@@ -69,7 +69,12 @@ export const ProductFilterPage = () => {
     "short",
     "medias",
   ];
-  const todasCategoriasIndumentaria = ["remera oversize", "buzo", "short"];
+  const todasCategoriasIndumentaria = [
+    "remera oversize",
+    "buzo",
+    "short",
+    "musculosa",
+  ];
   const todasCategoriasMujer = [
     "remera oversize",
     "remera deportiva",
@@ -159,7 +164,14 @@ export const ProductFilterPage = () => {
   };
   return (
     <>
-      <Box sx={{ pt: isMobile ? 2 : 7 }}></Box>
+      <Box
+        sx={{
+          pt: isMobile ? 2 : 7,
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      ></Box>
       {/* {isNtProcuts && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography sx={{ fontSize: "30px", fontWeight: "300" }}>
@@ -167,7 +179,7 @@ export const ProductFilterPage = () => {
           </Typography>
         </Box>
       )} */}
-      <Grid container>
+      <Grid container style={{ width: "fit-content" }}>
         <Grid
           item
           lg={3}
@@ -180,11 +192,10 @@ export const ProductFilterPage = () => {
             display={"flex"}
             justifyContent={"center"}
             sx={{
-              position: isMobile ? "auto" : "fixed",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              width: isMobile ? "100%" : "25%",
+              width: "100vw",
               pt: 7,
             }}
           >
@@ -236,8 +247,8 @@ export const ProductFilterPage = () => {
         </Grid>
         <Grid
           item
-          lg={asPath == "/accesorios" ? 12 : 9}
-          xl={asPath == "/accesorios" ? 12 : 9}
+          lg={12}
+          xl={12}
           sm={12}
           xs={12}
           sx={{

@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { gsap } from "gsap";
 import { useRouter } from "next/router";
 
-export const SectionOneHome = ({isMobile}) => {
+export const SectionOneHome = ({ isMobile }) => {
   const router = useRouter();
   gsap.registerPlugin(ScrollTrigger);
   const { ref, inView, entry } = useInView({
@@ -32,18 +32,26 @@ export const SectionOneHome = ({isMobile}) => {
         sx={{
           scrollSnapAlign: "start",
           scrollMarginTop: "20px",
-mt:isMobile ? 5:0,
+          mt: isMobile ? 5 : 0,
           display: "flex",
           justifyContent: "center",
         }}
       >
         <Box
           className="modern-gradient"
-          style={{ width: isMobile? '98%':"80%", display: "flex", borderRadius: isMobile ? "10px" :'90px', backgroundImage: isMobile ?"linear-gradient(to bottom, rgba(0,0,0,.3) 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dcvieavco/image/upload/v1678770903/all-over-print-recycled-unisex-sports-jersey-white-front-640d682e0e707_fxbjod.png)": 'none',backgroundSize:'cover'}} sx={{py: isMobile ? 2 :0}}
+          style={{
+            width: isMobile ? "98%" : "80%",
+            display: "flex",
+            borderRadius: isMobile ? "10px" : "90px",
+            backgroundImage: isMobile
+              ? "linear-gradient(to bottom, rgba(0,0,0,.3) 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dcvieavco/image/upload/v1678770903/all-over-print-recycled-unisex-sports-jersey-white-front-640d682e0e707_fxbjod.png)"
+              : "none",
+            backgroundSize: "cover",
+          }}
+          sx={{ py: isMobile ? 2 : 0 }}
         >
           <Box
             ref={ref}
-
             sx={{ textAlign: "center" }}
             display="flex"
             justifyContent="center"
@@ -53,12 +61,15 @@ mt:isMobile ? 5:0,
               width={500}
               height={500}
               alt="asd"
-              style={{ borderRadius: "80px", backgroundColor: "#f5f5f7",display:isMobile?'none':'auto' }}
+              style={{
+                borderRadius: "80px",
+                backgroundColor: "#f5f5f7",
+                display: isMobile ? "none" : "auto",
+              }}
             />
           </Box>
           <div
             ref={ref}
-
             style={{
               width: "100%",
               display: "flex",
@@ -75,20 +86,27 @@ mt:isMobile ? 5:0,
                 mt: 1,
                 width: "80%",
                 color: "black",
-                fontWeight: "700",color:'rgb(254, 221, 45)',
-                lineHeight: "25px",fontFamily:'Lato'
+                fontWeight: "700",
+                color: "rgb(254, 221, 45)",
+                lineHeight: "25px",
+                fontFamily: "Lato",
               }}
-
               variant="h5"
             >
               Calidad Garantizada por OnFit
             </Typography>
             <Typography
-              sx={{ mt: 1, width: "80%", color: "black",fontSize:isMobile ? '12px':'16px',color:'#f5f5f7' }}
+              sx={{
+                mt: 1,
+                width: "80%",
+                color: "black",
+                fontSize: isMobile ? "12px" : "16px",
+                color: "#f5f5f7",
+              }}
               variant="body1"
             >
-              Nos comprometemos a ofrecerte  <span style={{ fontWeight: "700" }}>la más
-             alta calidad</span>.
+              Nos comprometemos a ofrecerte{" "}
+              <span style={{ fontWeight: "700" }}>la más alta calidad</span>.
               Trabajamos con proveedores confiables y seleccionamos cada
               artículo de nuestra tienda con atención para{" "}
               <span style={{ fontWeight: "700" }}>
@@ -102,7 +120,10 @@ mt:isMobile ? 5:0,
               .
             </Typography>
             <Box sx={{ mt: 3 }}>
-              <Button size={isMobile? "small":'large'} onClick={() => router.push("/indumentaria")} >
+              <Button
+                size={isMobile ? "small" : "large"}
+                onClick={() => router.push("/indumentaria")}
+              >
                 ¡Explorar ya!
               </Button>
             </Box>

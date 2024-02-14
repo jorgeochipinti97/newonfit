@@ -1,46 +1,106 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { CartContext } from "@/context/cart/CartContext";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import SendIcon from "@mui/icons-material/Send";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 export const FormCheckout = ({}) => {
+  const trackId = uuidv4();
   const [firstName, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dni, setDni] = useState("");
   const [address, setAddress] = useState("");
   const [zip, setZipCode] = useState("");
   const [phone, setPhone] = useState("");
+  const [altura, setAltura] = useState("");
+  const [departamento, setDepartamento] = useState("");
+  const [obs, setObs] = useState("");
+
   const [city, setCity] = useState("");
+  const [provincia, setProvincia] = useState("");
   const [email, setEmail] = useState("");
-  const { createOrder, updateAddress } = useContext(CartContext);
+  const { push } = useRouter();
+  const { cart, numberOfItems } = useContext(CartContext);
+
+  const productos = cart.map((item) => ({
+    largo: item.subcategoria.toLowerCase().includes("remera") ? 32 : 54,
+    alto: 5,
+    ancho: item.subcategoria.toLowerCase().includes("remera") ? 44 : 42,
+    peso: item.subcategoria.toLowerCase().includes("remera") ? 0.3 : 0.5,
+    valor: item.price,
+    valorContrareembolso: 0,
+    cantidad: item.quantity,
+    sku: item.sku || "",
+    descripcionProducto: item.title,
+  }));
 
   const onCreateOrder = async () => {
-    const { hasError, message } = await createOrder();
+    const datosEnvio = {
+      productos: productos,
+      autentificacion: {
+        shipper: 3575,
+        password: "yFXGj8WIrB8dNLH",
+      },
+      destinatario: {
+        tipoDocumento: "DNI",
+        numeroDocumento: dni,
+        nombre: `${firstName} ${lastName}`,
+        email: [email],
+        telefono: phone,
+        celular: phone,
+      },
+      autorizado: [
+        {
+          tipoDocumento: "DNI",
+          numeroDocumento: dni,
+          nombre: `${firstName} ${lastName}`,
+          email: [email],
+          telefono: phone,
+          celular: phone,
+        },
+      ],
+      domicilio: {
+        direccion: address,
+        altura: altura,
+        piso: departamento,
+        departamento: departamento,
+        codigoPostal: zip,
+        localidad: city,
+        provincia: provincia,
+        latitud: 0,
+        longitud: 0,
+        telefono: [phone],
+      },
+      sameday: 0,
+      datoNumerico: "",
+      codigoSeguimiento: trackId,
+      codigoAlternativo: 0,
+      modeloSms: "",
+      modeloEmail: null,
+      servicio: "E",
+      marcaDeAgua: "",
+      remito: "",
+      observaciones: [obs],
+    };
 
-    if (hasError) {
-      console.log(message);
-      return;
+    try {
+      const data = await axios.post("/api/cargaclients", datosEnvio);
+      if (data) {
+        const response = await axios.put(
+          `/api/orders?_id=${Cookies.get("orderId")}`,
+          {
+            codGestion: data.data.codGestion,
+          }
+        );
+        
+        response && push(`/orders/${Cookies.get("orderId")}`);
+      }
+    } catch (err) {
+      console.log(err);
     }
-    console.log(message);
-
-    // router.replace(`/orders/${message}`);
-  };
-
-  const onSubmitAddress = async () => {
-    // updateAddress({
-    //   firstName,
-    //   lastName,
-    //   dni,
-    //   address,
-    //   zip,
-    //   phone,
-    //   city,
-    //   email,
-    // });
-    // await onCreateOrder();
-
- 
-
   };
 
   return (
@@ -90,15 +150,23 @@ export const FormCheckout = ({}) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              label="Codigo postal"
+              label="Altura"
               variant="filled"
               fullWidth
-              onChange={(e) => setZipCode(e.target.value)}
+              onChange={(e) => setAltura(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              label="Ciudad"
+              label="Departamento"
+              variant="filled"
+              fullWidth
+              onChange={(e) => setDepartamento(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Localidad"
               variant="filled"
               fullWidth
               onChange={(e) => setCity(e.target.value)}
@@ -106,12 +174,13 @@ export const FormCheckout = ({}) => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              label="Codigo Postal"
+              label="Provincia"
               variant="filled"
               fullWidth
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => setProvincia(e.target.value)}
             />
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <TextField
               label="Celular"
@@ -120,25 +189,33 @@ export const FormCheckout = ({}) => {
               onChange={(e) => setPhone(e.target.value)}
             />
           </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Codigo postal"
+              variant="filled"
+              fullWidth
+              onChange={(e) => setZipCode(e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Observación para la entrega"
+              variant="filled"
+              fullWidth
+              onChange={(e) => setObs(e.target.value)}
+            />
+          </Grid>
         </Grid>
         <Box sx={{ mt: 5 }} display="flex" justifyContent="center">
           <Button
             color="secondary"
             className="circular-btn"
             size="large"
-            onClick={onSubmitAddress}
+            onClick={onCreateOrder}
             sx={{ display: "flex", alignItems: "center" }}
-            startIcon={
-              <svg
-                width={20}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M9 20C9 21.1 8.1 22 7 22S5 21.1 5 20 5.9 18 7 18 9 18.9 9 20M17 18C15.9 18 15 18.9 15 20S15.9 22 17 22 19 21.1 19 20 18.1 18 17 18M7.2 14.8V14.7L8.1 13H15.5C16.2 13 16.9 12.6 17.2 12L21.1 5L19.4 4L15.5 11H8.5L4.3 2H1V4H3L6.6 11.6L5.2 14C5.1 14.3 5 14.6 5 15C5 16.1 5.9 17 7 17H19V15H7.4C7.3 15 7.2 14.9 7.2 14.8M12 9.3L11.4 8.8C9.4 6.9 8 5.7 8 4.2C8 3 9 2 10.2 2C10.9 2 11.6 2.3 12 2.8C12.4 2.3 13.1 2 13.8 2C15 2 16 2.9 16 4.2C16 5.7 14.6 6.9 12.6 8.8L12 9.3Z" />
-              </svg>
-            }
+            startIcon={<SendIcon />}
           >
-            Comprar{" "}
+            Enviar
           </Button>
         </Box>
       </form>

@@ -11,7 +11,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { FooterComponent } from "../footer";
 import { SideMenu } from "../SideMenu";
 import { LoadingComponent } from "../Loading";
-import { Wpp } from "../Wpp";
+
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import HomeIcon from "@mui/icons-material/Home";
@@ -24,7 +24,7 @@ export const ShopLayout = ({
   imageFullUrl,
 }) => {
   const isMobile = useMediaQuery("(max-width:600px)");
-  const { push } = useRouter();
+  const { push, asPath } = useRouter();
   return (
     <>
       <Head>
@@ -43,12 +43,13 @@ export const ShopLayout = ({
 
       <SideMenu />
       <LoadingComponent />
-      <Wpp />
 
       <Box
         sx={{
           background:
-            "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
+            asPath.includes("faqs")
+              ? "white"
+              : "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
         }}
       >
         <main
@@ -68,21 +69,27 @@ export const ShopLayout = ({
             zIndex: 1000,
             display: isMobile ? "auto" : "none",
             background: "transparent",
-            orderRadius:'9px 9px 0px 0px'
+            orderRadius: "9px 9px 0px 0px",
           }}
           elevation={3}
         >
           <BottomNavigation
             showLabels
-            sx={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)", borderRadius:'9px 9px 0px 0px' }}
+            sx={{
+              background: "rgba(0,0,0,0.8)",
+              backdropFilter: "blur(4px)",
+              borderRadius: "9px 9px 0px 0px",
+              borderTop:'1px solid white'
+            }}
           >
             <BottomNavigationAction
-              sx={{ color: "#f5f5f7" }}
+              sx={{ color: "rgb(254, 221, 45)", }}
               label="Indumentaria"
               icon={<CheckroomIcon />}
               onClick={() => push("/indumentaria")}
+
             />
-            <BottomNavigationAction
+            {/* <BottomNavigationAction
               onClick={() => push("/accesorios")}
               sx={{ color: "#f5f5f7" }}
               label="Accesorios"
@@ -138,7 +145,7 @@ export const ShopLayout = ({
                   />
                 </svg>
               }
-            />
+            /> */}
           </BottomNavigation>
         </Paper>
       </Box>

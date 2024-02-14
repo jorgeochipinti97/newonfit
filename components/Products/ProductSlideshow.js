@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 // import required modules
 import { EffectFlip, Pagination, Navigation } from "swiper/modules";
 
-export const ProductSlideshow = ({ images, seconds, height, width }) => {
+export const ProductSlideshow = ({ images,  width }) => {
   return (
     <div style={{maxWidth:width}}> 
       <Swiper
@@ -28,7 +28,7 @@ export const ProductSlideshow = ({ images, seconds, height, width }) => {
           images.map((image) => {
             return (
               <SwiperSlide key={image}>
-                <Image width={width} height={height} src={image} alt={image}  />
+                <img style={{maxWidth:'100%',borderRadius:'19px'}} src={image} alt={image}  />
               </SwiperSlide>
             );
           })}

@@ -60,7 +60,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           container
           spacing={6}
           justifyContent="center"
-          sx={{ width: isMobile ?'100vw' :"80vw" }}
+          sx={{ width: isMobile ? "100vw" : "80vw" }}
         >
           <Grid
             item
@@ -107,8 +107,13 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               </Typography>
             </div>
             <div>
-         <Typography variant='subtitle1' sx={{color:'black',fontSize:'20px'}}>            Te presentamos nuestros diseños de selección.
-</Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{ color: "black", fontSize: "20px" }}
+              >
+                {" "}
+                Te presentamos nuestros diseños de selección.
+              </Typography>
             </div>
           </Grid>
           <Grid item xs={12} lg={6} xl={6}>
@@ -133,8 +138,16 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           </Grid>
         </Grid>
       </Container>
-      <div style={{ width: "100%", display:'flex', justifyContent:'center',alignItems:'center',flex:1 }}>
-        <div style={{ width: "100%", }}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+        }}
+      >
+        <div style={{ width: "100%", marginTop: "50px", marginBottom: "50px" }}>
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -146,53 +159,49 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               stretch: 0,
               depth: 100,
               modifier: 1,
-              slideShadows: true,
             }}
             modules={[EffectCoverflow, Pagination, Navigation]}
-
           >
             {products &&
               products.map((e) => (
-                <SwiperSlide style={{}} key={e.titulo}>
+                <SwiperSlide key={e.titulo}>
                   <Box
                     key={e.slug}
-
-                    style={radialStyle}
+                    style={{
+                      backgroundImage: `linear-gradient(to bottom, transparent 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.1)), url(${e.images[0]})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
                     sx={{
                       display: "flex",
                       justifyContent: "space-between",
-
-
                       borderRadius: "22px",
+                      height: isMobile ? "70vh" : "auto",
                     }}
                   >
-                       <div className="container">
-                        <span className="loaderImage "></span>
-                      </div>
+                    <div className="container">
+                      <span className="loaderImage "></span>
+                    </div>
                     <Card
                       sx={{
-                        border: isMobile ? "none" : "1px solid rgba(255,255,255,0.5)",
                         borderRadius: "22px",
-                        maxWidth: { xs: "80vw", lg: "15vw" },
                         background: "transparent",
-
                         m: 1,
                       }}
                     >
-                   
-
                       <CardActionArea sx={{ background: "transparent" }}>
                         <Box
                           sx={{
                             overflow: "hidden",
                             background: "transparent",
                             display: "flex",
+                            justifyContent: "center",
                           }}
                         >
                           <CardMedia
                             sx={{
                               overflow: "hidden",
-                              maxWidth: "100%",
+                              maxWidth: isMobile ? "100%" : "40%",
                               background: "transparent",
                             }}
                           >
@@ -200,9 +209,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                               style={{
                                 width: "100%",
                                 height: { xs: "20vw", lg: "10vw" },
+                                borderRadius: "9px",
                               }}
                               alt={e.titulo}
-
                               src={e.images[0]}
                             />
                           </CardMedia>
@@ -221,45 +230,26 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                             sx={{
                               textShadow: "2px 2px 2px 4px",
                               width: "80%",
-                              lineHeight: "15px",
+                              lineHeight: isMobile ? "25px" : "15px",
                               color: "#f5f5f7",
                               py: 2,
-
+                              fontSize: isMobile ? "25px" : "30px",
                             }}
                           >
                             {capitalize(`${e.titulo}`)}
                           </Typography>
                         </Box>
                       </CardActionArea>
-                    </Card>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "column",
-                        display: isMobile ? "none" : "flex",
-                      }}
-                    >
-                      <p
-                        style={{
-                          color: "white",
-                          fontSize: "16px",
-                          textAlign: "justify",
-                          width: "80%",
-                          color: "#f5f5f7",
-                          fontWeight: 600,
+                      <Box
+                        sx={{
+                          display: "flex" ,
+                          justifyContent: "center",
+                          width: "100%",
                         }}
                       >
-                        {e.descripcion.slice(0, 300)}....
-                      </p>
-                      <Button
-                        sx={{ mt: 3 }}
-                        onClick={() => push(`/products/${e.slug}`)}
-                      >
-                        Ver mas
-                      </Button>
-                    </div>
+                        <Button sx={{mt:2,fontSize:'14px'}}>Ver más</Button>
+                      </Box>
+                    </Card>
                   </Box>
                 </SwiperSlide>
               ))}

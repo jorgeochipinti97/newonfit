@@ -47,13 +47,13 @@ export const CartList = ({ editable = false, products, isMobile }) => {
             sx={{ mb: 1 }}
           >
             <Grid item xs={3}>
-              <NextLink href={`/product/${product.slug}`} passHref>
+              <NextLink href={`/products/${product.slug}`} passHref>
                 <Link>
                   <CardActionArea>
                     <CardMedia
                       image={product.image}
                       component="img"
-                      sx={{ borderRadius: "5px", }}
+                      sx={{ borderRadius: "5px" }}
                     />
                   </CardActionArea>
                 </Link>
@@ -64,12 +64,11 @@ export const CartList = ({ editable = false, products, isMobile }) => {
                 <Typography variant="body1">
                   {capitalize(product.title)}
                 </Typography>
-                {product.type == "hombre" ||
-                  (product.type == "mujer" && (
-                    <Typography variant="body1">
-                      Size: <strong>{product.size}</strong>
-                    </Typography>
-                  ))}
+                {
+                  <Typography variant="body1" sx={{my:2}}>
+                    Size: <strong style={{marginLeft:'4px'}}>{product.size}</strong>
+                  </Typography>
+                }
 
                 {editable ? (
                   <ItemCounter
@@ -104,7 +103,9 @@ export const CartList = ({ editable = false, products, isMobile }) => {
                   sx={{ transform: isMobile ? "scale(0.8)" : "auto" }}
                   variant="outlined"
                   color="error"
-                  onClick={() => {removeCartProduct(product)}}
+                  onClick={() => {
+                    removeCartProduct(product);
+                  }}
                 >
                   Remover
                 </Button>

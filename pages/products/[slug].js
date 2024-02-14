@@ -29,6 +29,7 @@ import { ItemCounter } from "@/components/ItemCounter";
 import { FormCheckout } from "@/components/FormCheckout";
 import axios from "axios";
 import Image from "next/image";
+import { useProduct } from "@/Hooks/UseProducts";
 
 const ProductDescription = ({ descripcion }) => {
   return <div dangerouslySetInnerHTML={{ __html: descripcion }} />;
@@ -43,6 +44,8 @@ const ProductsSlugPage = () => {
   });
   const { asPath, push, query } = useRouter();
   const [product, setProduct] = useState();
+  const [talles_, setTalles] = useState();
+
   const { addProductToCart } = useContext(CartContext);
   const [isCheckauto, setIsCheckaut] = useState(false);
   const [tempCartProduct, setTempCartProduct] = useState({
@@ -53,8 +56,16 @@ const ProductsSlugPage = () => {
     slug: product && product.slug,
     title: product && product.titulo,
     gender: product && product.categoria,
+    sku: product && product.sku,
+
     quantity: 1,
   });
+
+  const { products } = useProduct();
+  useEffect(() => {
+    const p = products.filter((e) => e.slug == query.slug);
+    setProduct(p[0]);
+  }, [products]);
 
   const onUpdateQuantity = (quantity) => {
     setTempCartProduct((currentProduct) => ({
@@ -70,17 +81,7 @@ const ProductsSlugPage = () => {
     }));
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
   const isMobile = useMediaQuery("(max-width:600px)");
-
-  const getProducts = async () => {
-    const data = await axios.get("/api/product");
-
-    const product_ = data.data.filter((e) => e.slug == query.slug);
-    setProduct(product_[0]);
-  };
 
   useEffect(() => {
     isCheckauto &&
@@ -113,7 +114,9 @@ const ProductsSlugPage = () => {
         size: undefined,
         slug: product && product.slug,
         title: product && product.titulo,
+        sku: product && product.sku,
         gender: product && product.categoria,
+        subcategoria: product && product.subcategoria,
         quantity: 1,
       });
 
@@ -126,17 +129,25 @@ const ProductsSlugPage = () => {
         opacity: 1,
         delay: 0.1,
       });
-    product && console.log(product);
+    product &&
+      setTalles(
+        product.talles
+          .filter((talle) => talle.stock >= 1)
+          .map((talle) => talle.nombre)
+      );
   }, [product]);
 
   const onAddProduct = () => {
+    !tempCartProduct.size && alert("Selecciona un talle");
     addProductToCart(tempCartProduct);
     push("/cart");
   };
+
   const onCheckOut = () => {
     setIsCheckaut(true);
     addProductToCart(tempCartProduct);
   };
+
   const formattwo = (value) => {
     // Crear formateador
     const formatter = new Intl.NumberFormat("en-US", {
@@ -173,14 +184,12 @@ const ProductsSlugPage = () => {
             sx={{ display: "flex", justifyContent: "center" }}
           >
             {product && product.images.length > 0 ? (
-              <>
-                <ProductSlideshow
-                  images={product && product.images}
-                  seconds={7000}
-                  height={isMobile ? 300 : 450}
-                  width={isMobile ? 300 : 450}
-                />
-              </>
+              <ProductSlideshow
+                images={product && product.images}
+                seconds={7000}
+                height={isMobile ? 300 : 850}
+                width={isMobile ? 300 : 550}
+              />
             ) : (
               <>
                 {product && (
@@ -242,6 +251,7 @@ const ProductsSlugPage = () => {
                     size={isMobile ? "small" : "large"}
                     onClick={onAddProduct}
                     sx={{ mx: 2 }}
+                    disabled={!tempCartProduct.size ? true : false}
                     startIcon={
                       <svg
                         width={20}
@@ -256,9 +266,6 @@ const ProductsSlugPage = () => {
                   >
                     Agregar al carrito
                   </Button>
-                  {/* <Button color="success" size="large" onClick={() => onCheckOut()}>
-                Comprar ahora
-              </Button> */}
                 </Box>
               </Box>
               <Divider sx={{ my: 2 }} />
@@ -268,19 +275,42 @@ const ProductsSlugPage = () => {
                     display={
                       product.categoria == "hombres" ||
                       product.categora == "mujeres"
-                        ? "auto"
+                        ? "flex"
                         : "none"
                     }
+                    sx={{
+                      width: "100%",
+                      justifyContent: "center",
+                    }}
                   >
                     <SizeSelector
-                      sizes={["XS", "S", "M", "L", "XL"]}
+                      sizes={talles_}
                       selectedSize={tempCartProduct.size}
                       onSelectedSize={selectedSize}
                     />
                   </Box>
                 </>
               )}
-              <Box sx={{}}>
+
+              <p
+                style={{
+                  textAlign: "center",
+                  marginTop: "5px",
+                  display: tempCartProduct.size ? "none" : "auto",
+                }}
+              >
+                Selecciona un talle para continuar
+              </p>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  mt: 2,
+                }}
+              >
                 <Typography variant="subtitle2" sx={{ m: 2 }}>
                   Cantidad
                 </Typography>
@@ -293,60 +323,11 @@ const ProductsSlugPage = () => {
                 </Box>
               </Box>
             </Box>
-          </Grid>
-          <Grid item lg={12}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Divider sx={{ width: "90%" }} />
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  width: isMobile ? "90vw" : "60%",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box
-                  sx={{
-                    fontSize: isMobile ? "15px" : "30px",
-                    cursor: "pointer",
-                    borderBottom: selectedCustom == "details" ? 2 : 0,
-                    borderColor: "rgb(254, 221, 45)",
-                    fontWeight: "800",
-                  }}
-                  onClick={() => setSelectedCustom("details")}
-                >
-                  Detalles
-                </Box>
-                <Box
-                  sx={{
-                    fontSize: isMobile ? "15px" : "30px",
-                    cursor: "pointer",
-                    borderBottom: selectedCustom == "shipping" ? 2 : 0,
-                    borderColor: "rgb(254, 221, 45)",
-                    fontWeight: "800",
-                  }}
-                  onClick={() => setSelectedCustom("shipping")}
-                >
-                  Envios
-                </Box>
+            {product && (
+              <Box sx={{}}>
+                <ProductDescription descripcion={product.descripcion} />
               </Box>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  width: isMobile ? "90%" : "60%",
-                  justifyContent: "start",
-                }}
-              >
-                {product && selectedCustom == "details" && (
-                  <>
-                    <ProductDescription descripcion={product.descripcion} />
-                  </>
-                )}
-              </Box>
-            </Box>
+            )}
           </Grid>
         </Grid>
       </Box>

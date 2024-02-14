@@ -40,7 +40,7 @@ export const ProductCard = ({ product, isMobile }) => {
   gsap.registerPlugin(ScrollTrigger);
 
   const { ref, inView, entry } = useInView({
-    threshold: 0.9,
+    threshold: 0.4,
     triggerOnce: true,
   });
 
@@ -140,6 +140,7 @@ export const ProductCard = ({ product, isMobile }) => {
           justifyContent: "space-around",
         }}
       >
+        <div style={{color:'rgb(254, 221, 45)',position:'absolute',bottom:60, padding:10, fontWeight:800,backdropFilter:'blur(2px)',fontSize:'15px', backgroundColor:'rgba(0,0,0,0.6)', borderRadius:'9px'}}>{product.titulo}</div>
         <div
           sx={{
             display: "flex",
@@ -174,6 +175,7 @@ export const ProductCard = ({ product, isMobile }) => {
             Comprar ahora
           </Button>
         </div>
+
       </Box>
     </Grid>
   );

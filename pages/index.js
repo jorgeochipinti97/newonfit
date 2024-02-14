@@ -25,34 +25,64 @@ export default function Home() {
     getProducts();
   }, []);
 
-  const getZipValue = async () => {
+  const axios = require("axios");
+
+  async function generarToken() {
     try {
-      const getValorTraifa = await axios.post(
-        "https://apis.urbano.com.ar/consulta_tarifa_rest",
+      const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
+      const response = await axios.post(
+        "https://ventasonline.payway.com.ar/api/v2/tokens",
         {
-          codigoPostal: 1842,
-          pesoEspecifico: 1.5,
-          pesoVolumetrico: 1.5,
-          alto: 1,
-          largo: 1,
-          ancho: 1,
-          autentificacion: {
-            shipper: 3575,
-            password: "yFXGj8WIrB8dNLH",
+          card_number: "4507990000004905",
+          card_expiration_month: "12",
+          card_expiration_year: "30",
+          security_code: "123",
+          card_holder_name: "tarjeta Visa Crédito",
+          card_holder_identification: {
+            type: "dni",
+            number: "23968498",
+          },
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            apikey: apiKey, // Usa la apiKey como un encabezado personalizado
           },
         }
       );
-      console.log(getValorTraifa);
+      console.log(response.data); // Aquí tendrás el token generado
     } catch (error) {
-      console.error("Error realizando la solicitud:", error);
-      // Aquí podrías manejar el error, como mostrar un mensaje al usuario
+      console.error(error);
+    }
+  }
+
+
+
+  const getZipValue = async () => {
+    try {
+      const response = await axios.post("/api/consultartarifa", {
+        codigoPostal: 1842,
+        pesoEspecifico: 1.5,
+        pesoVolumetrico: 1.5,
+        alto: 1,
+        largo: 1,
+        ancho: 1,
+        autentificacion: {
+          shipper: 3575,
+          password: "yFXGj8WIrB8dNLH",
+        },
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error al solicitar tarifas:", error);
     }
   };
-  
+
   return (
     <>
-      {/* <ShopLayout> */}
-        {/* <Box sx={{ scrollSnapAlign: "start" }}>
+      <ShopLayout>
+        <Box sx={{ scrollSnapAlign: "start" }}>
           <HeroSectionComponent
             products={products.filter(
               (e) => e.subcategoria == "remera_oversize"
@@ -60,11 +90,11 @@ export default function Home() {
             isMobile={isMobile}
           />
         </Box>
-<button onClick={getZipValue}>obtener </button>
-        <SectionOneHome  isMobile={isMobile}/>
-        <SectionTwoHome isMobile={isMobile}/>
+
+        {/* <SectionOneHome isMobile={isMobile} /> */}
+        {/* <SectionTwoHome isMobile={isMobile} />
         <SectionThreeHome isMobile={isMobile} /> */}
-        <Box
+        {/* <Box
           sx={{
             heigh: "100vh",
             width: "100vw",
@@ -74,8 +104,8 @@ export default function Home() {
           }}
         >
           <CountdownTimer targetDate="2024-02-14T23:59:59" />
-        </Box>
-      {/* </ShopLayout> */}
+        </Box> */}
+      </ShopLayout>
     </>
   );
 }
