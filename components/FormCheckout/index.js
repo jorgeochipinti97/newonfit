@@ -92,12 +92,7 @@ export const FormCheckout = ({}) => {
           `/api/orders?_id=${Cookies.get("orderId")}`,
           {
             codGestion: data.data.codGestion,
-            phone:phone,
-            email:email,
-            address:address,
-            ciudad:city,
-            provincia:provincia,
-            titular:`${firstName} ${lastName}`
+           
           }
         );
         

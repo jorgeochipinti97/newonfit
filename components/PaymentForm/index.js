@@ -68,8 +68,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   ];
   const generarToken = async (tarjeta) => {
     try {
-      // const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
-      const apiKey = "vjzIsMxW2Yd43QoBP93SdmMzJMBbHXoS"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
+      const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
+      // const apiKey = "vjzIsMxW2Yd43QoBP93SdmMzJMBbHXoS"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
       const response = await axios.post(
         "https://ventasonline.payway.com.ar/api/v2/tokens",
         {
@@ -109,8 +109,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   };
 
   const getPayment = async (token) => {
-    // const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
-    const apikey = "rfZTGgNW83rkKS7HcKDy2YQruDzXEq52";
+    const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
+    // const apikey = "rfZTGgNW83rkKS7HcKDy2YQruDzXEq52";
 
     const datos = {
       customer: {
