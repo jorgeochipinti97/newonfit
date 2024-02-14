@@ -37,6 +37,8 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
     }
   };
 
+  useEffect(()=>{console.log(products)},[products])
+
   useEffect(() => {
     const link = document.querySelector('a[href="#sectionOne"]');
     if (link) {
