@@ -86,20 +86,18 @@ export const FormCheckout = ({}) => {
     };
 
     try {
+      const orderId = localStorage.getItem("orderId");
+
       const data = await axios.post("/api/cargaclients", datosEnvio);
-      if (data) {
-        const response = await axios.put(
-          `/api/orders?_id=${Cookies.get("orderId")}`,
-          {
-            codGestion: data.data.codGestion,
-           
-          }
-        );
-        
-        response && push(`/orders/${Cookies.get("orderId")}`);
+      if (data && orderId) {
+        const response = await axios.put(`/api/orders?_id=${orderId}`, {
+          codGestion: data.data.codGestion,
+        });
+
+        response && push(`/orders/${orderId}`);
       }
     } catch (err) {
-      alert('algo ha salido mal')
+      alert("algo ha salido mal");
       console.log(err);
     }
   };

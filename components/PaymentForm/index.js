@@ -179,7 +179,7 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   };
 
   const createOrder = async (token, transactionId) => {
-    const createOrder = await axios.post("/api/orders", {
+    const createOrder_ = await axios.post("/api/orders", {
       orderItems: cart,
       numberOfItems: numberOfItems,
       total: total,
@@ -198,7 +198,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
     );
 
     await Promise.all(stockUpdatePromises);
-    Cookies.set("orderId", createOrder.data._id);
+    // Cookies.set("orderId", createOrder.data._id);
+    localStorage.setItem("orderId", createOrder_.data._id);
   };
 
   const handleSubmit = (e) => {
