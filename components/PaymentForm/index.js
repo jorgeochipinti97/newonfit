@@ -123,7 +123,7 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
       payment_method_id: parseInt(tarjetaSeleccionada),
       bin: "450799",
       // amount: parseInt(totalPesos),
-      amount: 2900,
+      amount: parseInt(totalPesos),
       currency: "ARS",
       site_id: "00270150",
       establishment_name: "Tienda Onfit",
@@ -199,6 +199,7 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
 
     // await Promise.all(stockUpdatePromises);
     // Cookies.set("orderId", createOrder.data._id);
+
     localStorage.setItem("orderId", createOrder_.data._id);
   };
 
