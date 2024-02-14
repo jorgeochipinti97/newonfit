@@ -58,7 +58,7 @@ const OrdersPage = () => {
                 flexWrap: "wrap",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "space-around",
               }}
             >
               {order.orderItems.map((e) => (
@@ -76,8 +76,13 @@ const OrdersPage = () => {
                     {" "}
                     {e.title}
                   </p>
+                  <p style={{ fontSize: "20px", fontWeight: "300" }}>
+                    {" "}
+                    Cantidad: {e.quantity}
+                  </p>
                 </div>
               ))}
+
             </div>
           </div>
         )}
