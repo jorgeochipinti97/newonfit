@@ -250,7 +250,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                           width: "100%",
                         }}
                       >
-                        <Button sx={{ mt: 2, fontSize: "14px" }} onClick={()=> push(`/products/${e.slug}`)}>
+                        <Button sx={{ my: 3, fontSize: "14px" }} onClick={()=> push(`/products/${e.slug}`)}>
                           Ver más
                         </Button>
                       </Box>

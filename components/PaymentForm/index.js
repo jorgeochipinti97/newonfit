@@ -43,76 +43,76 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
   ];
   const generarToken = async (tarjeta) => {
     try {
-      // const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
-      // const response = await axios.post(
-      //   "https://ventasonline.payway.com.ar/api/v2/tokens",
-      //   {
-      //     card_number: tarjeta.numeroTarjeta,
-      //     card_expiration_month: tarjeta.mesExpiracion,
-      //     card_expiration_year: tarjeta.anioExpiracion,
-      //     security_code: tarjeta.codigoSeguridad,
-      //     card_holder_name: tarjeta.nombreTitular,
-      //     card_holder_identification: {
-      //       type: "dni",
-      //       number: tarjeta.numeroIdentificacion,
-      //     },
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       apikey: apiKey, // Usa la apiKey como un encabezado personalizado
-      //     },
-      //   }
-      // );
-      getPayment('response.data.id'); // Aquí tendrás el token generado
+      const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
+      const response = await axios.post(
+        "https://ventasonline.payway.com.ar/api/v2/tokens",
+        {
+          card_number: tarjeta.numeroTarjeta,
+          card_expiration_month: tarjeta.mesExpiracion,
+          card_expiration_year: tarjeta.anioExpiracion,
+          security_code: tarjeta.codigoSeguridad,
+          card_holder_name: tarjeta.nombreTitular,
+          card_holder_identification: {
+            type: "dni",
+            number: tarjeta.numeroIdentificacion,
+          },
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            apikey: apiKey, // Usa la apiKey como un encabezado personalizado
+          },
+        }
+      );
+      getPayment(response.data.id); // Aquí tendrás el token generado
     } catch (error) {
       console.error(error);
     }
   };
 
   const getPayment = async (token) => {
-    // const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
+    const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
 
-    // const datos = {
-    //   customer: {
-    //     id: "customer01",
-    //     email: "MiPago@gmail.com",
-    //   },
-    //   user_id: "customer",
-    //   site_transaction_id: uuidv4(),
-    //   token: token,
-    //   payment_method_id: parseInt(tarjetaSeleccionada),
-    //   bin: "450799",
-    //   amount: 2900,
-    //   currency: "ARS",
-    //   site_id: "00270150",
-    //   establishment_name: "Tienda Onfit",
-    //   installments: cuotas,
-    //   description: "pago Onfit",
-    //   payment_type: "single",
-    //   sub_payments: [],
-    // };
-    // try {
-    //   const data = await axios.post(
-    //     "https://ventasonline.payway.com.ar/api/v2/payments",
-    //     datos,
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         apikey: apikey,
-    //       },
-    //     }
-    //   );
-    //   data.data.status == "approved" &&
-        createOrder('data.data.token', 'data.data.site_transaction_id');
+    const datos = {
+      customer: {
+        id: "customer01",
+        email: "MiPago@gmail.com",
+      },
+      user_id: "customer",
+      site_transaction_id: uuidv4(),
+      token: token,
+      payment_method_id: parseInt(tarjetaSeleccionada),
+      bin: "450799",
+      amount: parseInt(totalPesos),
+      currency: "ARS",
+      site_id: "00270150",
+      establishment_name: "Tienda Onfit",
+      installments: cuotas,
+      description: "pago Onfit",
+      payment_type: "single",
+      sub_payments: [],
+    };
+    try {
+      const data = await axios.post(
+        "https://ventasonline.payway.com.ar/api/v2/payments",
+        datos,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            apikey: apikey,
+          },
+        }
+      );
+      data.data.status == "approved" &&
+        createOrder(data.data.token, data.data.site_transaction_id);
 
-      // data.data.status == "approved" &&
+      data.data.status == "approved" &&
         gsap.to(".isPaid", {
           opacity: 1,
           ease: Power1.easeIn,
         });
 
-      // data.data.status == "approved" &&
+      data.data.status == "approved" &&
         setTimeout(() => {
           gsap.to(".isPaid", {
             opacity: 0,
@@ -122,9 +122,9 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
             delay: 0.3,
           });
         }, 10000);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const createOrder = async (token, transactionId) => {
@@ -152,6 +152,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart, callback }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const [mesExpiracion, anioExpiracion] = fechaExpiracion.split("/");
+    
+    setIsProcesing(true)
 
     const datosTarjeta = {
       tarjetaSeleccionada,

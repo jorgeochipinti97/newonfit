@@ -17,6 +17,13 @@ const orderSchema = new mongoose.Schema(
     total: { type: Number, required: true },
     transactionId: { type: String },
     discountCode: { type: String },
+    titular: { type: String },
+    email: { type: String },
+    address: { type: String },
+    ciudad: { type: String },
+    provincia: { type: String },
+    phone: { type: String },
+
     discountPrice: { type: Number, default: 0 },
     tracking: { type: String },
     codGestion: { type: String },
