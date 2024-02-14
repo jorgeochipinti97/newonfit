@@ -29,9 +29,9 @@ const CartPage = () => {
   const { isLoaded, cart, total, numberOfItems } = useContext(CartContext);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   isLoaded && cart.length === 0 && router.replace("/cart/empty");
-  // }, [isLoaded]);
+  useEffect(() => {
+    isLoaded && cart.length === 0 && router.replace("/cart/empty");
+  }, [isLoaded]);
 
 
   return (
@@ -54,7 +54,7 @@ const CartPage = () => {
           className="containerCart"
           sx={{ mx: 2, width: isMobile ? "90%" : "50%" }}
         >
-          <Card className="summary-card" sx={{ minHeight: "50vh" }}>
+          <Card className="summary-card" sx={{ minHeight: "0vh" }}>
             <CardContent
               sx={{
                 display: "flex",
