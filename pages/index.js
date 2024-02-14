@@ -11,19 +11,13 @@ import axios from "axios";
 
 import { HeroSectionComponent } from "@/components/Herosection";
 import CountdownTimer from "@/components/Timer";
+import { useProduct } from "@/Hooks/UseProducts";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products_, setProducts] = useState([]);
   const isMobile = useMediaQuery("(max-width:600px)");
   const router = useRouter();
-
-  const getProducts = async () => {
-    const data = await axios.get("/api/product");
-    setProducts(data.data);
-  };
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { products, isLoading } = useProduct();
 
   const axios = require("axios");
 
@@ -55,8 +49,6 @@ export default function Home() {
       console.error(error);
     }
   }
-
-
 
   const getZipValue = async () => {
     try {
