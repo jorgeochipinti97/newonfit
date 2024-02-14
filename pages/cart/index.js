@@ -25,8 +25,7 @@ const CartPage = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const isMobile = useMediaQuery("(max-width:600px)");
-  const [isCheckauto, setIsCheckaut] = useState(false);
-
+  
   const { isLoaded, cart, total, numberOfItems } = useContext(CartContext);
   const router = useRouter();
 
@@ -34,27 +33,6 @@ const CartPage = () => {
   //   isLoaded && cart.length === 0 && router.replace("/cart/empty");
   // }, [isLoaded]);
 
-  useEffect(() => {
-    isCheckauto &&
-      gsap.to(".containerCart", {
-        transform: "scale(0)",
-      });
-    isCheckauto &&
-      gsap.to(".containerCart", {
-        display: "none",
-        delay: 1,
-      });
-    isCheckauto &&
-      gsap.to(".formContainerCart", {
-        display: "flex",
-        delay: 1.2,
-      });
-    isCheckauto &&
-      gsap.to(".formContainerCart", {
-        transform: "scale(1)",
-        delay: 1.5,
-      });
-  }, [isCheckauto]);
 
   return (
     <ShopLayout
@@ -97,7 +75,6 @@ const CartPage = () => {
 
               <OrderSummary />
               <FormularioTarjeta
-                callback={setIsCheckaut}
                 total={total}
                 cart={cart}
                 numberOfItems={numberOfItems}
