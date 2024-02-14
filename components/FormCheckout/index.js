@@ -104,6 +104,7 @@ export const FormCheckout = ({}) => {
         response && push(`/orders/${Cookies.get("orderId")}`);
       }
     } catch (err) {
+      alert('algo ha salido mal')
       console.log(err);
     }
   };
@@ -117,6 +118,7 @@ export const FormCheckout = ({}) => {
               label="Nombre"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setName(e.target.value)}
             />
           </Grid>
@@ -125,6 +127,7 @@ export const FormCheckout = ({}) => {
               label="Apellido"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setLastName(e.target.value)}
             />
           </Grid>
@@ -133,6 +136,7 @@ export const FormCheckout = ({}) => {
               label="DNI"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setDni(e.target.value)}
             />
           </Grid>
@@ -141,6 +145,7 @@ export const FormCheckout = ({}) => {
               label="Email"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </Grid>
@@ -150,6 +155,7 @@ export const FormCheckout = ({}) => {
               label="Direccion"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setAddress(e.target.value)}
             />
           </Grid>
@@ -158,6 +164,7 @@ export const FormCheckout = ({}) => {
               label="Altura"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setAltura(e.target.value)}
             />
           </Grid>
@@ -174,6 +181,7 @@ export const FormCheckout = ({}) => {
               label="Localidad"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setCity(e.target.value)}
             />
           </Grid>
@@ -182,6 +190,7 @@ export const FormCheckout = ({}) => {
               label="Provincia"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setProvincia(e.target.value)}
             />
           </Grid>
@@ -191,6 +200,7 @@ export const FormCheckout = ({}) => {
               label="Celular"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setPhone(e.target.value)}
             />
           </Grid>
@@ -199,6 +209,7 @@ export const FormCheckout = ({}) => {
               label="Codigo postal"
               variant="filled"
               fullWidth
+              required
               onChange={(e) => setZipCode(e.target.value)}
             />
           </Grid>

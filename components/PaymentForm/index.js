@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import gsap, { Power1 } from "gsap";
+import { useRouter } from "next/router";
 
 export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState("");
@@ -19,7 +20,7 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   const [totalPesos, setTotalpesos] = useState(0);
   const [cuotas, setcuotas] = useState(1);
   const [isProcesing, setIsProcesing] = useState(false);
-
+  const { push } = useRouter();
   const [isCheckauto, setIsCheckaut] = useState(false);
 
   useEffect(() => {
@@ -67,7 +68,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   ];
   const generarToken = async (tarjeta) => {
     try {
-      const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
+      // const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
+      const apiKey = "vjzIsMxW2Yd43QoBP93SdmMzJMBbHXoS"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
       const response = await axios.post(
         "https://ventasonline.payway.com.ar/api/v2/tokens",
         {
@@ -101,12 +103,14 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
           opacity: 0,
           ease: Power1.easeIn,
         });
+        push("/");
       }, 10000);
     }
   };
 
   const getPayment = async (token) => {
-    const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
+    // const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
+    const apikey = "rfZTGgNW83rkKS7HcKDy2YQruDzXEq52";
 
     const datos = {
       customer: {
@@ -160,6 +164,17 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
         }, 10000);
     } catch (err) {
       console.log(err);
+
+      gsap.to(".isError", {
+        opacity: 1,
+        ease: Power1.easeIn,
+      });
+      setTimeout(() => {
+        gsap.to(".isError", {
+          opacity: 0,
+          ease: Power1.easeIn,
+        });
+      }, 10000);
     }
   };
 
