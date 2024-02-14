@@ -189,13 +189,13 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
 
     setIsCheckaut(true);
 
-    const stockUpdatePromises = cart.map((item) =>
-      axios.put("/api/product", {
-        _id: item._id,
-        nombre: item.size.toLowerCase(),
-        stock: item.quantity,
-      })
-    );
+    // const stockUpdatePromises = cart.map((item) =>
+    //   axios.put("/api/product", {
+    //     _id: item._id,
+    //     nombre: item.size.toLowerCase(),
+    //     stock: item.quantity,
+    //   })
+    // );
 
     await Promise.all(stockUpdatePromises);
     // Cookies.set("orderId", createOrder.data._id);
