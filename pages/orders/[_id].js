@@ -1,16 +1,20 @@
 import { ShopLayout } from "@/components/layout/shopLayout";
+import { CartContext } from "@/context/cart/CartContext";
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const OrdersPage = () => {
-  const { push, query } = useRouter();
+  const {  query } = useRouter();
   const [order, setOrder] = useState();
+  const { resetCart } = useContext(CartContext);
+
   useEffect(() => {
     query._id && getOrder();
   }, [query]);
 
   const getOrder = async () => {
+    resetCart();
     const data = await axios.get(`/api/orders?_id=${query._id}`);
     setOrder(data.data);
   };

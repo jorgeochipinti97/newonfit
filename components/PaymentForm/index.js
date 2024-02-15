@@ -1,13 +1,14 @@
-import useOrderId from "@/Hooks/useOrderId";
+
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
-import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+
+import React, {  useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import gsap, { Power1 } from "gsap";
 import { useRouter } from "next/router";
+
 
 export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState("");
@@ -22,6 +23,7 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   const [isProcesing, setIsProcesing] = useState(false);
   const { push } = useRouter();
   const [isCheckauto, setIsCheckaut] = useState(false);
+
 
   useEffect(() => {
     isCheckauto &&
@@ -122,8 +124,8 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
       token: token,
       payment_method_id: parseInt(tarjetaSeleccionada),
       bin: "450799",
+      amount: 2900,
       // amount: parseInt(totalPesos),
-      amount: parseInt(totalPesos),
       currency: "ARS",
       site_id: "00270150",
       establishment_name: "Tienda Onfit",
@@ -189,15 +191,18 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
 
     setIsCheckaut(true);
 
-    // const stockUpdatePromises = cart.map((item) =>
-    //   axios.put("/api/product", {
-    //     _id: item._id,
-    //     nombre: item.size.toLowerCase(),
-    //     stock: item.quantity,
-    //   })
-    // );
+    // Preparando las promesas para actualizar el stock de los productos
+    const stockUpdatePromises = cart.map((item) =>
+      axios.put("/api/product", {
+        _id: item._id,
+        nombre: item.size.toLowerCase(),
+        stock: item.quantity,
+      })
+    );
 
-    // await Promise.all(stockUpdatePromises);
+    // Esperando a que todas las promesas se resuelvan
+    await Promise.all(stockUpdatePromises);
+
     // Cookies.set("orderId", createOrder.data._id);
 
     localStorage.setItem("orderId", createOrder_.data._id);
