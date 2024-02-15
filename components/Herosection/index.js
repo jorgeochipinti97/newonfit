@@ -93,7 +93,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               </Typography>
             </div>
             <div style={{ marginBottom: "1rem", color: "black" }}>
-              <Typography variant="body1" style={{ fontSize: "1rem" }}>
+              <p variant="body1" style={{ fontSize: "1rem" }}>
                 Estamos{" "}
                 <span style={{ fontWeight: "700" }}> comprometidos </span>con tu{" "}
                 <span style={{ fontWeight: 550 }}>bienestar y tu pasión</span>{" "}
@@ -102,12 +102,12 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 <span style={{ fontWeight: "700" }}>alcances tus metas</span>.
                 Ya sea que estés buscando entrenar en casa o en uno de nuestros
                 gimnasios, ¡Te tenemos cubierto!{" "}
-              </Typography>
+              </p>
             </div>
             <div>
               <Typography
                 variant="subtitle1"
-                sx={{ color: "black", fontSize: "20px" }}
+                sx={{ color: "black", fontSize: "20px",lineHeight:'22px' }}
               >
                 {" "}
                 Te presentamos nuestros diseños de selección.
