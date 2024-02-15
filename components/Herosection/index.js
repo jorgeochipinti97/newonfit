@@ -135,7 +135,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                     lineHeight: "39px",
                     p: 2,
                     fontFamily: "Bebas Neue",
-                    letterSpacing:isMobile ? '0px':'1px'
+
                   }}
                 >
                   3 Cuotas sin interes y envio gratis
