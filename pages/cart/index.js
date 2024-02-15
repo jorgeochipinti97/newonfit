@@ -19,21 +19,22 @@ import { CartContext } from "@/context/cart/CartContext";
 import { FormCheckout } from "@/components/FormCheckout";
 import { FormularioTarjeta } from "@/components/PaymentForm";
 import useGlobalForm from "@/Hooks/useGlobalForm";
+import { useRouter } from "next/router";
 
 const CartPage = () => {
   gsap.registerPlugin(ScrollTrigger);
-
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width:600px)");
 
-  const { cart, total, numberOfItems } = useContext(CartContext);
+  const { cart, total, numberOfItems, isLoaded } = useContext(CartContext);
 
   const { updateFormData, submitGlobalForm } = useGlobalForm();
 
   const [isCheckout, setIsCheckout] = useState();
 
-  // useEffect(() => {
-  //   isLoaded && cart.length === 0 && router.replace("/cart/empty");
-  // }, [isLoaded]);
+  useEffect(() => {
+    isLoaded && cart.length === 0 && router.push("/cart/empty");
+  }, [isLoaded]);
 
   useEffect(() => {
     isCheckout &&
@@ -47,21 +48,20 @@ const CartPage = () => {
       });
     isCheckout &&
       gsap.to(".formTwo", {
-        display: 'flex',
-        delay:1.3,
+        display: "flex",
+        delay: 1.3,
         ease: Power1.easeIn,
       });
     isCheckout &&
       gsap.to(".formTwo", {
         opacity: 1,
-        delay:1.5,
+        delay: 1.5,
         ease: Power1.easeIn,
       });
   }, [isCheckout]);
 
   return (
     <ShopLayout
-      title="Cart"
       pageDescription={"Carrito de compras de la tienda"}
     >
       <Box
@@ -109,14 +109,13 @@ const CartPage = () => {
       </Box>
       <Box
         sx={{
-
           justifyContent: "center",
           alignItems: "center",
           minHeight: "100vh",
           width: "100vw",
           paddingTop: "15vh",
-          opacity:0,
-          display:'none'
+          opacity: 0,
+          display: "none",
         }}
         className="formTwo"
       >

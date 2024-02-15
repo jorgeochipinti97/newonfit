@@ -291,7 +291,7 @@ function useGlobalForm() {
     try {
       generarToken();
       // createOrder('asda','asdas')
-      // console.log(globalFormData.shippingDetails.productos);
+      // console.log(globalFormData);
     } catch (err) {}
   };
 

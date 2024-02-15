@@ -11,8 +11,6 @@ import { formattwo } from "@/utils/currency";
 
 export const FormularioTarjeta = ({
   total,
-  numberOfItems,
-  cart,
   updateFormData,
   submitGlobalForm,
 }) => {
@@ -23,42 +21,17 @@ export const FormularioTarjeta = ({
   const [tipoIdentificacion, setTipoIdentificacion] = useState("dni");
   const [numeroIdentificacion, setNumeroIdentificacion] = useState("");
   const [fechaExpiracion, setFechaExpiracion] = useState("");
-  const [totalPesos, setTotalpesos] = useState(0);
   const [cuotas, setcuotas] = useState(1);
   const [isProcesing, setIsProcesing] = useState(false);
-  const { push } = useRouter();
-  const [isCheckauto, setIsCheckaut] = useState(false);
 
-  const [formData, setFormData] = useState({
-    tarjetaSeleccionada: "",
-    numeroTarjeta: "",
-    codigoSeguridad: "",
-    nombreTitular: "",
-    tipoIdentificacion: "dni",
-    numeroIdentificacion: "",
-    fechaExpiracion: "",
-    totalPesos: 0,
-    cuotas: 1,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
-  useEffect(() => {
-    updateFormData({ totalPesos: Math.round(total * 100) }, "paymentDetails");
-  }, [total, updateFormData]);
+  
 
   const handleFechaExpiracionChange = (e) => {
     let valor = e.target.value.replace(/\D/g, ""); // Elimina todo lo que no sea dígito
     if (valor.length > 2) {
       valor = valor.substring(0, 2) + "/" + valor.substring(2, 4); // Agrega '/' después de MM
     }
-    // updateFormData({ fechaExpiracion: valor }, "paymentDetails");
+
     setFechaExpiracion(valor);
   };
 
@@ -75,19 +48,8 @@ export const FormularioTarjeta = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     const [mesExpiracion, anioExpiracion] = fechaExpiracion.split("/");
-
-    const datosTarjeta = {
-      tarjetaSeleccionada,
-      numeroTarjeta,
-      mesExpiracion,
-      anioExpiracion,
-      codigoSeguridad,
-      nombreTitular,
-      card_holder_identification: {
-        type: tipoIdentificacion,
-        number: numeroIdentificacion,
-      },
-    };
+    
+    updateFormData({ totalPesos: Math.round(total * 100) }, "paymentDetails");
     updateFormData(
       {
         tarjetaSeleccionada,
@@ -99,7 +61,6 @@ export const FormularioTarjeta = ({
         fechaExpiracion,
         mesExpiracion,
         anioExpiracion,
-        totalPesos,
         cuotas,
       },
       "paymentDetails"

@@ -48,7 +48,6 @@ export const Navbar = ({ isMobile }) => {
     // "Equipamiento",
     // "Accesorios",
     "FAQS",
-
   ];
   return (
     <AppBar
@@ -100,60 +99,59 @@ export const Navbar = ({ isMobile }) => {
                 cursor: "pointer",
               }}
             >
-Inicio
+              Inicio
             </Typography>
           </Box>
-          {
-            sections.map((e) => (
-              <Box
+          {sections.map((e) => (
+            <Box
               key={e}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => push(`/${e.toLowerCase()}`)}
-                sx={{
-                  px: 1,
-                  borderRadius: "150px",
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => push(`/${e.toLowerCase()}`)}
+              sx={{
+                px: 1,
+                borderRadius: "150px",
 
-                  borderBottom: asPath.includes(e.toLowerCase())
-                    ? "1px solid rgb(254, 221, 45)"
-                    : "transparent",
+                borderBottom: asPath.includes(e.toLowerCase())
+                  ? "1px solid rgb(254, 221, 45)"
+                  : "transparent",
+              }}
+            >
+              <Typography
+                variant="body1"
+                sx={{
+                  mx: 1,
+                  fontSize: "16px",
+                  color: "white",
+                  fontWeight: "600",
+                  cursor: "pointer",
                 }}
               >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    mx: 1,
-                    fontSize: "16px",
-                    color:  "white",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                  }}
-                >
-                  {e}
-                </Typography>
-              </Box>
-            ))}
+                {e}
+              </Typography>
+            </Box>
+          ))}
         </Box>
 
         <Box flex={1} />
         {isMobile ? (
-     <IconButton sx={{ mx: 1 }} onClick={() => push("/cart")}>
-     <Badge
-       badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
-       color="info"
-       sx={{
-         "& .MuiBadge-badge": {
-           fontWeight: "bold", // Cambia 'bold' por el grosor de fuente que prefieras
-           // Puedes agregar más estilos personalizados aquí
-         },
-         padding: 1,
-         borderRadius: "90px",
-         backgroundColor: "rgba(0,0,0,0.4)",
-       }}
-     >
-       <ShoppingCartOutlined sx={{ color: "rgb(254, 221, 45)" }} />
-     </Badge>
-   </IconButton>
+          <IconButton sx={{ mx: 1 }} onClick={() => push("/cart")}>
+            <Badge
+              badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
+              color="info"
+              sx={{
+                "& .MuiBadge-badge": {
+                  fontWeight: "bold", // Cambia 'bold' por el grosor de fuente que prefieras
+                  // Puedes agregar más estilos personalizados aquí
+                },
+                padding: 1,
+                borderRadius: "90px",
+                backgroundColor: "rgba(0,0,0,0.4)",
+              }}
+            >
+              <ShoppingCartOutlined sx={{ color: "rgb(254, 221, 45)" }} />
+            </Badge>
+          </IconButton>
         ) : (
           <>
             <IconButton sx={{ mx: 1 }} onClick={() => push("/cart")}>
@@ -195,4 +193,3 @@ Inicio
     </AppBar>
   );
 };
-
