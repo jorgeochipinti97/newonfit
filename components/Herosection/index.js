@@ -121,20 +121,22 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
             </div>
           </Grid>
           <Grid item xs={12} lg={6} xl={6}>
-            <Box style={{ width: isMobile ? "90vw" : "100%" }}>
+            <Box style={{ width: isMobile ? "90vw" : "100%",display:'flex', justifyContent:'center' }}>
               <video
                 loop
                 autoPlay
                 controls
                 muted
                 playsInline
+                className="shadowR"
                 alt="Hero"
-                src="/video.mp4"
+                src="/videovertical.mp4"
                 style={{
-                  width: "100%",
+                  width: "60%",
                   height: "auto",
                   maxWidth: "100%",
-                  borderRadius: "10px",
+                  borderRadius: "20px",
+background:'rgba(0,0,0,0.9)',
                   objectFit: "cover",
                 }}
               />
@@ -156,6 +158,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
+
             slidesPerView={isMobile ? 1.5 : 1.6}
             coverflowEffect={{
               rotate: 50,
