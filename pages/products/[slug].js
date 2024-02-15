@@ -145,10 +145,10 @@ const ProductsSlugPage = () => {
     setInterval(() => {
       gsap.to(".isAdd", {
         opacity: 0,
-        delay: 1,
         ease: Power1.easeIn,
       });
-    }, [3500]);
+      setIsAdd(false);
+    }, [4000]);
   }, [isAdd]);
 
   const onAddProduct = () => {
