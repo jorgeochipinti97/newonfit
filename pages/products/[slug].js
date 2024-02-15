@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import { useInView } from "react-intersection-observer";
 
-import { gsap } from "gsap";
+import { Power1, gsap } from "gsap";
 
 import {
   Box,
@@ -16,6 +16,7 @@ import {
   Typography,
   useMediaQuery,
   capitalize,
+  Alert,
 } from "@mui/material";
 
 import { CartList, OrderSummary } from "@/components/cart";
@@ -32,9 +33,9 @@ import { useProduct } from "@/Hooks/UseProducts";
 const ProductDescription = ({ descripcion }) => {
   return <div dangerouslySetInnerHTML={{ __html: descripcion }} />;
 };
-
 const ProductsSlugPage = () => {
   gsap.registerPlugin(ScrollTrigger);
+  const [isAdd, setIsAdd] = useState(false);
 
   const { ref, inView, entry } = useInView({
     threshold: 0.9,
@@ -135,10 +136,25 @@ const ProductsSlugPage = () => {
       );
   }, [product]);
 
+  useEffect(() => {
+    isAdd &&
+      gsap.to(".isAdd", {
+        opacity: 1,
+        ease: Power1.easeIn,
+      });
+    setInterval(() => {
+      gsap.to(".isAdd", {
+        opacity: 0,
+        delay: 1,
+        ease: Power1.easeIn,
+      });
+    }, [3500]);
+  }, [isAdd]);
+
   const onAddProduct = () => {
     !tempCartProduct.size && alert("Selecciona un talle");
     addProductToCart(tempCartProduct);
-    push("/cart");
+    setIsAdd(true);
   };
 
   const onCheckOut = () => {
@@ -159,6 +175,20 @@ const ProductsSlugPage = () => {
   };
   return (
     <ShopLayout>
+      <Alert
+        // icon={<CheckIcon fontSize="inherit" />}
+        sx={{
+          position: "fixed",
+          bottom: 50,
+          right: 10,
+          opacity: "0",
+        }}
+        severity="success"
+        className="isAdd"
+      >
+        agregado correctamente
+      </Alert>
+
       <Box
         sx={{ mx: 2, opacity: 0, minHeight: "130vh" }}
         className="slugContainer"

@@ -11,7 +11,7 @@ export function useProduct(filter) {
         let url = "/api/product"; //
         const response = await axios.get(url);
         const products = response.data;
-        console.log(response);
+
         const filterProducts =
           filter && products.filter((e) => e.slug.includes(filter));
         setProducts(filter ? filterProducts : products);
