@@ -11,11 +11,6 @@ import { Navbar } from "../Navbar/Navbar";
 import { FooterComponent } from "../footer";
 import { SideMenu } from "../SideMenu";
 import { LoadingComponent } from "../Loading";
-import HomeIcon from "@mui/icons-material/Home";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-
-import HelpIcon from "@mui/icons-material/Help";
 import { useRouter } from "next/router";
 export const ShopLayout = ({
   children,

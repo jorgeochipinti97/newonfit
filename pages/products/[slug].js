@@ -180,9 +180,10 @@ const ProductsSlugPage = () => {
         // icon={<CheckIcon fontSize="inherit" />}
         sx={{
           position: "fixed",
-          bottom: isMobile ? 150 : 50,
+          bottom: isMobile ? 100 : 50,
           right: 10,
           opacity: "0",
+          zIndex:'999'
         }}
         severity="success"
         className="isAdd"

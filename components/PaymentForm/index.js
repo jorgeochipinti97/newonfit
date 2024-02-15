@@ -1,16 +1,21 @@
-
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
 
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
 import gsap, { Power1 } from "gsap";
 import { useRouter } from "next/router";
+import { formattwo } from "@/utils/currency";
 
-
-export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
+export const FormularioTarjeta = ({
+  total,
+  numberOfItems,
+  cart,
+  updateFormData,
+  submitGlobalForm,
+}) => {
   const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState("");
   const [numeroTarjeta, setNumeroTarjeta] = useState("");
   const [codigoSeguridad, setCodigoSeguridad] = useState("");
@@ -24,38 +29,36 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
   const { push } = useRouter();
   const [isCheckauto, setIsCheckaut] = useState(false);
 
+  const [formData, setFormData] = useState({
+    tarjetaSeleccionada: "",
+    numeroTarjeta: "",
+    codigoSeguridad: "",
+    nombreTitular: "",
+    tipoIdentificacion: "dni",
+    numeroIdentificacion: "",
+    fechaExpiracion: "",
+    totalPesos: 0,
+    cuotas: 1,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
   useEffect(() => {
-    isCheckauto &&
-      gsap.to(".containerCart", {
-        transform: "scale(0)",
-      });
-    isCheckauto &&
-      gsap.to(".containerCart", {
-        display: "none",
-        delay: 1,
-      });
-    isCheckauto &&
-      gsap.to(".formContainerCart", {
-        display: "flex",
-        delay: 1.2,
-      });
-    isCheckauto &&
-      gsap.to(".formContainerCart", {
-        transform: "scale(1)",
-        delay: 1.5,
-      });
-  }, [isCheckauto]);
-
-  useEffect(() => {
-    setTotalpesos(Math.round(total * 100));
-  }, [total]);
+    updateFormData({ totalPesos: Math.round(total * 100) }, "paymentDetails");
+  }, [total, updateFormData]);
 
   const handleFechaExpiracionChange = (e) => {
     let valor = e.target.value.replace(/\D/g, ""); // Elimina todo lo que no sea dígito
     if (valor.length > 2) {
       valor = valor.substring(0, 2) + "/" + valor.substring(2, 4); // Agrega '/' después de MM
     }
+    // updateFormData({ fechaExpiracion: valor }, "paymentDetails");
     setFechaExpiracion(valor);
   };
 
@@ -68,151 +71,10 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
     { name: "Cabal Débito", value: 108 },
     { name: "Cabal Crédito", value: 63 },
   ];
-  const generarToken = async (tarjeta) => {
-    try {
-      const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
-      // const apiKey = "vjzIsMxW2Yd43QoBP93SdmMzJMBbHXoS"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
-      const response = await axios.post(
-        "https://ventasonline.payway.com.ar/api/v2/tokens",
-        {
-          card_number: tarjeta.numeroTarjeta,
-          card_expiration_month: tarjeta.mesExpiracion,
-          card_expiration_year: tarjeta.anioExpiracion,
-          security_code: tarjeta.codigoSeguridad,
-          card_holder_name: tarjeta.nombreTitular,
-          card_holder_identification: {
-            type: "dni",
-            number: tarjeta.numeroIdentificacion,
-          },
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            apikey: apiKey, // Usa la apiKey como un encabezado personalizado
-          },
-        }
-      );
-      getPayment(response.data.id); // Aquí tendrás el token generado
-    } catch (error) {
-      console.error(error);
-
-      gsap.to(".isError", {
-        opacity: 1,
-        ease: Power1.easeIn,
-      });
-      setTimeout(() => {
-        gsap.to(".isError", {
-          opacity: 0,
-          ease: Power1.easeIn,
-        });
-        push("/");
-      }, 10000);
-    }
-  };
-
-  const getPayment = async (token) => {
-    const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
-    // const apikey = "rfZTGgNW83rkKS7HcKDy2YQruDzXEq52";
-
-    const datos = {
-      customer: {
-        id: "customer01",
-        email: "MiPago@gmail.com",
-      },
-      user_id: "customer",
-      site_transaction_id: uuidv4(),
-      token: token,
-      payment_method_id: parseInt(tarjetaSeleccionada),
-      bin: "450799",
-      // amount: 2900,
-      amount: parseInt(totalPesos),
-      currency: "ARS",
-      site_id: "00270150",
-      establishment_name: "Tienda Onfit",
-      installments: cuotas,
-      description: "pago Onfit",
-      payment_type: "single",
-      sub_payments: [],
-    };
-    try {
-      const data = await axios.post(
-        "https://ventasonline.payway.com.ar/api/v2/payments",
-        datos,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            apikey: apikey,
-          },
-        }
-      );
-      data.data.status == "approved" &&
-        createOrder(data.data.token, data.data.site_transaction_id);
-
-      data.data.status == "approved" &&
-        gsap.to(".isPaid", {
-          opacity: 1,
-          ease: Power1.easeIn,
-        });
-
-      data.data.status == "approved" &&
-        setTimeout(() => {
-          gsap.to(".isPaid", {
-            opacity: 0,
-            ease: Power1.easeIn,
-          });
-          gsap.to(".isPaid", {
-            delay: 0.3,
-          });
-        }, 10000);
-    } catch (err) {
-      console.log(err);
-
-      gsap.to(".isError", {
-        opacity: 1,
-        ease: Power1.easeIn,
-      });
-      setTimeout(() => {
-        gsap.to(".isError", {
-          opacity: 0,
-          ease: Power1.easeIn,
-        });
-      }, 10000);
-    }
-  };
-
-  const createOrder = async (token, transactionId) => {
-    const createOrder_ = await axios.post("/api/orders", {
-      orderItems: cart,
-      numberOfItems: numberOfItems,
-      total: total,
-      transactionId: transactionId,
-      token: token,
-    });
-
-    setIsCheckaut(true);
-
-    // Preparando las promesas para actualizar el stock de los productos
-    const stockUpdatePromises = cart.map((item) =>
-      axios.put("/api/product", {
-        _id: item._id,
-        nombre: item.size.toLowerCase(),
-        stock: item.quantity,
-      })
-    );
-
-    // Esperando a que todas las promesas se resuelvan
-    await Promise.all(stockUpdatePromises);
-
-
-
-    localStorage.setItem("orderId", createOrder_.data._id);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const [mesExpiracion, anioExpiracion] = fechaExpiracion.split("/");
-
-    setIsProcesing(true);
 
     const datosTarjeta = {
       tarjetaSeleccionada,
@@ -226,9 +88,30 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
         number: numeroIdentificacion,
       },
     };
+    updateFormData(
+      {
+        tarjetaSeleccionada,
+        numeroTarjeta,
+        codigoSeguridad,
+        nombreTitular,
+        tipoIdentificacion,
+        numeroIdentificacion,
+        fechaExpiracion,
+        mesExpiracion,
+        anioExpiracion,
+        totalPesos,
+        cuotas,
+      },
+      "paymentDetails"
+    );
 
-    generarToken(datosTarjeta);
+    setIsProcesing(true);
+    // generarToken(datosTarjeta);
   };
+
+  useEffect(() => {
+    isProcesing && submitGlobalForm();
+  }, [isProcesing]);
 
   return (
     <>
@@ -314,9 +197,26 @@ export const FormularioTarjeta = ({ total, numberOfItems, cart }) => {
             required
           >
             <MenuItem value="">Cantidad de cuotas</MenuItem>
-            <MenuItem value={1}>1 Cuota</MenuItem>MenuItem
-            <MenuItem value={2}>2 Cuota</MenuItem>
-            <MenuItem value={3}>3 Cuota</MenuItem>
+            <MenuItem value={1}>
+              <span style={{ fontWeight: "600", marginRight: "5px" }}>1</span>
+              Cuota de <span style={{ fontWeight: "600", marginLeft: "5px" }}> {formattwo(total)}</span>
+            </MenuItem>
+            MenuItem
+            <MenuItem value={3}>
+              <span style={{ fontWeight: "600", marginRight: "5px" }}>3</span>
+              Cuotas sin interes de{" "}
+              <span style={{ fontWeight: "600", marginLeft: "5px" }}>
+                {" "}
+                {formattwo(total / 3)}
+              </span>
+            </MenuItem>
+            <MenuItem value={6}>
+              <span style={{ fontWeight: "600", marginRight: "5px" }}>6</span>
+              Cuotas de
+              <span style={{ fontWeight: "600", marginLeft: "5px" }}>
+                {formattwo((total * 1.15) / 6)}{" "}
+              </span>
+            </MenuItem>
           </Select>
         </div>
         <div
