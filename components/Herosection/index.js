@@ -121,7 +121,13 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
             </div>
           </Grid>
           <Grid item xs={12} lg={6} xl={6}>
-            <Box style={{ width: isMobile ? "90vw" : "100%",display:'flex', justifyContent:'center' }}>
+            <Box
+              style={{
+                width: isMobile ? "90vw" : "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <video
                 loop
                 autoPlay
@@ -136,7 +142,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   height: "auto",
                   maxWidth: "100%",
                   borderRadius: "20px",
-background:'rgba(0,0,0,0.9)',
+                  background: "rgba(0,0,0,0.9)",
                   objectFit: "cover",
                 }}
               />
@@ -158,7 +164,6 @@ background:'rgba(0,0,0,0.9)',
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
-
             slidesPerView={isMobile ? 1.5 : 1.6}
             coverflowEffect={{
               rotate: 50,
@@ -194,6 +199,7 @@ background:'rgba(0,0,0,0.9)',
                         background: "transparent",
                         m: 1,
                       }}
+                      onClick={() => push(`/products/${e.slug}`)}
                     >
                       <CardActionArea sx={{ background: "transparent" }}>
                         <Box
@@ -252,7 +258,6 @@ background:'rgba(0,0,0,0.9)',
                           justifyContent: "center",
                           width: "100%",
                         }}
-                        onClick={() => push(`/products/${e.slug}`)}
                       >
                         <Button sx={{ fontSize: "14px" }}>Ver más</Button>
                       </Box>
