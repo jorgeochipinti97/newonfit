@@ -61,9 +61,7 @@ const CartPage = () => {
   }, [isCheckout]);
 
   return (
-    <ShopLayout
-      pageDescription={"Carrito de compras de la tienda"}
-    >
+    <ShopLayout pageDescription={"Carrito de compras de la tienda"}>
       <Box
         sx={{
           pt: 10,
@@ -93,10 +91,14 @@ const CartPage = () => {
           <OrderSummary />
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Chip
-              icon={<LocalShippingIcon />}
+              icon={
+                <LocalShippingIcon
+                  sx={{ display: isMobile ? "none" : "auto" }}
+                />
+              }
               color="success"
               label="Envio gratis a CABA y AMBA"
-              sx={{ fontWeight: "800", px: 2 }}
+              sx={{ fontWeight: "800", px: 2, mt: isMobile ? 2 : 0 }}
               variant="outlined"
             />
           </Box>
