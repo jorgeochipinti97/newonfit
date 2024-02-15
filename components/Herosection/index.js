@@ -171,6 +171,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               depth: 100,
               modifier: 1,
             }}
+            initialSlide={2}
             modules={[EffectCoverflow]}
           >
             {products &&
