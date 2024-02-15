@@ -258,9 +258,10 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                           display: "flex",
                           justifyContent: "center",
                           width: "100%",
+                          my:2
                         }}
                       >
-                        <Button sx={{ fontSize: "14px" }}>Ver más</Button>
+                        <Button sx={{ fontSize: "14px" }}>Comprar</Button>
                       </Box>
                     </Card>
                   </Box>
