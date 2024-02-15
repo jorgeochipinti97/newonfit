@@ -30,6 +30,9 @@ useEffect(()=>{
   Swiper && gsap.to('.container',{
 delay:2,display:'none'
   })
+  Swiper && gsap.to('.loaderImage',{
+delay:2,display:'none'
+  })
 
 },[Swiper])
 
