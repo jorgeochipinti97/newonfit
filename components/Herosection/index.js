@@ -138,7 +138,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 alt="Hero"
                 src="/videovertical.mp4"
                 style={{
-                  width: "60%",
+                  width: isMobile ? "90%" : "60%",
                   height: "auto",
                   maxWidth: "100%",
                   borderRadius: "20px",
@@ -190,9 +190,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                       minHeight: isMobile ? "70vh" : "auto",
                     }}
                   >
-                    <div className="container">
+                    {/* <div className="container">
                       <span className="loaderImage "></span>
-                    </div>
+                    </div> */}
                     <Card
                       sx={{
                         borderRadius: "22px",
