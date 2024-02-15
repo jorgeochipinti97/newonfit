@@ -179,7 +179,7 @@ const ProductsSlugPage = () => {
         // icon={<CheckIcon fontSize="inherit" />}
         sx={{
           position: "fixed",
-          bottom: 50,
+          bottom: isMobile ? 150 : 50,
           right: 10,
           opacity: "0",
         }}
