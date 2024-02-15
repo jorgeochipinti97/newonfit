@@ -13,7 +13,7 @@ export const FooterComponent = ({ isMobile }) => {
       <Box
         sx={{
           width: "100%",
-          py: 4,
+pb:5,
 
           display: "flex",
           flexDirection: "column",

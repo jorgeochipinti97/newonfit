@@ -69,8 +69,8 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           <Grid
             item
             xs={12}
-            lg={6}
-            xl={6}
+            lg={8}
+            xl={8}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -90,12 +90,6 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 }}
               >
                 Eleva tu estilo, potencia tu rendimiento
-              </Typography>
-              <Typography
-                variant="body1"
-                style={{ maxWidth: "600px", color: "black" }}
-              >
-                Convierte tus Sueños Fitness en Realidad
               </Typography>
             </div>
             <div style={{ marginBottom: "1rem", color: "black" }}>
@@ -119,8 +113,37 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 Te presentamos nuestros diseños de selección.
               </Typography>
             </div>
+            <div style={{ marginBottom: "1rem", display:'flex', justifyContent:'center' }}>
+              <Box
+                sx={{
+                  backgroundColor: "black",
+                  width: "fit-content",
+                  mt: isMobile ? 4: 10,
+                  borderRadius: "90px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  component="h1"
+                  sx={{
+                    fontWeight: "900",
+                    fontSize: isMobile ? "1.7rem" : "3rem",
+                    color: "rgb(254, 221, 45)",
+                    lineHeight: "39px",
+                    p: 2,
+                    fontFamily: "Bebas Neue",
+                    letterSpacing:isMobile ? '0px':'1px'
+                  }}
+                >
+                  3 Cuotas sin interes y envio gratis
+                </Typography>
+              </Box>
+            </div>
           </Grid>
-          <Grid item xs={12} lg={6} xl={6}>
+          <Grid item xs={12} lg={4} xl={4}>
             <Box
               style={{
                 width: isMobile ? "90vw" : "100%",
@@ -138,7 +161,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 alt="Hero"
                 src="/videovertical.mp4"
                 style={{
-                  width: isMobile ? "90%" : "60%",
+                  width: isMobile ? "90%" : "90%",
                   height: "auto",
                   maxWidth: "100%",
                   borderRadius: "20px",
@@ -258,7 +281,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                           display: "flex",
                           justifyContent: "center",
                           width: "100%",
-                          my:2
+                          my: 2,
                         }}
                       >
                         <Button sx={{ fontSize: "14px" }}>Comprar</Button>

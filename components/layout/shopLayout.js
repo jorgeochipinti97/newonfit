@@ -11,10 +11,10 @@ import { Navbar } from "../Navbar/Navbar";
 import { FooterComponent } from "../footer";
 import { SideMenu } from "../SideMenu";
 import { LoadingComponent } from "../Loading";
-
+import HomeIcon from "@mui/icons-material/Home";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-import HomeIcon from "@mui/icons-material/Home";
+
 import HelpIcon from "@mui/icons-material/Help";
 import { useRouter } from "next/router";
 export const ShopLayout = ({
@@ -47,10 +47,9 @@ export const ShopLayout = ({
 
       <Box
         sx={{
-          background:
-            asPath.includes("faqs")
-              ? "white"
-              : "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
+          background: asPath.includes("faqs")
+            ? "white"
+            : "radial-gradient(ellipse at top, white, transparent), radial-gradient(ellipse at bottom, white, rgba(254, 221, 45,0.4));",
         }}
       >
         <main
@@ -77,18 +76,47 @@ export const ShopLayout = ({
           <BottomNavigation
             showLabels
             sx={{
-              background: "rgba(0,0,0,0.8)",
+              background: "rgba(254, 221, 45,0.9)",
               backdropFilter: "blur(4px)",
               borderRadius: "9px 9px 0px 0px",
-              borderTop:'1px solid white'
             }}
           >
             <BottomNavigationAction
-              sx={{ color: "rgb(254, 221, 45)", }}
+              sx={{ color: "black", borderRight:'1px solid black' }}
               label="Indumentaria"
-              icon={<CheckroomIcon />}
+              icon={
+                <svg
+                  width={30}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#000"
+                  stroke="#000"
+                  className="cf-icon-svg"
+                  viewBox="-1 0 19 19"
+                >
+                  <path d="M15.867 7.593l-1.534.967a.544.544 0 01-.698-.118l-.762-.957v7.256a.476.476 0 01-.475.475h-7.79a.476.476 0 01-.475-.475V7.477l-.769.965a.544.544 0 01-.697.118l-1.535-.967a.387.387 0 01-.083-.607l2.245-2.492a2.814 2.814 0 012.092-.932h.935a2.374 2.374 0 004.364 0h.934a2.816 2.816 0 012.093.933l2.24 2.49a.388.388 0 01-.085.608z"></path>
+                </svg>
+              }
               onClick={() => push("/indumentaria")}
-
+            />
+            <BottomNavigationAction
+              sx={{ color: "black" }}
+              label="Inicio"
+              icon={
+                <svg
+                width={30}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="#000"
+                    fillRule="evenodd"
+                    d="M2.52 7.823C2 8.77 2 9.915 2 12.203v1.522c0 3.9 0 5.851 1.172 7.063C4.343 22 6.229 22 10 22h4c3.771 0 5.657 0 6.828-1.212C22 19.576 22 17.626 22 13.725v-1.521c0-2.289 0-3.433-.52-4.381-.518-.949-1.467-1.537-3.364-2.715l-2-1.241C14.111 2.622 13.108 2 12 2c-1.108 0-2.11.622-4.116 1.867l-2 1.241C3.987 6.286 3.038 6.874 2.519 7.823zM9 17.25a.75.75 0 000 1.5h6a.75.75 0 000-1.5H9z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              }
+              onClick={() => push("/")}
             />
             {/* <BottomNavigationAction
               onClick={() => push("/accesorios")}

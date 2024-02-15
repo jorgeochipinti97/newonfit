@@ -3,9 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 
 import NextLink from "next/link";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
+import PaymentIcon from "@mui/icons-material/Payment";
 import { useInView } from "react-intersection-observer";
-
+import Chip from "@mui/material/Chip";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Power1, gsap } from "gsap";
 
 import {
@@ -299,6 +300,18 @@ const ProductsSlugPage = () => {
               <Divider sx={{ my: 2 }} />
               {product && (
                 <>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Chip
+                      icon={<PaymentIcon />}
+                      sx={{ fontWeight: "800", p: 2, fontSize: isMobile ? '15px':"20px", mb: 2 }}
+                      label={`3 cuotas sin interés de ${formattwo(
+                        product.precio / 3
+                      )}`}
+                      color="success"
+                      variant="outlined"
+                    />
+                  </div>
+
                   <Box
                     display={
                       product.categoria == "hombres" ||
@@ -317,10 +330,7 @@ const ProductsSlugPage = () => {
                       onSelectedSize={selectedSize}
                     />
                   </Box>
-                </>
-              )}
-
-              <p
+                  <p
                 style={{
                   textAlign: "center",
                   marginTop: "5px",
@@ -329,6 +339,11 @@ const ProductsSlugPage = () => {
               >
                 Selecciona un talle para continuar
               </p>
+   
+                </>
+              )}
+
+
               <Box
                 sx={{
                   width: "100%",
@@ -336,10 +351,10 @@ const ProductsSlugPage = () => {
                   justifyContent: "center",
                   flexDirection: "column",
                   alignItems: "center",
-                  mt: 2,
+
                 }}
               >
-                <Typography variant="subtitle2" sx={{ m: 2 }}>
+                <Typography variant="subtitle2" sx={{ m: 2,fontWeight:'600' }}>
                   Cantidad
                 </Typography>
                 <Box sx={{ mb: 2 }}>
@@ -352,7 +367,16 @@ const ProductsSlugPage = () => {
               </Box>
             </Box>
             {product && (
-              <Box sx={{}}>
+              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                               <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Chip
+                      icon={<LocalShippingIcon />}
+                      sx={{ fontWeight: "600", p: 2, fontSize: "15px", mb:5, color:'black' }}
+                      label='Envio gratis a CABA / AMBA'
+
+                      variant="filled"
+                    />
+                  </div>
                 <ProductDescription descripcion={product.descripcion} />
               </Box>
             )}
