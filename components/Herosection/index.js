@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { EffectCoverflow } from "swiper/modules";
 
 import {
   Box,
@@ -21,32 +20,18 @@ import {
 } from "@mui/material";
 
 import { useRouter } from "next/router";
-import useRadialBackground from "@/Hooks/useRadialBackground";
+import gsap from "gsap";
 
 export const HeroSectionComponent = ({ products, isMobile }) => {
   const { push } = useRouter();
 
-  const radialStyle = useRadialBackground(isMobile);
-  const scrollToElement = () => {
-    const element = document.getElementById("sectionOne");
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+useEffect(()=>{
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
+  Swiper && gsap.to('.container',{
+delay:2,display:'none'
+  })
 
-  useEffect(() => {
-    const link = document.querySelector('a[href="#sectionOne"]');
-    if (link) {
-      link.addEventListener("click", scrollToElement);
-    }
-  }, []);
+},[Swiper])
 
   return (
     <section
@@ -188,7 +173,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
           flex: 1,
         }}
       >
-        <div style={{ width: "100%", marginTop: "50px", marginBottom: "50px" }}>
+        <div style={{ width: "100%", marginTop: "50px", marginBottom: "50px" ,opacity:1}} className="sliderSwipe">
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -220,9 +205,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                       minHeight: isMobile ? "70vh" : "auto",
                     }}
                   >
-                    {/* <div className="container">
+                    <div className="container">
                       <span className="loaderImage "></span>
-                    </div> */}
+                    </div>
                     <Card
                       sx={{
                         borderRadius: "22px",
