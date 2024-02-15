@@ -16,7 +16,7 @@ export const ProductSlideshow = ({ images,  width }) => {
     <div style={{maxWidth:width}}> 
       <Swiper
 speed={1800}
-
+loop={true}
         effect={"flip"}
         grabCursor={true}
         pagination={true}
