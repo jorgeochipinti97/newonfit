@@ -126,15 +126,17 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 }}
               >
                 <Typography
-                  variant="h3"
+
                   component="h1"
                   sx={{
                     fontWeight: "900",
-                    fontSize: isMobile ? "27px" : "3rem",
+                    fontSize: isMobile ? "20px" : "3rem",
                     color: "rgb(254, 221, 45)",
                     lineHeight: "39px",
                     p: 2,
+                    mx:2,
                     fontFamily: "Bebas Neue",
+                    textAlign:'center'
 
                   }}
                 >
