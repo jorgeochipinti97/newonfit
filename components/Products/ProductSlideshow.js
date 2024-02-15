@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { EffectFlip, Pagination, Navigation } from "swiper/modules";
+import { EffectFlip, Pagination, Navigation,Autoplay } from "swiper/modules";
 
 export const ProductSlideshow = ({ images,  width }) => {
   return (
@@ -18,8 +18,11 @@ export const ProductSlideshow = ({ images,  width }) => {
         effect={"flip"}
         grabCursor={true}
         pagination={true}
-
-        modules={[EffectFlip, Pagination, Navigation]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[EffectFlip, Pagination, Navigation,Autoplay]}
         className="mySwiper"
 
       >
