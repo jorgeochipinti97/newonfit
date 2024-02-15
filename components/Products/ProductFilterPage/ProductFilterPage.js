@@ -196,7 +196,7 @@ export const ProductFilterPage = () => {
               justifyContent: "center",
               alignItems: "center",
               width: "100vw",
-              pt: 7,
+              pt: isMobile ? 7 : 2,
             }}
           >
             <ButtonGroup variant="outlined" color="primary">

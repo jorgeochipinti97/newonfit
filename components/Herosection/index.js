@@ -107,18 +107,24 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
             <div>
               <Typography
                 variant="subtitle1"
-                sx={{ color: "black", fontSize: "20px",lineHeight:'22px' }}
+                sx={{ color: "black", fontSize: "20px", lineHeight: "22px" }}
               >
                 {" "}
                 Te presentamos nuestros diseños de selección.
               </Typography>
             </div>
-            <div style={{ marginBottom: "1rem", display:'flex', justifyContent:'center' }}>
+            <div
+              style={{
+                marginBottom: "1rem",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Box
                 sx={{
                   backgroundColor: "black",
                   width: "fit-content",
-                  mt: isMobile ? 4: 10,
+                  mt: isMobile ? 4 : 10,
                   borderRadius: "90px",
                   display: "flex",
                   alignItems: "center",
@@ -126,7 +132,6 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 }}
               >
                 <Typography
-
                   component="h1"
                   sx={{
                     fontWeight: "900",
@@ -134,10 +139,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                     color: "rgb(254, 221, 45)",
                     lineHeight: "39px",
                     p: 2,
-                    mx:2,
+                    mx: 2,
                     fontFamily: "Bebas Neue",
-                    textAlign:'center'
-
+                    textAlign: "center",
                   }}
                 >
                   3 Cuotas sin interes y envio gratis
@@ -156,7 +160,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               <video
                 loop
                 autoPlay
-                controls
+                controls={false}
                 muted
                 playsInline
                 className="shadowR"

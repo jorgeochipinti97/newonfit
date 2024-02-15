@@ -65,7 +65,7 @@ export const ProductCard = ({ product, isMobile }) => {
   useEffect(() => {
     inView &&
       gsap.to(`.productCard${product.slug}`, {
-        transform: "rotateY(0deg)",
+        // transform: "rotateY(0deg)",
         opacity: 1,
       });
   }, [inView]);
@@ -81,8 +81,8 @@ export const ProductCard = ({ product, isMobile }) => {
       sx={{
         cursor: "pointer",
         overflow: "hidden",
-        transformStyle: "preserve-3d",
-        transform: "rotateY(180deg)",
+        // transformStyle: "preserve-3d",
+        // transform: "rotateY(180deg)",
         opacity: 0,
         display: "flex",
         justifyContent: "start",
@@ -112,7 +112,6 @@ export const ProductCard = ({ product, isMobile }) => {
                   sx={{ overflow: "hidden" }}
                 >
                   <img
-
                     alt={product.titulo}
                     src={productImage || ""}
                     style={{ width: "100%" }}
@@ -140,7 +139,21 @@ export const ProductCard = ({ product, isMobile }) => {
           justifyContent: "space-around",
         }}
       >
-        <div style={{color:'rgb(254, 221, 45)',position:'absolute',bottom:60, padding:10, fontWeight:800,backdropFilter:'blur(2px)',fontSize:'15px', backgroundColor:'rgba(0,0,0,0.6)', borderRadius:'9px'}}>{product.titulo}</div>
+        <div
+          style={{
+            color: "rgb(254, 221, 45)",
+            position: "absolute",
+            bottom: 60,
+            padding: 10,
+            fontWeight: 800,
+            backdropFilter: "blur(2px)",
+            fontSize: "15px",
+            backgroundColor: "rgba(0,0,0,0.6)",
+            borderRadius: "9px",
+          }}
+        >
+          {product.titulo}
+        </div>
         <div
           sx={{
             display: "flex",
@@ -175,7 +188,6 @@ export const ProductCard = ({ product, isMobile }) => {
             Comprar ahora
           </Button>
         </div>
-
       </Box>
     </Grid>
   );

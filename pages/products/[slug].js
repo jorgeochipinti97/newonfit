@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import PaymentIcon from "@mui/icons-material/Payment";
 import { useInView } from "react-intersection-observer";
 import Chip from "@mui/material/Chip";
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { Power1, gsap } from "gsap";
 
 import {
@@ -303,7 +303,12 @@ const ProductsSlugPage = () => {
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Chip
                       icon={<PaymentIcon />}
-                      sx={{ fontWeight: "800", p: 2, fontSize: isMobile ? '15px':"20px", mb: 2 }}
+                      sx={{
+                        fontWeight: "800",
+                        p: 2,
+                        fontSize: isMobile ? "15px" : "20px",
+                        mb: 2,
+                      }}
                       label={`3 cuotas sin interés de ${formattwo(
                         product.precio / 3
                       )}`}
@@ -311,6 +316,9 @@ const ProductsSlugPage = () => {
                       variant="outlined"
                     />
                   </div>
+                  <Box sx={{display:'flex', justifyContent:'center'}}>
+                    <Button variant="outlined" color="primary" sx={{mb:2}}>Ver guia de talles</Button>
+                  </Box>
 
                   <Box
                     display={
@@ -331,18 +339,16 @@ const ProductsSlugPage = () => {
                     />
                   </Box>
                   <p
-                style={{
-                  textAlign: "center",
-                  marginTop: "5px",
-                  display: tempCartProduct.size ? "none" : "auto",
-                }}
-              >
-                Selecciona un talle para continuar
-              </p>
-   
+                    style={{
+                      textAlign: "center",
+                      marginTop: "5px",
+                      display: tempCartProduct.size ? "none" : "auto",
+                    }}
+                  >
+                    Selecciona un talle para continuar
+                  </p>
                 </>
               )}
-
 
               <Box
                 sx={{
@@ -351,10 +357,12 @@ const ProductsSlugPage = () => {
                   justifyContent: "center",
                   flexDirection: "column",
                   alignItems: "center",
-
                 }}
               >
-                <Typography variant="subtitle2" sx={{ m: 2,fontWeight:'600' }}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ mt: 2, fontWeight: "600" }}
+                >
                   Cantidad
                 </Typography>
                 <Box sx={{ mb: 2 }}>
@@ -367,16 +375,28 @@ const ProductsSlugPage = () => {
               </Box>
             </Box>
             {product && (
-              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-                               <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Chip
-                      icon={<LocalShippingIcon />}
-                      sx={{ fontWeight: "600", p: 2, fontSize: "15px", mb:5, color:'black' }}
-                      label='Envio gratis a CABA / AMBA'
-
-                      variant="filled"
-                    />
-                  </div>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Chip
+                    icon={<LocalShippingIcon />}
+                    sx={{
+                      fontWeight: "600",
+                      p: 2,
+                      fontSize: "15px",
+                      mb: 5,
+                      color: "black",
+                    }}
+                    label="Envio gratis a CABA / AMBA"
+                    variant="filled"
+                  />
+                </div>
                 <ProductDescription descripcion={product.descripcion} />
               </Box>
             )}
