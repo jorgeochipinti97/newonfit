@@ -153,7 +153,7 @@ function useGlobalForm() {
       currency: "ARS",
       site_id: "00270150",
       establishment_name: "Tienda Onfit",
-      installments: globalFormData.paymentDetails.cuotas,
+      installments: 1,
       description: "pago Onfit",
       payment_type: "single",
       sub_payments: [],
@@ -290,8 +290,6 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
-      // createOrder('asda','asdas')
-      // console.log(globalFormData);
     } catch (err) {}
   };
 

@@ -133,7 +133,7 @@ export const FormularioTarjeta = ({
             ))}
           </Select>
         </div>
-        <div
+        {/* <div
           style={{
             display:
               tarjetaSeleccionada == "1" ||
@@ -179,7 +179,7 @@ export const FormularioTarjeta = ({
               </span>
             </MenuItem>
           </Select>
-        </div>
+        </div> */}
         <div
           style={{
             display: "flex",
