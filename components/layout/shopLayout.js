@@ -14,7 +14,7 @@ import { LoadingComponent } from "../Loading";
 import { useRouter } from "next/router";
 export const ShopLayout = ({
   children,
-  title,
+
   pageDescription,
   imageFullUrl,
 }) => {
@@ -24,14 +24,14 @@ export const ShopLayout = ({
     <>
       <Head>
         <title>Tienda Onfit | Potencia tu estilo Eleva tu rendimiento</title>
+        <meta name="description" content="Estamos comprometidos con tu bienestar y tu pasión por el fitness. Ofrecemos una amplia gama de equipos deportivos y ropa de la marca OnFit para que alcances tus metas. Ya sea que estés buscando entrenar en casa o en uno de nuestros gimnasios, ¡Te tenemos cubierto!"/>
         <meta property="og:image" content="/logo.png" />
         <meta property="twitter:image" content="/logo.png" />
         <meta name="description" content={pageDescription} />
-        <meta name="og:title" content={title} />
+        <meta name="og:title" content={'Tienda Onfit | Potencia tu estilo Eleva tu rendimiento '} />
         <meta name="og:description" content={pageDescription} />
         <link rel="icon" href="/favicon.png" type="image/png" />
 
-        {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
       </Head>
 
       <nav>
