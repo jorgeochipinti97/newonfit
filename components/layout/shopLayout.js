@@ -24,7 +24,8 @@ export const ShopLayout = ({
     <>
       <Head>
         <title>Tienda Onfit | Potencia tu estilo Eleva tu rendimiento</title>
-
+        <meta property="og:image" content="/logo.png" />
+        <meta property="twitter:image" content="/logo.png" />
         <meta name="description" content={pageDescription} />
         <meta name="og:title" content={title} />
         <meta name="og:description" content={pageDescription} />
@@ -77,7 +78,7 @@ export const ShopLayout = ({
             }}
           >
             <BottomNavigationAction
-              sx={{ color: "black", borderRight:'1px solid black' }}
+              sx={{ color: "black", borderRight: "1px solid black" }}
               label="Indumentaria"
               icon={
                 <svg
@@ -98,7 +99,7 @@ export const ShopLayout = ({
               label="Inicio"
               icon={
                 <svg
-                width={30}
+                  width={30}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
