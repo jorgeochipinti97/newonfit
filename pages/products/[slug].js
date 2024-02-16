@@ -18,6 +18,7 @@ import {
   useMediaQuery,
   capitalize,
   Alert,
+  Modal,
 } from "@mui/material";
 
 import { CartList, OrderSummary } from "@/components/cart";
@@ -35,14 +36,12 @@ const ProductDescription = ({ descripcion }) => {
   return <div dangerouslySetInnerHTML={{ __html: descripcion }} />;
 };
 const ProductsSlugPage = () => {
+  const [openSizeGuide, setOpenSizeGuide] = useState(false);
+  const [imgSize, setImgSize] = useState("");
+
   gsap.registerPlugin(ScrollTrigger);
   const [isAdd, setIsAdd] = useState(false);
-
-  const { ref, inView, entry } = useInView({
-    threshold: 0.9,
-    triggerOnce: true,
-  });
-  const { push, query } = useRouter();
+  const { query } = useRouter();
   const [product, setProduct] = useState();
   const [talles_, setTalles] = useState();
 
@@ -135,7 +134,22 @@ const ProductsSlugPage = () => {
           .filter((talle) => talle.stock >= 1)
           .map((talle) => talle.nombre)
       );
+
+    if (product) {
+      const tituloLower = product.titulo.toLowerCase();
+      if (tituloLower.includes("remera") || tituloLower.includes("musculosa")) {
+        setImgSize("/tablaremeras.jpg");
+      } else if (tituloLower.includes("short")) {
+        setImgSize("/tablashort.jpg");
+      } else if (tituloLower.includes("buzo")) {
+        setImgSize("/tablabuzos.jpg");
+      }
+    }
   }, [product]);
+
+  useEffect(() => {
+    console.log(imgSize);
+  }, [imgSize]);
 
   useEffect(() => {
     isAdd &&
@@ -158,11 +172,6 @@ const ProductsSlugPage = () => {
     setIsAdd(true);
   };
 
-  const onCheckOut = () => {
-    setIsCheckaut(true);
-    addProductToCart(tempCartProduct);
-  };
-
   const formattwo = (value) => {
     // Crear formateador
     const formatter = new Intl.NumberFormat("en-US", {
@@ -183,7 +192,7 @@ const ProductsSlugPage = () => {
           bottom: isMobile ? 100 : 50,
           right: 10,
           opacity: "0",
-          zIndex:'999'
+          zIndex: "999",
         }}
         severity="success"
         className="isAdd"
@@ -317,8 +326,48 @@ const ProductsSlugPage = () => {
                       variant="outlined"
                     />
                   </div>
-                  <Box sx={{display:'flex', justifyContent:'center'}}>
-                    <Button variant="outlined" color="primary" sx={{mb:2}}>Ver guia de talles</Button>
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      variant="outlined"
+                      onClick={() => setOpenSizeGuide(true)}
+                      color="primary"
+                      sx={{ mb: 2 }}
+                    >
+                      Ver guia de talles
+                    </Button>
+
+                    <Modal
+                      open={openSizeGuide}
+                      onClose={() => setOpenSizeGuide(false)}
+                      aria-labelledby="child-modal-title"
+                      aria-describedby="child-modal-description"
+                    >
+                      <Box
+                        sx={{
+                          background: "rgba(0,0,0,0.5)",
+                          height: "100vh",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                          }}
+                        >
+<img src={imgSize} alt="" style={{width:isMobile ?'80%':'30%'}}/>
+                          <Button
+                            sx={{ mt: 2 }}
+                            onClick={() => setOpenSizeGuide(false)}
+                          >
+                            Cerrar
+                          </Button>
+                        </div>
+                      </Box>
+                    </Modal>
                   </Box>
 
                   <Box
@@ -403,14 +452,6 @@ const ProductsSlugPage = () => {
             )}
           </Grid>
         </Grid>
-      </Box>
-      <Box
-        className="formContainerSlug"
-        sx={{ transform: "scale(0)", mt: 10, mx: 2, display: "none" }}
-      >
-        <CartList />
-        <OrderSummary />
-        <FormCheckout />
       </Box>
     </ShopLayout>
   );
