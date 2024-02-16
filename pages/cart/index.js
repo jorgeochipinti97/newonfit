@@ -121,7 +121,7 @@ const CartPage = () => {
         }}
         className="formTwo"
       >
-        <Box sx={{ mx: 2, width: isMobile ? "90%" : "50%" }}>
+        <Box sx={{ mx: 2, width: isMobile ? "95%" : "50%" }}>
           <Card className="summary-card" sx={{ minHeight: "0vh" }}>
             <CardContent
               sx={{
