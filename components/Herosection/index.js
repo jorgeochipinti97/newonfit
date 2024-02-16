@@ -20,21 +20,16 @@ import {
 } from "@mui/material";
 
 import { useRouter } from "next/router";
-import gsap from "gsap";
+import gsap, { Power1 } from "gsap";
 
 export const HeroSectionComponent = ({ products, isMobile }) => {
   const { push } = useRouter();
 
-useEffect(()=>{
-
-  Swiper && gsap.to('.container',{
-delay:2,display:'none'
-  })
-  Swiper && gsap.to('.loaderImage',{
-delay:2,display:'none'
-  })
-
-},[Swiper])
+  useEffect(() => {
+    setTimeout(() => {
+      gsap.to(".sliderSwipe", { opacity: 1, ease: Power1.easeIn });
+    }, 2000);
+  }, []);
 
   return (
     <section
@@ -176,7 +171,15 @@ delay:2,display:'none'
           flex: 1,
         }}
       >
-        <div style={{ width: "100%", marginTop: "50px", marginBottom: "50px" ,opacity:1}} className="sliderSwipe">
+        <div
+          style={{
+            width: "100%",
+            marginTop: "50px",
+            marginBottom: "50px",
+            opacity: 0.2,
+          }}
+          className="sliderSwipe"
+        >
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -208,9 +211,9 @@ delay:2,display:'none'
                       minHeight: isMobile ? "70vh" : "auto",
                     }}
                   >
-                    <div className="container">
+                    {/* <div className="container">
                       <span className="loaderImage "></span>
-                    </div>
+                    </div> */}
                     <Card
                       sx={{
                         borderRadius: "22px",
