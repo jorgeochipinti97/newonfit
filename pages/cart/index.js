@@ -76,7 +76,7 @@ const CartPage = () => {
       >
         <Box
           sx={{
-            width: isMobile ? "80%" : "50%",
+            width: isMobile ? "95%" : "50%",
             borderRadius: "10px",
             backgroundColor: "white",
             padding: 5,
