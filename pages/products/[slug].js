@@ -357,8 +357,12 @@ const ProductsSlugPage = () => {
                             flexDirection: "column",
                             alignItems: "center",
                           }}
-                        > 
-<img src={imgSize} alt="" style={{width:isMobile ?'80%':'30%'}}/>
+                        >
+                          <img
+                            src={imgSize}
+                            alt=""
+                            style={{ width: isMobile ? "80%" : "30%" }}
+                          />
                           <Button
                             sx={{ mt: 2 }}
                             onClick={() => setOpenSizeGuide(false)}

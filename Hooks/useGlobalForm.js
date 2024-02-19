@@ -6,9 +6,6 @@ import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function useGlobalForm() {
-
-
-
   const sku = [
     { name: "65cc0ed0cc62de1de4a5b7f6 L", Sku: "AMBITNEGL" },
     { name: "65cc0ed0cc62de1de4a5b7f6 M", Sku: "AMBITNEGM" },
@@ -66,8 +63,6 @@ function useGlobalForm() {
     // Retorna el Sku si se encontró una coincidencia, de lo contrario retorna un string vacío
     return resultado ? resultado.Sku : "";
   };
-
-
 
   const trackId = uuidv4();
   const { cart, numberOfItems, total } = useContext(CartContext);
@@ -201,8 +196,8 @@ function useGlobalForm() {
 
     const datos = {
       customer: {
-        id: "customer01",
-        email: "MiPago@gmail.com",
+        id: `${globalFormData.shippingDetails.firstName} ${globalFormData.shippingDetails.lastName}`,
+        email: globalFormData.shippingDetails.email,
       },
       user_id: "customer",
       site_transaction_id: uuidv4(),
@@ -269,7 +264,6 @@ function useGlobalForm() {
     }
   };
 
- 
   const createOrder = async (token, transactionId) => {
     try {
       const createOrder_ = await axios.post("/api/orders", {
@@ -314,17 +308,14 @@ function useGlobalForm() {
 
   const generarToken = async () => {
     try {
-      const [mesExpiracion, anioExpiracion] =
-        globalFormData.paymentDetails.fechaExpiracion.split("/");
-
       const apiKey = "16e8508ea61d4c4d8093f16d8ee9a3c2"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
       // const apiKey = "vjzIsMxW2Yd43QoBP93SdmMzJMBbHXoS"; // Reemplaza TU_API_KEY_AQUI con tu apiKey real
       const response = await axios.post(
         "https://ventasonline.payway.com.ar/api/v2/tokens",
         {
           card_number: globalFormData.paymentDetails.numeroTarjeta,
-          card_expiration_month: mesExpiracion,
-          card_expiration_year: anioExpiracion,
+          card_expiration_month: globalFormData.paymentDetails.mesExpiracion,
+          card_expiration_year: globalFormData.paymentDetails.anioExpiracion,
           security_code: globalFormData.paymentDetails.codigoSeguridad,
           card_holder_name: globalFormData.paymentDetails.nombreTitular,
           card_holder_identification: {
@@ -360,7 +351,9 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
-    } catch (err) {}
+    } catch (err) {
+      console.log(err)
+    }
   };
 
   return { globalFormData, updateFormData, resetFormData, submitGlobalForm };

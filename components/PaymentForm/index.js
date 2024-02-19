@@ -58,7 +58,7 @@ export const FormularioTarjeta = ({
         nombreTitular,
         tipoIdentificacion,
         numeroIdentificacion,
-        fechaExpiracion,
+
         mesExpiracion,
         anioExpiracion,
         cuotas,
@@ -67,7 +67,6 @@ export const FormularioTarjeta = ({
     );
 
     setIsProcesing(true);
-    // generarToken(datosTarjeta);
   };
 
   useEffect(() => {

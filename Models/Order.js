@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema(
     ciudad: { type: String },
     provincia: { type: String },
     phone: { type: String },
-    estado: { type: String, default: "compra" },
+    estado: { type: String, default: "acreditado" },
 
     discountPrice: { type: Number, default: 0 },
     tracking: { type: String },

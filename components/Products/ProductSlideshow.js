@@ -13,7 +13,7 @@ import { EffectFlip, Pagination, Navigation,Autoplay } from "swiper/modules";
 
 export const ProductSlideshow = ({ images,  width }) => {
   return (
-    <div style={{maxWidth:width}}> 
+<div style={{ maxWidth: '80%', }}>
       <Swiper
 speed={1800}
 loop={true}
@@ -24,6 +24,7 @@ loop={true}
           delay: 2500,
           disableOnInteraction: false,
         }}
+        style={{position:'sticky',top:0,maxWidth:'90%'}}
         modules={[EffectFlip, Pagination, Navigation,Autoplay]}
         className="mySwiper"
 
@@ -32,7 +33,7 @@ loop={true}
         {images &&
           images.map((image) => {
             return (
-              <SwiperSlide key={image}>
+              <SwiperSlide key={image} style={{display:'flex', justifyContent:'center',width:'fit-content'}}>
                 <img style={{maxWidth:'100%',borderRadius:'19px'}} src={image} alt={image}  />
               </SwiperSlide>
             );
