@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema(
     provincia: { type: String },
     phone: { type: String },
     estado: { type: String, default: "acreditado" },
-
+    dniTitular: { type: String },
     discountPrice: { type: Number, default: 0 },
     tracking: { type: String },
     codGestion: { type: String },

@@ -278,6 +278,7 @@ function useGlobalForm() {
         ciudad: globalFormData.shippingDetails.city,
         provincia: globalFormData.shippingDetails.provincia,
         phone: globalFormData.shippingDetails.mobile,
+        dniTitular:`${globalFormData.numeroIdentificacion}`
       });
 
       const stockUpdatePromises = cart.map((item) =>
