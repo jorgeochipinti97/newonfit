@@ -272,7 +272,7 @@ function useGlobalForm() {
         total: total,
         transactionId: transactionId,
         token: token,
-        nombreTitular: `${globalFormData.shippingDetails.firstName} ${globalFormData.shippingDetails.lastName}`,
+        titular: `${globalFormData.shippingDetails.firstName} ${globalFormData.shippingDetails.lastName}`,
         email: globalFormData.shippingDetails.email,
         address: globalFormData.shippingDetails.mobile,
         ciudad: globalFormData.shippingDetails.city,
