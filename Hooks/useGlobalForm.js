@@ -351,9 +351,9 @@ function useGlobalForm() {
 
   const submitGlobalForm = async () => {
     try {
-      // generarToken();
+      generarToken();
       // createOrder("data.data.token", "data.data.site_transaction_id");
-      console.log(globalFormData);
+      // console.log(globalFormData);
     } catch (err) {
       console.log(err);
     }
