@@ -310,7 +310,7 @@ const ProductsSlugPage = () => {
               <Divider sx={{ my: 2 }} />
               {product && (
                 <>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  {/* <div style={{ display: "flex", justifyContent: "center" }}>
                     <Chip
                       icon={<PaymentIcon />}
                       sx={{
@@ -325,7 +325,7 @@ const ProductsSlugPage = () => {
                       color="success"
                       variant="outlined"
                     />
-                  </div>
+                  </div> */}
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Button
                       variant="outlined"

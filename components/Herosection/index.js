@@ -96,7 +96,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 Te presentamos nuestros diseños de selección.
               </Typography>
             </div>
-            <div
+            {/* <div
               style={{
                 marginBottom: "1rem",
                 display: "flex",
@@ -130,7 +130,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   3 Cuotas sin interes y envio gratis
                 </Typography>
               </Box>
-            </div>
+            </div> */}
           </Grid>
           <Grid item xs={12} lg={4} xl={4}>
             <Box
