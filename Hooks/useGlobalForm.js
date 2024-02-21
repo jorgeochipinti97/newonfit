@@ -284,6 +284,7 @@ function useGlobalForm() {
         provincia: globalFormData.shippingDetails.provincia,
         phone: globalFormData.shippingDetails.mobile,
         dniTitular: `${globalFormData.paymentDetails.numeroIdentificacion}`,
+        postalCode:globalFormData.shippingDetails.postalCode
       });
 
       const stockUpdatePromises = cart.map((item) =>
@@ -356,8 +357,8 @@ function useGlobalForm() {
 
   const submitGlobalForm = async () => {
     try {
-      generarToken();
-      // createOrder("data.data.token", "data.data.site_transaction_id");
+      // generarToken();
+      createOrder("data.data.token", "data.data.site_transaction_id");
  
     } catch (err) {
       console.log(err);

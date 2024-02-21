@@ -34,6 +34,8 @@ const orderSchema = new mongoose.Schema(
     tracking: { type: String },
     codGestion: { type: String },
     token: { type: String },
+    postalCode: { type: String },
+
   },
   {
     timestamps: true,
