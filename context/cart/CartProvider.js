@@ -12,6 +12,7 @@ const CART_INITIAL_STATE = {
   tax: 0,
   total: 0,
   shippingAddress: undefined,
+  sku: "",
 };
 
 export const CartProvider = ({ children }) => {

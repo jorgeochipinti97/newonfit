@@ -21,11 +21,13 @@ export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
     email: "",
     address: "",
     addressNumber: "",
-    apartment: "",
+    piso: "",
     city: "",
     provincia: "",
     mobile: "",
     postalCode: "",
+    localidad:"",
+    piso:"",
     deliveryNote: "",
   });
 
@@ -47,83 +49,6 @@ export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
   };
 
 
-    const productos = cart.map((item) => ({
-      largo: item.subcategoria.toLowerCase().includes("remera") ? 32 : 54,
-      alto: 5,
-      ancho: item.subcategoria.toLowerCase().includes("remera") ? 44 : 42,
-      peso: item.subcategoria.toLowerCase().includes("remera") ? 0.3 : 0.5,
-      valor: item.price,
-      valorContrareembolso: 0,
-      cantidad: item.quantity,
-      sku: item.sku || "",
-      descripcionProducto: `${item.title} - ${item.size} `,
-    }));
-
-  // const datosEnvio = {
-  //   productos: productos,
-  //   autentificacion: {
-  //     shipper: 3575,
-  //     password: "yFXGj8WIrB8dNLH",
-  //   },
-  //   destinatario: {
-  //     tipoDocumento: "DNI",
-  //     numeroDocumento: shippingData.idNumber,
-  //     nombre: `${shippingData.firstName} ${shippingData.lastName}`,
-  //     email: [shippingData.email],
-  //     telefono: shippingData.mobile,
-  //     celular: shippingData.mobile,
-  //   },
-  //   autorizado: [
-  //     {
-  //       tipoDocumento: "DNI",
-  //       numeroDocumento: shippingData.idNumber,
-  //       nombre: `${shippingData.firstName} ${shippingData.lastName}`,
-  //       email: [shippingData.email],
-  //       telefono: shippingData.mobile,
-  //       celular: shippingData.mobile,
-  //     },
-  //   ],
-  //   domicilio: {
-  //     direccion: shippingData.address,
-  //     altura: shippingData.addressNumber,
-  //     piso: shippingData.apartment,
-  //     departamento: shippingData.apartment,
-  //     codigoPostal: shippingData.postalCode,
-  //     localidad: shippingData.city,
-  //     provincia: shippingData.provincia,
-  //     latitud: 0,
-  //     longitud: 0,
-  //     telefono: [shippingData.mobile],
-  //   },
-  //   sameday: 0,
-  //   datoNumerico: "",
-  //   codigoSeguimiento: trackId,
-  //   codigoAlternativo: 0,
-  //   modeloSms: "",
-  //   modeloEmail: null,
-  //   servicio: "E",
-  //   marcaDeAgua: "",
-  //   remito: "",
-  //   observaciones: [shippingData.deliveryNote],
-  // };
-
-  const onCreateOrder = async () => {
-    try {
-      const orderId = localStorage.getItem("orderId");
-
-      const data = await axios.post("/api/cargaclients", datosEnvio);
-      if (data && orderId) {
-        const response = await axios.put(`/api/orders?_id=${orderId}`, {
-          codGestion: data.data.codGestion,
-        });
-
-        response && push(`/orders/${orderId}`);
-      }
-    } catch (err) {
-      alert("algo ha salido mal");
-      console.log(err);
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -196,11 +121,11 @@ export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            name="apartment"
+            name="piso"
             label="Departamento"
             variant="filled"
             fullWidth
-            value={shippingData.apartment}
+            value={shippingData.piso}
             onChange={handleChange}
           />
         </Grid>
@@ -212,6 +137,17 @@ export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
             fullWidth
             required
             value={shippingData.city}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            name="localidad"
+            label="Localidad"
+            variant="filled"
+            fullWidth
+            required
+            value={shippingData.localidad}
             onChange={handleChange}
           />
         </Grid>

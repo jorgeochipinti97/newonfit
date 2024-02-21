@@ -76,8 +76,10 @@ function useGlobalForm() {
       email: "",
       address: "",
       addressNumber: "",
-      apartment: "",
+      piso: "",
       city: "",
+      localidad: "",
+      piso: "",
       provincia: "",
       mobile: "",
       postalCode: "",
@@ -139,7 +141,7 @@ function useGlobalForm() {
       piso: globalFormData.shippingDetails.apartment,
       departamento: globalFormData.shippingDetails.apartment,
       codigoPostal: globalFormData.shippingDetails.postalCode,
-      localidad: globalFormData.shippingDetails.city,
+      localidad: globalFormData.shippingDetails.localidad,
       provincia: globalFormData.shippingDetails.provincia,
       latitud: 0,
       longitud: 0,
@@ -274,7 +276,10 @@ function useGlobalForm() {
         token: token,
         titular: `${globalFormData.shippingDetails.firstName} ${globalFormData.shippingDetails.lastName}`,
         email: globalFormData.shippingDetails.email,
-        address: globalFormData.shippingDetails.mobile,
+        address: globalFormData.shippingDetails.address,
+        numberOfAddress: globalFormData.shippingDetails.addressNumber,
+        localidad: globalFormData.shippingDetails.localidad,
+        piso: globalFormData.shippingDetails.piso,
         ciudad: globalFormData.shippingDetails.city,
         provincia: globalFormData.shippingDetails.provincia,
         phone: globalFormData.shippingDetails.mobile,
@@ -353,7 +358,7 @@ function useGlobalForm() {
     try {
       generarToken();
       // createOrder("data.data.token", "data.data.site_transaction_id");
-      // console.log(globalFormData);
+ 
     } catch (err) {
       console.log(err);
     }
