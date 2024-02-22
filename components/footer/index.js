@@ -7,19 +7,19 @@ export const FooterComponent = ({ isMobile }) => {
   return (
     <footer
       style={{
-        paddingTop: "30px",
+        paddingTop: "30px",          backgroundColor: "black",
       }}
     >
       <Box
         sx={{
           width: "100%",
-pb:5,
+          pb: 5,
 
           display: "flex",
           flexDirection: "column",
           justifyContent: "end",
           alignItems: "center",
-          backgroundColor: "black",
+
         }}
       >
         <div class="icons">
@@ -88,13 +88,24 @@ pb:5,
             </svg>
           </a>
         </div>
- 
+
         <Typography
           varaint="subtitle1"
           sx={{ textAlign: "center", fontWeight: 300, color: "#f5f5f7" }}
         >
           © ONFIT. Todos los derechos reservados.
         </Typography>
+      <div style={{marginTop:15}}>
+        <a
+          href="http://qr.afip.gob.ar/?qr=DjP-hHERRH2uY6NxrMSGUA."
+          target="_F960AFIPInfo"
+        >
+          <img width={50}
+            src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg"
+            border="0"
+          />
+        </a>
+      </div>
       </Box>
     </footer>
   );
