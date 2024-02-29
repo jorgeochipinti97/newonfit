@@ -510,7 +510,7 @@ const ProductsSlugPage = () => {
                       mb: 5,
                       color: "black",
                     }}
-                    label="Envio gratis a CABA / AMBA"
+                    label="Envio gratis a toda la Argentina"
                     variant="filled"
                   />
                 </div>
