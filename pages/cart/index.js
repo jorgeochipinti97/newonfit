@@ -97,7 +97,7 @@ const CartPage = () => {
                 />
               }
               color="success"
-              label="Envio gratis a CABA y AMBA"
+              label="Envio gratis a todo Argentina."
               sx={{ fontWeight: "800", px: 2, mt: isMobile ? 2 : 0 }}
               variant="outlined"
             />
