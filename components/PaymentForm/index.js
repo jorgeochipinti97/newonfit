@@ -24,8 +24,6 @@ export const FormularioTarjeta = ({
   const [cuotas, setcuotas] = useState(1);
   const [isProcesing, setIsProcesing] = useState(false);
 
-  
-
   const handleFechaExpiracionChange = (e) => {
     let valor = e.target.value.replace(/\D/g, ""); // Elimina todo lo que no sea dígito
     if (valor.length > 2) {
@@ -48,7 +46,7 @@ export const FormularioTarjeta = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     const [mesExpiracion, anioExpiracion] = fechaExpiracion.split("/");
-    
+
     updateFormData({ totalPesos: Math.round(total * 100) }, "paymentDetails");
     updateFormData(
       {
@@ -132,7 +130,7 @@ export const FormularioTarjeta = ({
             ))}
           </Select>
         </div>
-        {/* <div
+        <div
           style={{
             display:
               tarjetaSeleccionada == "1" ||
@@ -159,10 +157,14 @@ export const FormularioTarjeta = ({
             <MenuItem value="">Cantidad de cuotas</MenuItem>
             <MenuItem value={1}>
               <span style={{ fontWeight: "600", marginRight: "5px" }}>1</span>
-              Cuota de <span style={{ fontWeight: "600", marginLeft: "5px" }}> {formattwo(total)}</span>
+              Cuota de{" "}
+              <span style={{ fontWeight: "600", marginLeft: "5px" }}>
+                {" "}
+                {formattwo(total)}
+              </span>
             </MenuItem>
-            MenuItem
-            <MenuItem value={3}>
+
+            <MenuItem value={13}>
               <span style={{ fontWeight: "600", marginRight: "5px" }}>3</span>
               Cuotas sin interes de{" "}
               <span style={{ fontWeight: "600", marginLeft: "5px" }}>
@@ -170,7 +172,7 @@ export const FormularioTarjeta = ({
                 {formattwo(total / 3)}
               </span>
             </MenuItem>
-            <MenuItem value={6}>
+            <MenuItem value={16}>
               <span style={{ fontWeight: "600", marginRight: "5px" }}>6</span>
               Cuotas de
               <span style={{ fontWeight: "600", marginLeft: "5px" }}>
@@ -178,7 +180,7 @@ export const FormularioTarjeta = ({
               </span>
             </MenuItem>
           </Select>
-        </div> */}
+        </div>
         <div
           style={{
             display: "flex",
