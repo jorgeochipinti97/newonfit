@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
 const OrdersPage = () => {
-  const { query } = useRouter();
+  const { query,push } = useRouter();
   const [order, setOrder] = useState();
   const { resetCart } = useContext(CartContext);
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -24,10 +24,9 @@ const OrdersPage = () => {
     <ShopLayout>
       <div style={{ minHeight: "100vh", paddingTop: "100px" }}>
         <Box sx={{ width: "100%" }}>
-  
           <div style={{ display: "flex", justifyContent: "center" }}>
             <svg
-              width={isMobile ? 50:30}
+              width={isMobile ? 50 : 30}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 48 48"
@@ -58,7 +57,7 @@ const OrdersPage = () => {
               display: "flex",
               alignItems: "center",
               marginTop: "2px",
-              justifyContent:'center'
+              justifyContent: "center",
             }}
           >
             <Typography
@@ -114,18 +113,26 @@ const OrdersPage = () => {
               ID de la orden:{" "}
               <span style={{ fontWeight: "600" }}>{order._id} </span>
             </p>
-            <p
-              style={{
-                fontWeight: "400",
-                fontSize: "20px",
-                marginTop: "10px",
-                textAlign: "center",
-                marginBottom: "10px",
-              }}
-            >
-              Codigo de seguimiento : <br />
-              <span style={{ fontWeight: "600" }}> {order.codGestion} </span>
-            </p>
+            <div style={{ width: "100%" , display:'flex', justifyContent:'center'}}>
+              <p
+                style={{
+                  fontWeight: "400",
+                  fontSize: "20px",
+                  marginTop: "10px",
+                  textAlign: "center",
+                  width:'50%',
+                  marginBottom: "10px",
+                }}
+              >
+                {/* Codigo de seguimiento : <br />  */}
+                Tu pedido con el código de seguimiento{" "}
+                <span style={{ fontWeight: "600" }}> {order.codGestion} </span>
+                stá siendo procesado y estará listo para ser rastreado en las
+                próximas 24/48 horas. Podras rastrearlo{" "}
+                <span style={{ fontWeight: "700",cursor:'pointer' }} onClick={()=>push('https://www.urbano.com.ar/')}>aquí</span>. Recibiras un correo electrónico de confirmación una
+                vez que tu paquete sea despachado.
+              </p>
+            </div>
             <div
               style={{
                 flexWrap: "wrap",
