@@ -1,3 +1,4 @@
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { CartProvider } from "@/context/cart/CartProvider";
 import { UiProvider } from "@/context/ui/UiProvider";
 import "@/styles/globals.css";
@@ -8,6 +9,7 @@ import { CssBaseline } from "@mui/material";
 export default function App({ Component, pageProps }) {
   return (
     <>
+    <GoogleAnalytics/>
       <CartProvider>
         <UiProvider>
           <ThemeProvider theme={lightTheme}>
