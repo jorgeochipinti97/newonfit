@@ -118,7 +118,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   component="h1"
                   sx={{
                     fontWeight: "900",
-                    fontSize: isMobile ? "20px" : "3rem",
+                    fontSize: isMobile ? "30px" : "3rem",
                     color: "rgb(254, 221, 45)",
                     lineHeight: "39px",
                     p: 2,
@@ -127,7 +127,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                     textAlign: "center",
                   }}
                 >
-                  3 Cuotas sin interes y envio gratis
+                  3 Cuotas sin interes y envio gratis a todo el país.
                 </Typography>
               </Box>
             </div>
