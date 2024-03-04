@@ -12,13 +12,15 @@ import axios from "axios";
 import { HeroSectionComponent } from "@/components/Herosection";
 import CountdownTimer from "@/components/Timer";
 import { useProduct } from "@/Hooks/UseProducts";
+import { useCodes } from "@/Hooks/useCodes";
 
 export default function Home() {
   const isMobile = useMediaQuery("(max-width:600px)");
-
+  const { codes } = useCodes();
   const { products, isLoading } = useProduct();
-
-
+  useEffect(() => {
+    console.log(codes);
+  }, [codes]);
   return (
     <>
       <ShopLayout>

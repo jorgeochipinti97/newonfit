@@ -7,13 +7,20 @@ import { v4 as uuidv4 } from "uuid";
 
 function useGlobalForm() {
   const sku = [
+
+    { name: "65e537dd6b8340a3e1abb82d M", Sku: "SFNTM" },
+    { name: "65e537dd6b8340a3e1abb82d L", Sku: "SFNTL" },
+    { name: "65e537dd6b8340a3e1abb82d XL", Sku: "SFNTXL" },
+    { name: "65e5383c6b8340a3e1abb86a L", Sku: "SFGTL" },
+    { name: "65e5383c6b8340a3e1abb86a M", Sku: "SFGTM" },
+    { name: "65e5383c6b8340a3e1abb86a XL", Sku: "SFGTXL" },
     { name: "65cc0ed0cc62de1de4a5b7f6 L", Sku: "AMBITNEGL" },
     { name: "65cc0ed0cc62de1de4a5b7f6 M", Sku: "AMBITNEGM" },
     { name: "65cc0ed0cc62de1de4a5b7f6 S", Sku: "AMBITNEGS" },
     { name: "65cc0ed0cc62de1de4a5b7f6 XL", Sku: "AMBITNEGXL" },
-    { name: "65cc1028cc62de1de4a5b816 L", Sku: "ANTICNEGNEGL" },
-    { name: "65cc1028cc62de1de4a5b816 M", Sku: "ANTICNEGNEGM" },
-    { name: "65cc1028cc62de1de4a5b816 S", Sku: "ANTICNEGNEGS" },
+    { name: "65cc1028cc62de1de4a5b816 L", Sku: "ANTICNEGL" },
+    { name: "65cc1028cc62de1de4a5b816 M", Sku: "ANTICNEGM" },
+    { name: "65cc1028cc62de1de4a5b816 S", Sku: "ANTICNEGS" },
     { name: "65cc13c5312e0e39f55b92e7 L", Sku: "ARNOLDNEGL" },
     { name: "65cc13c5312e0e39f55b92e7 M", Sku: "ARNOLDNEGM" },
     { name: "65cc13c5312e0e39f55b92e7 S", Sku: "ARNOLDNEGS" },
