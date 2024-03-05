@@ -32,9 +32,10 @@ const CartPage = () => {
 
   const [isCheckout, setIsCheckout] = useState();
 
-  useEffect(() => {
-    isLoaded && cart.length === 0 && router.push("/cart/empty");
-  }, [isLoaded]);
+  // useEffect(() => {
+  //   isLoaded && cart.length === 0 && router.push("/cart/empty");
+  // }, [isLoaded]);
+
 
   useEffect(() => {
     isCheckout &&
@@ -139,6 +140,7 @@ const CartPage = () => {
                   <CartList isMobile={isMobile} />
                 </Box>
               </Box>
+
               <Divider sx={{ my: 1 }} />
 
               <OrderSummary />

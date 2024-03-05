@@ -7,6 +7,7 @@ const discountCodeSchema = new mongoose.Schema(
 
     valor: { type: Number },
     isPercentaje: { type: Boolean },
+    isUsed: { type: Boolean, default: false },
   },
   {
     timestamps: true,

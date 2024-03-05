@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 
 function useGlobalForm() {
   const sku = [
-
     { name: "65e537dd6b8340a3e1abb82d M", Sku: "SFNTM" },
     { name: "65e537dd6b8340a3e1abb82d L", Sku: "SFNTL" },
     { name: "65e537dd6b8340a3e1abb82d XL", Sku: "SFNTXL" },
@@ -103,6 +102,7 @@ function useGlobalForm() {
       numeroIdentificacion: "",
       totalPesos: 0,
       cuotas: 1,
+      discountCode: {},
     },
   });
 
@@ -199,9 +199,29 @@ function useGlobalForm() {
     });
   };
 
+  const calculateTotalWithDiscount = (total, discountObjet) => {
+    if (!discountObjet) return total; // Si no hay descuento, retorna el total original
+    const { isPercentaje, valor } = discountObjet;
+
+    if (isPercentaje) {
+      return total * (1 - valor / 100);
+    } else {
+      return total - valor;
+    }
+  };
+  const totalConDescuento = calculateTotalWithDiscount(
+    total,
+    globalFormData.paymentDetails.discountCode
+  );
+
   const getPayment = async (token) => {
     const apikey = "ba0fb5b8bed24975af3ef167e1dcae71";
     // const apikey = "rfZTGgNW83rkKS7HcKDy2YQruDzXEq52";
+    const amountToPay =
+      globalFormData.paymentDetails.discountCode &&
+      Object.keys(globalFormData.paymentDetails.discountCode).length > 0
+        ? parseInt(totalConDescuento * 100) // Asegúrate de que totalConDescuento esté en unidades antes de multiplicar por 100
+        : parseInt(globalFormData.paymentDetails.totalPesos); // Asumiendo que totalPesos ya está en centavos
 
     const datos = {
       customer: {
@@ -211,16 +231,14 @@ function useGlobalForm() {
       user_id: "customer",
       site_transaction_id: uuidv4(),
       token: token,
-      payment_method_id: parseInt(
-        globalFormData.paymentDetails.tarjetaSeleccionada
-      ),
+      payment_method_id: globalFormData.paymentDetails.tarjetaSeleccionada,
       bin: "450799",
       // amount: 2900,
-      amount: parseInt(globalFormData.paymentDetails.totalPesos),
+      amount: parseInt(amountToPay),
       currency: "ARS",
       site_id: "00270150",
       establishment_name: "Tienda Onfit",
-      installments: 1,
+      installments: globalFormData.paymentDetails.cuotas,
       description: "pago Onfit",
       payment_type: "single",
       sub_payments: [],
@@ -236,10 +254,36 @@ function useGlobalForm() {
           },
         }
       );
-      data.data.status == "approved" &&
-        createOrder(data.data.token, data.data.site_transaction_id);
 
-      data.data.status == "approved" && console.log("pago aprobado");
+      if (data.data.status === "approved") {
+        // El pago fue aprobado, procede a crear la orden y luego elimina el código de descuento
+        try {
+          await createOrder(data.data.token, data.data.site_transaction_id);
+          console.log("pago aprobado");
+
+          if (
+            globalFormData.paymentDetails.discountCode &&
+            globalFormData.paymentDetails.discountCode._id
+          ) {
+            const discountCodeId =
+              globalFormData.paymentDetails.discountCode._id;
+            try {
+              const data = await axios.put(
+                `/api/discount?_id=${discountCodeId}`
+              );
+
+            } catch (error) {
+              console.error("Error al eliminar el código de descuento:", error);
+            }
+          }
+        } catch (error) {
+          console.error(
+            "Error procesando el pago o la creación de la orden:",
+            error
+          );
+          // Manejar aquí el error, por ejemplo, mostrando un mensaje al usuario
+        }
+      }
 
       data.data.status == "approved" &&
         gsap.to(".isPaid", {
@@ -291,7 +335,12 @@ function useGlobalForm() {
         provincia: globalFormData.shippingDetails.provincia,
         phone: globalFormData.shippingDetails.mobile,
         dniTitular: `${globalFormData.paymentDetails.numeroIdentificacion}`,
-        postalCode:globalFormData.shippingDetails.postalCode
+        postalCode: globalFormData.shippingDetails.postalCode,
+        discountPrice: totalConDescuento,
+        cuotas: `${globalFormData.paymentDetails.cuotas}`,
+        discountCode: globalFormData.paymentDetails.discountCode
+          ? globalFormData.paymentDetails.discountCode
+          : "",
       });
 
       const stockUpdatePromises = cart.map((item) =>
@@ -365,8 +414,6 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
-      // createOrder("data.data.token", "data.data.site_transaction_id");
- 
     } catch (err) {
       console.log(err);
     }

@@ -24,6 +24,7 @@ const orderSchema = new mongoose.Schema(
     address: { type: String },
     numberOfAddress: { type: String },
     ciudad: { type: String },
+    cuotas: { type: String },
     provincia: { type: String },
     localidad:{ type: String },
     phone: { type: String },

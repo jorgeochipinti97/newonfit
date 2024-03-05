@@ -283,26 +283,15 @@ const ProductsSlugPage = () => {
             item
             xs={12}
             sm={6}
-            sx={{ display: "flex", justifyContent: "center" }}
+            sx={{ display: "flex", justifyContent: "center", }}
           >
-            {product && product.images.length > 0 ? (
+            {product && (
               <ProductSlideshow
                 images={product && product.images}
                 seconds={7000}
                 height={isMobile ? 300 : 850}
                 width={isMobile ? 300 : 550}
               />
-            ) : (
-              <>
-                {product && (
-                  <Image
-                    src={product.images[0]}
-                    alt=""
-                    height={isMobile ? 300 : 600}
-                    width={isMobile ? 300 : 600}
-                  />
-                )}
-              </>
             )}
           </Grid>
           <Grid item xs={12} sm={5}>

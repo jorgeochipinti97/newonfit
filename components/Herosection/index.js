@@ -120,9 +120,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                     fontWeight: "900",
                     fontSize: isMobile ? "30px" : "3rem",
                     color: "rgb(254, 221, 45)",
-                    lineHeight: "39px",
+                    lineHeight:{xs:"35px", md:'50px'},
                     p: 2,
-                    mx: 2,
+
                     fontFamily: "Bebas Neue",
                     textAlign: "center",
                   }}

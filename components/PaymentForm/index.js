@@ -8,6 +8,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import gsap, { Power1 } from "gsap";
 import { useRouter } from "next/router";
 import { formattwo } from "@/utils/currency";
+import { useCodes } from "@/Hooks/useCodes";
 
 export const FormularioTarjeta = ({
   total,
@@ -23,7 +24,10 @@ export const FormularioTarjeta = ({
   const [fechaExpiracion, setFechaExpiracion] = useState("");
   const [cuotas, setcuotas] = useState(1);
   const [isProcesing, setIsProcesing] = useState(false);
-
+  const [discountCode, setDiscountCode] = useState("");
+  const [discountObjet, setdiscountObjet] = useState("");
+  const [newTotal, setNewTotal] = useState();
+  const [isUsed, setIsUsed] = useState();
   const handleFechaExpiracionChange = (e) => {
     let valor = e.target.value.replace(/\D/g, ""); // Elimina todo lo que no sea dígito
     if (valor.length > 2) {
@@ -56,7 +60,7 @@ export const FormularioTarjeta = ({
         nombreTitular,
         tipoIdentificacion,
         numeroIdentificacion,
-
+  discountCode: (discountObjet && !discountObjet.isUsed && total > 29800) ? discountObjet : "",
         mesExpiracion,
         anioExpiracion,
         cuotas,
@@ -70,6 +74,46 @@ export const FormularioTarjeta = ({
   useEffect(() => {
     isProcesing && submitGlobalForm();
   }, [isProcesing]);
+
+  const { codes } = useCodes();
+
+  // useEffect(() => {
+
+  //   const data = codes.filter((e) => e._id === discountCode);
+  //   data[0] && data[0].isUsed && setIsUsed(true);
+  //   if (data[0] && data[0].isUsed == false) {
+  //     setdiscountObjet(data[0]);
+  //     setNewTotal(
+  //       data[0].isPercentaje
+  //         ? total * (1 - data[0].valor / 100)
+  //         : total - data[0].valor
+  //     );
+  //   } else {
+
+  //     setdiscountObjet(null); // O cualquier valor inicial que prefieras
+  //     setNewTotal(total); // Resetea el total al valor original si no hay descuento
+  //   }
+  // }, [discountCode, codes, total]);
+
+  useEffect(() => {
+    const data = codes.filter((e) => e._id === discountCode);
+
+    if (data.length === 0 || (data[0] && data[0].isUsed)) {
+      // Si no se encuentra el código o el código está marcado como usado
+      setdiscountObjet(null); // Limpia el objeto de descuento anterior
+      setNewTotal(total); // Resetea el total al valor original
+      setIsUsed(data[0] ? data[0].isUsed : false); // Establece isUsed basado en si el código fue encontrado y está usado
+    } else if (data[0] && !data[0].isUsed) {
+      // Si el código de descuento existe y no ha sido usado
+      setdiscountObjet(data[0]); // Establece el nuevo objeto de descuento
+      setNewTotal(
+        data[0].isPercentaje
+          ? total * (1 - data[0].valor / 100)
+          : total - data[0].valor
+      ); // Calcula el nuevo total con descuento
+      setIsUsed(false); // Asegura que isUsed esté en false para un código no utilizado
+    }
+  }, [discountCode, codes, total]);
 
   return (
     <>
@@ -183,6 +227,50 @@ export const FormularioTarjeta = ({
         </div>
         <div
           style={{
+            display: total > 29800 ? "flex" : "none",
+            flexDirection: "column",
+            marginTop: "10px",
+            alignItems: "start",
+          }}
+        >
+          <TextField
+            id="discountCode"
+            type="text"
+            onChange={(e) => setDiscountCode(e.target.value)}
+            value={discountCode}
+            label="Código de descuento"
+            variant="filled"
+            sx={{ width: "80%", textAlign: "center" }}
+          />
+
+<div style={{ display: discountCode.length > 5 ? "block" : "none" }}>
+  {discountObjet ? (
+    !discountObjet.isUsed ? (
+      discountObjet.isPercentaje ? (
+        <p style={{ fontWeight: 700 }}>
+          Descuento de %{discountObjet.valor} pagarás: {formattwo(newTotal)}
+        </p>
+      ) : (
+        <p style={{ fontWeight: 700 }}>
+          Descuento de {formattwo(discountObjet.valor)}, pagarás: {formattwo(newTotal)}
+        </p>
+      )
+    ) : (
+      // Si el código ha sido utilizado
+      <p style={{ fontWeight: 700 }}>El código ya fue utilizado</p>
+    )
+  ) : discountCode.length > 0 ? (
+    // Si se ha ingresado un código, pero no se encontró en `codes` o está usado
+    <p style={{ fontWeight: 700 }}>No se aplicó ningún descuento o el código ya fue utilizado</p>
+  ) : (
+    // Si no se ha ingresado un código
+    <p style={{ fontWeight: 700 }}>Introduce un código de descuento</p>
+  )}
+</div>
+
+        </div>
+        <div
+          style={{
             display: "flex",
             flexDirection: "column",
             marginTop: "10px",
@@ -232,7 +320,7 @@ export const FormularioTarjeta = ({
               variant="filled"
               label="Código de Seguridad"
               id="codigoSeguridad"
-              type="text"
+              type="password"
               sx={{ width: "fit-content", mx: 2 }}
               value={codigoSeguridad}
               onChange={(e) => setCodigoSeguridad(e.target.value)}
