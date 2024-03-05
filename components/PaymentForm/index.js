@@ -227,7 +227,7 @@ export const FormularioTarjeta = ({
         </div>
         <div
           style={{
-            display: total > 29800 ? "flex" : "none",
+            display: total > 29900 ? "flex" : "none",
             flexDirection: "column",
             marginTop: "10px",
             alignItems: "start",
