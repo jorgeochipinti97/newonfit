@@ -63,6 +63,14 @@ const FaqsPage = () => {
             </Box>
             <Box>
               <AccordionFaqs
+                pregunta="            CÓDIGOS DE DESCUENTO                "
+                respuesta="            Los códigos de descuento solo se aplican a compras mayores a $30,000.
+                "
+              />
+            </Box>
+                <Divider sx={{ my: 1, m: 2 }} />
+            <Box>
+              <AccordionFaqs
                 pregunta="¿TENÉS OTRAS CONSULTAS? CONTACTANOS"
                 respuesta="Si tenés cualquier duda respecto al proceso de compra que no estén en este documento, o a un pedido que hayas realizado, no dudes en contactarte con nuestro equipo de Atención al Cliente.
 
@@ -70,7 +78,6 @@ const FaqsPage = () => {
                 
                 Estamos de Lunes a Viernes (hábiles, no feriados) de 9 a 18 horas, ¡tu consulta no nos molesta!"
               />
-
             </Box>
           </Box>
         </Box>

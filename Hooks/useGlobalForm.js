@@ -35,7 +35,6 @@ function useGlobalForm() {
     { name: "65cc1737312e0e39f55b9327 L", Sku: "PLANECANGUL" },
     { name: "65cc1737312e0e39f55b9327 XL", Sku: "PLANECANGUXL" },
 
-
     { name: "65cc1820312e0e39f55b9342 L", Sku: "ROCKYCANL" },
     { name: "65cc1820312e0e39f55b9342 M", Sku: "ROCKYCANM" },
     { name: "65cc1820312e0e39f55b9342 XL", Sku: "ROCKYCANXL" },
@@ -74,19 +73,21 @@ function useGlobalForm() {
     return resultado ? resultado.Sku : "";
   };
 
-
   async function obtenerSiguienteCodigoDeSeguimiento() {
     try {
-      const response = await axios.post('/api/obtenerSiguienteCodigo');
+      const response = await axios.post("/api/codgestion");
       return response.data.codGestion; // Devuelve el código de seguimiento obtenido
     } catch (error) {
-      console.error('Error al obtener el siguiente código de seguimiento:', error);
+      console.error(
+        "Error al obtener el siguiente código de seguimiento:",
+        error
+      );
       // Manejar el error según sea necesario
       return null; // O manejar de otra manera
     }
   }
 
-  const trackId = uuidv4();
+  const trackId = obtenerSiguienteCodigoDeSeguimiento();
   const { cart, numberOfItems, total } = useContext(CartContext);
   const { push } = useRouter();
   const [_idOrder, setIdOrder] = useState();
@@ -287,7 +288,6 @@ function useGlobalForm() {
               const data = await axios.put(
                 `/api/discount?_id=${discountCodeId}`
               );
-
             } catch (error) {
               console.error("Error al eliminar el código de descuento:", error);
             }
