@@ -33,7 +33,7 @@ import Image from "next/image";
 import { useProduct } from "@/Hooks/UseProducts";
 
 const ProductDescription = ({ descripcion }) => {
-  return <div dangerouslySetInnerHTML={{ __html: descripcion }} />;
+  return <div style={{marginBottom:'50px'}} dangerouslySetInnerHTML={{ __html: descripcion }} />;
 };
 const ProductsSlugPage = () => {
   const [openSizeGuide, setOpenSizeGuide] = useState(false);

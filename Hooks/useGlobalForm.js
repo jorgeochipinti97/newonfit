@@ -30,8 +30,12 @@ function useGlobalForm() {
     { name: "65cc15fa312e0e39f55b930f L", Sku: "DREAMNEGL" },
     { name: "65cc15fa312e0e39f55b930f M", Sku: "DREAMNEGM" },
     { name: "65cc15fa312e0e39f55b930f XL", Sku: "DREAMNEGXL" },
+
+    { name: "65cc1737312e0e39f55b9327 M", Sku: "PLANECANGUM" },
     { name: "65cc1737312e0e39f55b9327 L", Sku: "PLANECANGUL" },
     { name: "65cc1737312e0e39f55b9327 XL", Sku: "PLANECANGUXL" },
+
+
     { name: "65cc1820312e0e39f55b9342 L", Sku: "ROCKYCANL" },
     { name: "65cc1820312e0e39f55b9342 M", Sku: "ROCKYCANM" },
     { name: "65cc1820312e0e39f55b9342 XL", Sku: "ROCKYCANXL" },
@@ -69,6 +73,18 @@ function useGlobalForm() {
     // Retorna el Sku si se encontró una coincidencia, de lo contrario retorna un string vacío
     return resultado ? resultado.Sku : "";
   };
+
+
+  async function obtenerSiguienteCodigoDeSeguimiento() {
+    try {
+      const response = await axios.post('/api/obtenerSiguienteCodigo');
+      return response.data.codGestion; // Devuelve el código de seguimiento obtenido
+    } catch (error) {
+      console.error('Error al obtener el siguiente código de seguimiento:', error);
+      // Manejar el error según sea necesario
+      return null; // O manejar de otra manera
+    }
+  }
 
   const trackId = uuidv4();
   const { cart, numberOfItems, total } = useContext(CartContext);

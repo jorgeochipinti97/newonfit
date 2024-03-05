@@ -118,7 +118,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   component="h1"
                   sx={{
                     fontWeight: "900",
-                    fontSize: isMobile ? "30px" : "3rem",
+                    fontSize: isMobile ? "1.9rem" : "3rem",
                     color: "rgb(254, 221, 45)",
                     lineHeight:{xs:"35px", md:'50px'},
                     p: 2,
