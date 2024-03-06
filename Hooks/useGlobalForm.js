@@ -388,14 +388,14 @@ function useGlobalForm() {
       await Promise.all(stockUpdatePromises);
 
       createOrder_.data && setIdOrder(createOrder_.data._id);
-      // const cargaCliente = await axios.post("/api/cargaclients", datosEnvio);
-      // cargaCliente.data && console.log("cliente cargado");
+      const cargaCliente = await axios.post("/api/cargaclients", datosEnvio);
+      cargaCliente.data && console.log("cliente cargado");
 
       const response = await axios.put(
         `/api/orders?_id=${createOrder_.data._id}`,
         {
-          // codGestion: cargaCliente.data.codGestion,
-          codGestion: trackId,
+          codGestion: cargaCliente.data.codGestion,
+
         }
       );
       response && push(`/orders/${createOrder_.data._id}`);
@@ -448,8 +448,8 @@ function useGlobalForm() {
 
   const submitGlobalForm = async () => {
     try {
-      // generarToken();
-      await createOrder("data.data.token", " data.data.site_transaction_id");
+      generarToken();
+      // await createOrder("data.data.token", " data.data.site_transaction_id");
     } catch (err) {
       console.log(err);
     }
