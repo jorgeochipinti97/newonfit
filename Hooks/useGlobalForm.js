@@ -394,7 +394,8 @@ function useGlobalForm() {
       const response = await axios.put(
         `/api/orders?_id=${createOrder_.data._id}`,
         {
-          codGestion: cargaCliente.data.codGestion,
+          // codGestion: cargaCliente.data.codGestion,
+          codGestion: trackId,
         }
       );
       response && push(`/orders/${createOrder_.data._id}`);
