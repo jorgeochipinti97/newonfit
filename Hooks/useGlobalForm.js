@@ -6,6 +6,38 @@ import { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function useGlobalForm() {
+  const [globalFormData, setGlobalFormData] = useState({
+    shippingDetails: {
+      firstName: "",
+      lastName: "",
+      idNumber: "",
+      email: "",
+      address: "",
+      addressNumber: "",
+      piso: "",
+      city: "",
+      localidad: "",
+      piso: "",
+      provincia: "",
+      mobile: "",
+      postalCode: "",
+      deliveryNote: "",
+    },
+    paymentDetails: {
+      tarjetaSeleccionada: "",
+      numeroTarjeta: "",
+      mesExpiracion: "",
+      anioExpiracion: "",
+      codigoSeguridad: "",
+      nombreTitular: "",
+      tipoIdentificacion: "dni",
+      numeroIdentificacion: "",
+      totalPesos: 0,
+      cuotas: 1,
+      discountCode: {},
+    },
+  });
+
   const sku = [
     { name: "65e537dd6b8340a3e1abb82d M", Sku: "SFNTM" },
     { name: "65e537dd6b8340a3e1abb82d L", Sku: "SFNTL" },
@@ -63,6 +95,34 @@ function useGlobalForm() {
     { name: "65cc4a6f3d9e3e9a8c7186fd XL", Sku: "SHORTNEGXL" },
   ];
 
+
+  const { cart, numberOfItems, total } = useContext(CartContext);
+  const { push } = useRouter();
+  const [_idOrder, setIdOrder] = useState(null);
+
+  const [trackId, setTrackId] = useState();
+
+  useEffect(() => {
+    if (trackId !== undefined) {
+      console.log("trackId actualizado:", trackId);
+      // Haz algo con el nuevo trackId aquí
+    }
+  }, [trackId]);
+
+
+  // En el componente de React:
+  useEffect(() => {
+    async function fetchTrackId() {
+      const codigoDeSeguimiento = await obtenerSiguienteCodigoDeSeguimiento();
+      if (codigoDeSeguimiento) {
+        setTrackId(codigoDeSeguimiento); // Actualiza el estado solo si el código de seguimiento es obtenido con éxito
+      }
+    }
+
+    fetchTrackId();
+  }, []);
+
+  
   const obtenerSkuPorIdYTalle = (id, talle) => {
     const resultado = sku.find((s) => {
       const [skuId, skuTalle] = s.name.split(" ");
@@ -88,60 +148,7 @@ function useGlobalForm() {
     return null; // Retorna null si falla la petición o si la respuesta no es válida
   };
 
-  // En el componente de React:
-  useEffect(() => {
-    async function fetchTrackId() {
-      const codigoDeSeguimiento = await obtenerSiguienteCodigoDeSeguimiento();
-      if (codigoDeSeguimiento) {
-        setTrackId(codigoDeSeguimiento); // Actualiza el estado solo si el código de seguimiento es obtenido con éxito
-      }
-    }
-    fetchTrackId();
-  }, []);
-  const { cart, numberOfItems, total } = useContext(CartContext);
-  const { push } = useRouter();
-  const [_idOrder, setIdOrder] = useState(null);
 
-  const [trackId, setTrackId] = useState();
-
-  useEffect(() => {
-    if (trackId !== undefined) {
-      console.log("trackId actualizado:", trackId);
-      // Haz algo con el nuevo trackId aquí
-    }
-  }, [trackId]);
-
-  const [globalFormData, setGlobalFormData] = useState({
-    shippingDetails: {
-      firstName: "",
-      lastName: "",
-      idNumber: "",
-      email: "",
-      address: "",
-      addressNumber: "",
-      piso: "",
-      city: "",
-      localidad: "",
-      piso: "",
-      provincia: "",
-      mobile: "",
-      postalCode: "",
-      deliveryNote: "",
-    },
-    paymentDetails: {
-      tarjetaSeleccionada: "",
-      numeroTarjeta: "",
-      mesExpiracion: "",
-      anioExpiracion: "",
-      codigoSeguridad: "",
-      nombreTitular: "",
-      tipoIdentificacion: "dni",
-      numeroIdentificacion: "",
-      totalPesos: 0,
-      cuotas: 1,
-      discountCode: {},
-    },
-  });
 
   const productosEnvio = cart.map((item) => ({
     largo: item.subcategoria.toLowerCase().includes("remera") ? 32 : 54,
