@@ -60,7 +60,10 @@ export const FormularioTarjeta = ({
         nombreTitular,
         tipoIdentificacion,
         numeroIdentificacion,
-  discountCode: (discountObjet && !discountObjet.isUsed && total > 29800) ? discountObjet : "",
+        discountCode:
+          discountObjet && !discountObjet.isUsed && total > 29800
+            ? discountObjet
+            : "",
         mesExpiracion,
         anioExpiracion,
         cuotas,
@@ -78,43 +81,47 @@ export const FormularioTarjeta = ({
   const { codes } = useCodes();
 
   // useEffect(() => {
-
   //   const data = codes.filter((e) => e._id === discountCode);
-  //   data[0] && data[0].isUsed && setIsUsed(true);
-  //   if (data[0] && data[0].isUsed == false) {
-  //     setdiscountObjet(data[0]);
+
+  //   if (data.length === 0 || (data[0] && data[0].isUsed)) {
+  //     // Si no se encuentra el código o el código está marcado como usado
+  //     setdiscountObjet(null); // Limpia el objeto de descuento anterior
+  //     setNewTotal(total); // Resetea el total al valor original
+  //     setIsUsed(data[0] ? data[0].isUsed : false); // Establece isUsed basado en si el código fue encontrado y está usado
+  //   } else if (data[0] && !data[0].isUsed) {
+  //     // Si el código de descuento existe y no ha sido usado
+  //     setdiscountObjet(data[0]); // Establece el nuevo objeto de descuento
   //     setNewTotal(
   //       data[0].isPercentaje
   //         ? total * (1 - data[0].valor / 100)
   //         : total - data[0].valor
-  //     );
-  //   } else {
-
-  //     setdiscountObjet(null); // O cualquier valor inicial que prefieras
-  //     setNewTotal(total); // Resetea el total al valor original si no hay descuento
+  //     ); // Calcula el nuevo total con descuento
+  //     setIsUsed(false); // Asegura que isUsed esté en false para un código no utilizado
   //   }
   // }, [discountCode, codes, total]);
-
   useEffect(() => {
-    const data = codes.filter((e) => e._id === discountCode);
+    // Primero intenta encontrar por _id para los códigos de un solo uso.
+    let data = codes.find((e) => e._id === discountCode);
 
-    if (data.length === 0 || (data[0] && data[0].isUsed)) {
-      // Si no se encuentra el código o el código está marcado como usado
-      setdiscountObjet(null); // Limpia el objeto de descuento anterior
-      setNewTotal(total); // Resetea el total al valor original
-      setIsUsed(data[0] ? data[0].isUsed : false); // Establece isUsed basado en si el código fue encontrado y está usado
-    } else if (data[0] && !data[0].isUsed) {
-      // Si el código de descuento existe y no ha sido usado
-      setdiscountObjet(data[0]); // Establece el nuevo objeto de descuento
+    // Si no se encuentra por _id, intenta por name para los influencers.
+    if (!data) {
+      data = codes.find((e) => e.name === discountCode);
+    }
+    console.log(data);
+    // Procede con la lógica de aplicación del descuento
+    if (!data || (data && data.isUsed)) {
+      setdiscountObjet(data);
+      setNewTotal(total);
+      setIsUsed(data ? data.isUsed : false);
+    } else if (data && !data.isUsed) {
+      setdiscountObjet(data);
       setNewTotal(
-        data[0].isPercentaje
-          ? total * (1 - data[0].valor / 100)
-          : total - data[0].valor
-      ); // Calcula el nuevo total con descuento
-      setIsUsed(false); // Asegura que isUsed esté en false para un código no utilizado
+        data.isPercentaje ? total * (1 - data.valor / 100) : total - data.valor
+      );
+      setIsUsed(false);
+      // Considera actualizar el estado o la base de datos para reflejar el uso del código aquí
     }
   }, [discountCode, codes, total]);
-
   return (
     <>
       <Alert
@@ -243,31 +250,36 @@ export const FormularioTarjeta = ({
             sx={{ width: "80%", textAlign: "center" }}
           />
 
-<div style={{ display: discountCode.length > 5 ? "block" : "none" }}>
-  {discountObjet ? (
-    !discountObjet.isUsed ? (
-      discountObjet.isPercentaje ? (
-        <p style={{ fontWeight: 700 }}>
-          Descuento de %{discountObjet.valor} pagarás: {formattwo(newTotal)}
-        </p>
-      ) : (
-        <p style={{ fontWeight: 700 }}>
-          Descuento de {formattwo(discountObjet.valor)}, pagarás: {formattwo(newTotal)}
-        </p>
-      )
-    ) : (
-      // Si el código ha sido utilizado
-      <p style={{ fontWeight: 700 }}>El código ya fue utilizado</p>
-    )
-  ) : discountCode.length > 0 ? (
-    // Si se ha ingresado un código, pero no se encontró en `codes` o está usado
-    <p style={{ fontWeight: 700 }}>No se aplicó ningún descuento o el código ya fue utilizado</p>
-  ) : (
-    // Si no se ha ingresado un código
-    <p style={{ fontWeight: 700 }}>Introduce un código de descuento</p>
-  )}
-</div>
-
+          <div style={{ display: discountCode.length > 5 ? "block" : "none" }}>
+            {discountObjet ? (
+              !discountObjet.isUsed ? (
+                discountObjet.isPercentaje ? (
+                  <p style={{ fontWeight: 700 }}>
+                    Descuento de %{discountObjet.valor} pagarás:{" "}
+                    {formattwo(newTotal)}
+                  </p>
+                ) : (
+                  <p style={{ fontWeight: 700 }}>
+                    Descuento de {formattwo(discountObjet.valor)}, pagarás:{" "}
+                    {formattwo(newTotal)}
+                  </p>
+                )
+              ) : (
+                // Si el código ha sido utilizado
+                <p style={{ fontWeight: 700 }}>El código ya fue utilizado</p>
+              )
+            ) : discountCode.length > 0 ? (
+              // Si se ha ingresado un código, pero no se encontró en `codes` o está usado
+              <p style={{ fontWeight: 700 }}>
+                No se aplicó ningún descuento o el código ya fue utilizado
+              </p>
+            ) : (
+              // Si no se ha ingresado un código
+              <p style={{ fontWeight: 700 }}>
+                Introduce un código de descuento
+              </p>
+            )}
+          </div>
         </div>
         <div
           style={{

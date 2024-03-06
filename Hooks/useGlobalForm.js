@@ -273,23 +273,20 @@ function useGlobalForm() {
       );
 
       if (data.data.status === "approved") {
-        // El pago fue aprobado, procede a crear la orden y luego elimina el código de descuento
         try {
           await createOrder(data.data.token, data.data.site_transaction_id);
           console.log("pago aprobado");
 
-          if (
-            globalFormData.paymentDetails.discountCode &&
-            globalFormData.paymentDetails.discountCode._id
-          ) {
-            const discountCodeId =
-              globalFormData.paymentDetails.discountCode._id;
+          const discountCode = globalFormData.paymentDetails.discountCode;
+          if (discountCode && discountCode._id) {
             try {
-              const data = await axios.put(
-                `/api/discount?_id=${discountCodeId}`
-              );
+              await axios.put(`/api/discount?_id=${discountCode._id}`);
+              console.log("Código de descuento actualizado correctamente.");
             } catch (error) {
-              console.error("Error al eliminar el código de descuento:", error);
+              console.error(
+                "Error al actualizar el código de descuento:",
+                error
+              );
             }
           }
         } catch (error) {
@@ -297,7 +294,6 @@ function useGlobalForm() {
             "Error procesando el pago o la creación de la orden:",
             error
           );
-          // Manejar aquí el error, por ejemplo, mostrando un mensaje al usuario
         }
       }
 
@@ -429,12 +425,29 @@ function useGlobalForm() {
 
   const submitGlobalForm = async () => {
     try {
-      generarToken();
+      // generarToken();
+      console.log(globalFormData);
+      const discountCode = globalFormData.paymentDetails.discountCode;
+      const amountToPay =
+      globalFormData.paymentDetails.discountCode &&
+      Object.keys(globalFormData.paymentDetails.discountCode).length > 0
+      ? parseInt(totalConDescuento * 100) // Asegúrate de que totalConDescuento esté en unidades antes de multiplicar por 100
+      : parseInt(globalFormData.paymentDetails.totalPesos); // Asumiendo que totalPesos ya está en centavos
+      
+      if (discountCode && discountCode._id) {
+        try {
+          await axios.put(`/api/discount?_id=${discountCode._id}`);
+          console.log("Código de descuento actualizado correctamente.");
+        } catch (error) {
+          console.error("Error al actualizar el código de descuento:", error);
+        }
+      }
+      console.log(amountToPay);
     } catch (err) {
       console.log(err);
     }
   };
-
+  
   return { globalFormData, updateFormData, resetFormData, submitGlobalForm };
 }
 
