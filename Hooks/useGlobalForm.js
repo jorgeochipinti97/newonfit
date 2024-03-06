@@ -132,7 +132,7 @@ function useGlobalForm() {
 
   const obtenerSiguienteCodigoDeSeguimiento = async () => {
     try {
-      const response = await axios.post("/api/codgestion");
+      const response = await axios.post("/api/trackid");
       if (response) {
         return response.data.codGestion; // Devuelve directamente el código de seguimiento
       }
