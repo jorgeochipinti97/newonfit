@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { CartContext } from "@/context/cart/CartContext";
-import axios from "axios";
+
 import { v4 as uuidv4 } from "uuid";
 import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/router";

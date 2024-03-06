@@ -2,7 +2,7 @@ import { CartContext } from "@/context/cart/CartContext";
 import axios from "axios";
 import gsap, { Power1 } from "gsap";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function useGlobalForm() {
@@ -76,21 +76,24 @@ function useGlobalForm() {
   async function obtenerSiguienteCodigoDeSeguimiento() {
     try {
       const response = await axios.post("/api/codgestion");
-      return response.data.codGestion; // Devuelve el código de seguimiento obtenido
+      setTrackId(response.data.codGestion); // Devuelve el código de seguimiento obtenido
     } catch (error) {
       console.error(
         "Error al obtener el siguiente código de seguimiento:",
         error
       );
-      // Manejar el error según sea necesario
       return null; // O manejar de otra manera
     }
   }
 
-  const trackId = obtenerSiguienteCodigoDeSeguimiento();
   const { cart, numberOfItems, total } = useContext(CartContext);
   const { push } = useRouter();
+  const [trackId, setTrackId] = useState("");
   const [_idOrder, setIdOrder] = useState();
+  useEffect(() => {
+    obtenerSiguienteCodigoDeSeguimiento();
+  }, []);
+
   const [globalFormData, setGlobalFormData] = useState({
     shippingDetails: {
       firstName: "",
@@ -426,11 +429,12 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
+
     } catch (err) {
       console.log(err);
     }
   };
-  
+
   return { globalFormData, updateFormData, resetFormData, submitGlobalForm };
 }
 

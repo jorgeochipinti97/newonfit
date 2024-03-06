@@ -1,12 +1,10 @@
 import { Button, MenuItem, Select, TextField } from "@mui/material";
-import axios from "axios";
+
 
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+
 import Alert from "@mui/material/Alert";
 import CheckIcon from "@mui/icons-material/Check";
-import gsap, { Power1 } from "gsap";
-import { useRouter } from "next/router";
 import { formattwo } from "@/utils/currency";
 import { useCodes } from "@/Hooks/useCodes";
 
@@ -80,35 +78,17 @@ export const FormularioTarjeta = ({
 
   const { codes } = useCodes();
 
-  // useEffect(() => {
-  //   const data = codes.filter((e) => e._id === discountCode);
 
-  //   if (data.length === 0 || (data[0] && data[0].isUsed)) {
-  //     // Si no se encuentra el código o el código está marcado como usado
-  //     setdiscountObjet(null); // Limpia el objeto de descuento anterior
-  //     setNewTotal(total); // Resetea el total al valor original
-  //     setIsUsed(data[0] ? data[0].isUsed : false); // Establece isUsed basado en si el código fue encontrado y está usado
-  //   } else if (data[0] && !data[0].isUsed) {
-  //     // Si el código de descuento existe y no ha sido usado
-  //     setdiscountObjet(data[0]); // Establece el nuevo objeto de descuento
-  //     setNewTotal(
-  //       data[0].isPercentaje
-  //         ? total * (1 - data[0].valor / 100)
-  //         : total - data[0].valor
-  //     ); // Calcula el nuevo total con descuento
-  //     setIsUsed(false); // Asegura que isUsed esté en false para un código no utilizado
-  //   }
-  // }, [discountCode, codes, total]);
   useEffect(() => {
-    // Primero intenta encontrar por _id para los códigos de un solo uso.
+
     let data = codes.find((e) => e._id === discountCode);
 
-    // Si no se encuentra por _id, intenta por name para los influencers.
+
     if (!data) {
       data = codes.find((e) => e.name === discountCode);
     }
     console.log(data);
-    // Procede con la lógica de aplicación del descuento
+
     if (!data || (data && data.isUsed)) {
       setdiscountObjet(data);
       setNewTotal(total);
@@ -119,7 +99,7 @@ export const FormularioTarjeta = ({
         data.isPercentaje ? total * (1 - data.valor / 100) : total - data.valor
       );
       setIsUsed(false);
-      // Considera actualizar el estado o la base de datos para reflejar el uso del código aquí
+
     }
   }, [discountCode, codes, total]);
   return (
