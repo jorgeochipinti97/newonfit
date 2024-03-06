@@ -425,24 +425,7 @@ function useGlobalForm() {
 
   const submitGlobalForm = async () => {
     try {
-      // generarToken();
-      console.log(globalFormData);
-      const discountCode = globalFormData.paymentDetails.discountCode;
-      const amountToPay =
-      globalFormData.paymentDetails.discountCode &&
-      Object.keys(globalFormData.paymentDetails.discountCode).length > 0
-      ? parseInt(totalConDescuento * 100) // Asegúrate de que totalConDescuento esté en unidades antes de multiplicar por 100
-      : parseInt(globalFormData.paymentDetails.totalPesos); // Asumiendo que totalPesos ya está en centavos
-      
-      if (discountCode && discountCode._id) {
-        try {
-          await axios.put(`/api/discount?_id=${discountCode._id}`);
-          console.log("Código de descuento actualizado correctamente.");
-        } catch (error) {
-          console.error("Error al actualizar el código de descuento:", error);
-        }
-      }
-      console.log(amountToPay);
+      generarToken();
     } catch (err) {
       console.log(err);
     }
