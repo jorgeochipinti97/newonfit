@@ -73,18 +73,21 @@ function useGlobalForm() {
     return resultado ? resultado.Sku : "";
   };
 
-  async function obtenerSiguienteCodigoDeSeguimiento() {
+  const obtenerSiguienteCodigoDeSeguimiento = async () => {
     try {
       const response = await axios.post("/api/codgestion");
       if (response) {
         return response.data.codGestion; // Devuelve directamente el código de seguimiento
       }
     } catch (error) {
-      console.error("Error al obtener el siguiente código de seguimiento:", error);
+      console.error(
+        "Error al obtener el siguiente código de seguimiento:",
+        error
+      );
     }
     return null; // Retorna null si falla la petición o si la respuesta no es válida
-  }
-  
+  };
+
   // En el componente de React:
   useEffect(() => {
     async function fetchTrackId() {
@@ -100,7 +103,6 @@ function useGlobalForm() {
   const [_idOrder, setIdOrder] = useState(null);
 
   const [trackId, setTrackId] = useState();
-
 
   useEffect(() => {
     if (trackId !== undefined) {
@@ -444,7 +446,6 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
-
     } catch (err) {
       console.log(err);
     }
