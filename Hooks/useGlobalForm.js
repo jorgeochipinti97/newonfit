@@ -388,8 +388,8 @@ function useGlobalForm() {
       await Promise.all(stockUpdatePromises);
 
       createOrder_.data && setIdOrder(createOrder_.data._id);
-      const cargaCliente = await axios.post("/api/cargaclients", datosEnvio);
-      cargaCliente.data && console.log("cliente cargado");
+      // const cargaCliente = await axios.post("/api/cargaclients", datosEnvio);
+      // cargaCliente.data && console.log("cliente cargado");
 
       const response = await axios.put(
         `/api/orders?_id=${createOrder_.data._id}`,
