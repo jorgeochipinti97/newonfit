@@ -453,6 +453,7 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
+
     } catch (err) {
       console.log(err);
     }
