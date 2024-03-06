@@ -76,23 +76,38 @@ function useGlobalForm() {
   async function obtenerSiguienteCodigoDeSeguimiento() {
     try {
       const response = await axios.post("/api/codgestion");
-      setTrackId(response.data.codGestion); // Devuelve el código de seguimiento obtenido
+      if (response) {
+        return response.data.codGestion; // Devuelve directamente el código de seguimiento
+      }
     } catch (error) {
-      console.error(
-        "Error al obtener el siguiente código de seguimiento:",
-        error
-      );
-      return null; // O manejar de otra manera
+      console.error("Error al obtener el siguiente código de seguimiento:", error);
     }
+    return null; // Retorna null si falla la petición o si la respuesta no es válida
   }
-
+  
+  // En el componente de React:
+  useEffect(() => {
+    async function fetchTrackId() {
+      const codigoDeSeguimiento = await obtenerSiguienteCodigoDeSeguimiento();
+      if (codigoDeSeguimiento) {
+        setTrackId(codigoDeSeguimiento); // Actualiza el estado solo si el código de seguimiento es obtenido con éxito
+      }
+    }
+    fetchTrackId();
+  }, []);
   const { cart, numberOfItems, total } = useContext(CartContext);
   const { push } = useRouter();
-  const [trackId, setTrackId] = useState("");
-  const [_idOrder, setIdOrder] = useState();
+  const [_idOrder, setIdOrder] = useState(null);
+
+  const [trackId, setTrackId] = useState();
+
+
   useEffect(() => {
-    obtenerSiguienteCodigoDeSeguimiento();
-  }, []);
+    if (trackId !== undefined) {
+      console.log("trackId actualizado:", trackId);
+      // Haz algo con el nuevo trackId aquí
+    }
+  }, [trackId]);
 
   const [globalFormData, setGlobalFormData] = useState({
     shippingDetails: {
