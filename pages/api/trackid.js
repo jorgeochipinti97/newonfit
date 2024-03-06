@@ -14,14 +14,13 @@ export default async function handler(req, res) {
       const nuevoSeguimiento = new Seguimiento({ ultimoCodigo: 100000 });
       await nuevoSeguimiento.save();
       res.status(200).json({ codGestion: 100000 });
-    } else {
+    } else { 
       // Incrementa el último código y lo guarda
       seguimiento.ultimoCodigo += 1;
       await seguimiento.save();
       res.status(200).json({ codGestion: seguimiento.ultimoCodigo });
     }
   } else {
-    res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

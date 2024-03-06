@@ -12,7 +12,7 @@ import {
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-import { Elastic, gsap, Power4, Power1, Back } from "gsap";
+import { gsap, Power1,  } from "gsap";
 import { CartList, OrderSummary } from "@/components/cart";
 import { ShopLayout } from "@/components/layout/shopLayout";
 import { CartContext } from "@/context/cart/CartContext";

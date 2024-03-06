@@ -95,7 +95,6 @@ function useGlobalForm() {
     { name: "65cc4a6f3d9e3e9a8c7186fd XL", Sku: "SHORTNEGXL" },
   ];
 
-
   const { cart, numberOfItems, total } = useContext(CartContext);
   const { push } = useRouter();
   const [_idOrder, setIdOrder] = useState(null);
@@ -109,7 +108,6 @@ function useGlobalForm() {
     }
   }, [trackId]);
 
-
   // En el componente de React:
   useEffect(() => {
     async function fetchTrackId() {
@@ -122,7 +120,6 @@ function useGlobalForm() {
     fetchTrackId();
   }, []);
 
-  
   const obtenerSkuPorIdYTalle = (id, talle) => {
     const resultado = sku.find((s) => {
       const [skuId, skuTalle] = s.name.split(" ");
@@ -135,7 +132,7 @@ function useGlobalForm() {
 
   const obtenerSiguienteCodigoDeSeguimiento = async () => {
     try {
-      const response = await axios.post("/api/codgestion");
+      const response = await axios.post("/api/trackid");
       if (response) {
         return response.data.codGestion; // Devuelve directamente el código de seguimiento
       }
@@ -147,8 +144,6 @@ function useGlobalForm() {
     }
     return null; // Retorna null si falla la petición o si la respuesta no es válida
   };
-
-
 
   const productosEnvio = cart.map((item) => ({
     largo: item.subcategoria.toLowerCase().includes("remera") ? 32 : 54,
@@ -400,6 +395,7 @@ function useGlobalForm() {
         `/api/orders?_id=${createOrder_.data._id}`,
         {
           codGestion: cargaCliente.data.codGestion,
+
         }
       );
       response && push(`/orders/${createOrder_.data._id}`);
@@ -453,7 +449,12 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
+<<<<<<< HEAD
     } catch (err) { 
+=======
+      // await createOrder("data.data.token", " data.data.site_transaction_id");
+    } catch (err) {
+>>>>>>> test
       console.log(err);
     }
   };
