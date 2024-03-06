@@ -13,7 +13,7 @@ export function useCodes() {
         const codes = response.data;
 
         setCodes(codes);
-        console.log(codes)
+
         setIsLoading(false); // Indicar que la carga ha finalizado
       } catch (error) {
         console.error("Error fetching products:", error);
