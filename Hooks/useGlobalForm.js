@@ -104,7 +104,7 @@ function useGlobalForm() {
   useEffect(() => {
     if (trackId !== undefined) {
       console.log("trackId actualizado:", trackId);
-      // Haz algo con el nuevo trackId aquí
+
     }
   }, [trackId]);
 
@@ -449,12 +449,7 @@ function useGlobalForm() {
   const submitGlobalForm = async () => {
     try {
       generarToken();
-<<<<<<< HEAD
-    } catch (err) { 
-=======
-      // await createOrder("data.data.token", " data.data.site_transaction_id");
     } catch (err) {
->>>>>>> test
       console.log(err);
     }
   };
