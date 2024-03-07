@@ -72,7 +72,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   marginBottom: 10,
                 }}
               >
-                Eleva tu estilo, potencia tu rendimiento
+                Elevá tu estilo, potenciá tu rendimiento
               </Typography>
             </div>
             <div style={{ marginBottom: "1rem", color: "black" }}>
