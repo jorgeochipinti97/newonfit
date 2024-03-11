@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 import { lightTheme } from "@/themes";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
+import { Analytics } from "@vercel/analytics/react"
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }) {
           <ThemeProvider theme={lightTheme}>
             <CssBaseline />
             <Component {...pageProps} />
+            <Analytics />
           </ThemeProvider>
         </UiProvider>
       </CartProvider>
