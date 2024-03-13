@@ -17,24 +17,23 @@ const GoogleAnalytics = () => {
         `,
       }}
     />
-             <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                function loadScript(a){
-                  var b=document.getElementsByTagName("head")[0],
-                  c=document.createElement("script");
-                  c.type="text/javascript";
-                  c.src="https://tracker.metricool.com/resources/be.js";
-                  c.onreadystatechange=a;
-                  c.onload=a;
-                  b.appendChild(c)
-                }
-                loadScript(function(){
-                  beTracker.t({hash:"3b5bbadcf95a91986c3b9ab3734c2e3b"})
-                });
-              `,
-            }}
-          />
+
+<script dangerouslySetInnerHTML={{ 
+          __html: `
+            function loadScript(a){
+              var b = document.getElementsByTagName("head")[0],
+                  c = document.createElement("script");
+              c.type = "text/javascript";
+              c.src = "https://tracker.metricool.com/resources/be.js";
+              c.onreadystatechange = a;
+              c.onload = a;
+              b.appendChild(c);
+            }
+            loadScript(function(){
+              beTracker.t({hash:"3b5bbadcf95a91986c3b9ab3734c2e3b"})
+            });
+          ` 
+        }} />
   </>
   );
 };
