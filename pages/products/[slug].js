@@ -171,8 +171,7 @@ const ProductsSlugPage = () => {
       setTempCartProduct({
         _id: product && product._id,
         image: product && product.images[0],
-        price: product && product.precio,
-        discountPrice: product && product.precioDescuento,
+        price: product && product.precioDescuento > 0 ? product.precioDescuento : product.precio,
         size: undefined,
         slug: product && product.slug,
         title: product && product.titulo,
