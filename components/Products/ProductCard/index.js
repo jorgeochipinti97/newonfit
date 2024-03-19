@@ -56,12 +56,6 @@ export const ProductCard = ({ product, isMobile }) => {
     }
   }, [isHovered, product.images]);
 
-  const handlePrice = (precio, descuento) => {
-    const porcentajePrecioConDescuento = 100 - descuento;
-    const precioConDescuento = (precio * porcentajePrecioConDescuento) / 100;
-
-    return precioConDescuento;
-  };
   useEffect(() => {
     inView &&
       gsap.to(`.productCard${product.slug}`, {
@@ -161,9 +155,51 @@ export const ProductCard = ({ product, isMobile }) => {
             alignItems: "center",
           }}
         >
-          <Typography variant="subtitle1" sx={{ color: "white" }}>
-            {formattwo(product.precio)}
-          </Typography>
+          {product.precioDescuento > 0 ? (
+            // Si hay un precio de descuento, muestra ambos precios
+            <>
+              <Typography
+                variant="button"
+                sx={{
+                  textDecoration: "line-through",
+                  fontWeight: 800,
+                  fontSize: "15px",
+                  color: "#ef4444",
+                  borderRadius: "19px",
+                  mx:1,
+                }}
+              >
+                {formattwo(product.precio)}
+              </Typography>
+              <Typography
+                variant="button"
+                sx={{
+                  fontWeight: 800,
+                  fontSize: "15px",
+mx:1,
+                  borderRadius: "19px",
+                  color: "#f5f5f7",
+                }}
+              >
+                {formattwo(product.precioDescuento)}
+              </Typography>
+            </>
+          ) : (
+            // Si no hay precio de descuento, muestra solo el precio original
+            <Typography
+              variant="button"
+              sx={{
+                fontWeight: 800,
+                fontSize: "25px",
+                px: 2,
+                py: 1,
+                mx: 2,
+                borderRadius: "19px",
+              }}
+            >
+              {formattwo(product.precio)}
+            </Typography>
+          )}{" "}
         </div>
         <div
           sx={{

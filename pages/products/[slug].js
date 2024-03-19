@@ -346,7 +346,7 @@ const ProductsSlugPage = () => {
                             sx={{
                               textDecoration: "line-through",
                               fontWeight: 800,
-                              fontSize: "15px",
+                              fontSize: "25px",
                               color:'#9e1b32',
                               px: 2,
                               py: 1,
@@ -360,7 +360,7 @@ const ProductsSlugPage = () => {
                             variant="button"
                             sx={{
                               fontWeight: 800,
-                              fontSize: "15px",
+                              fontSize: "25px",
                               px: 2,
                               py: 1,
                               mx: 2,
@@ -377,7 +377,7 @@ const ProductsSlugPage = () => {
                           variant="button"
                           sx={{
                             fontWeight: 800,
-                            fontSize: "15px",
+                            fontSize: "25px",
                             px: 2,
                             py: 1,
                             mx: 2,
@@ -388,7 +388,8 @@ const ProductsSlugPage = () => {
                         </Typography>
                       )}{" "}
                     </Typography>
-                    <Box display="flex" justifyContent="space-around">
+                  </Box>
+                    <Box display="flex" justifyContent="space-around " sx={{mt:2}}>
                       <Button
                         color="success"
                         size={isMobile ? "small" : "large"}
@@ -410,7 +411,6 @@ const ProductsSlugPage = () => {
                         Agregar al carrito
                       </Button>
                     </Box>
-                  </Box>
                   <Divider sx={{ my: 2 }} />
                   {product && (
                     <>
