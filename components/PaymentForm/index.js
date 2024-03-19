@@ -59,7 +59,7 @@ export const FormularioTarjeta = ({
         tipoIdentificacion,
         numeroIdentificacion,
         discountCode:
-          discountObjet && !discountObjet.isUsed && total > 29800
+          discountObjet && !discountObjet.isUsed && total > 29990
             ? discountObjet
             : "",
         mesExpiracion,
