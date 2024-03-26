@@ -45,7 +45,7 @@ export const Navbar = ({ isMobile }) => {
   const sections = [
     "Indumentaria",
     // "Suplementos",
-    // "Equipamiento",
+//  "Equipamiento",
     // "Accesorios",
     "FAQS",
   ];

@@ -6,7 +6,7 @@ import { ShopLayout } from '@/components/layout/shopLayout'
 const EquipamientoPage = () => {
   return (
     
-     <ShopLayout title="Onfit - Mujer" pageDescription="">
+     <ShopLayout title="Onfit" pageDescription="">
         <ProductFilterPage />
       </ShopLayout>  
   )

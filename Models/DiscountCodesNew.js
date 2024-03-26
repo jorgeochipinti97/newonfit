@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const discountCodeSchema = new mongoose.Schema(
+const discountCodeSchema = new mongoose.Schema([
   {
     code: [
       {
@@ -15,11 +15,11 @@ const discountCodeSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
-);
+  },
+]);
 
-const DiscountCodeOnfit =
-  mongoose.models.DiscountCodeOnfit ||
-  mongoose.model("DiscountCodeOnfit", discountCodeSchema);
+const DiscountCodeNew =
+  mongoose.models.DiscountCodeNew ||
+  mongoose.model("DiscountCodeNewNew", discountCodeSchema);
 
-export default DiscountCodeOnfit;
+export default DiscountCodeNew;
