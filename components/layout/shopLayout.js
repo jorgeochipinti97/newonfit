@@ -49,11 +49,11 @@ export const ShopLayout = ({
         />
       </Head>
 
-      {/* <nav>
+      <nav>
         <Navbar isMobile={isMobile} />
       </nav>
 
-      <SideMenu /> */}
+      <SideMenu />
       <LoadingComponent />
 
       <Box
@@ -65,70 +65,11 @@ export const ShopLayout = ({
       >
         <main
           style={{
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <svg
-            width={60}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <g>
-              <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
-                <g fill="#000" transform="translate(42.667 42.667)">
-                  <path d="M320 64l85.333 85.333v277.334H64V64h256zm-17.673 42.667h-195.66V384h256V167.006l-60.34-60.34zM256 0l42.667 42.667h-256v320H0V0h256zm-11.697 167.175c16.137 20.982 21.58 46.795 16.41 65.64-.646 3.102 22.098 27.283 68.231 72.545 15.085 15.085 15.085 30.17 0 45.255-14.197 14.198-28.395 15.033-42.593 2.506l-74.869-71.075c-18.847 5.172-44.659-.273-65.64-16.41-15.39-20.235-20.698-46.684-16.41-65.64l32.82 32.82 32.82-16.41 16.41-32.821-32.82-32.82c18.956-4.287 45.406 1.02 65.64 16.41z"></path>
-                </g>
-              </g>
-            </g>
-          </svg>
-          <p
-            style={{
-              fontSize: isMobile ? "20px" : "30px",
-              textAlign: "center",
-              width: isMobile ? "80%" : "100%",
-              marginTop: "10px",
-            }}
-          >
-            Estamos trabajando en el mantenimiento de nuestra web
-          </p>
-          <p
-            style={{
-              fontSize: isMobile ? "18px" : "25px",
-              textAlign: "center",
-              marginTop: "20px",
-            }}
-          >
-            Pronto normalizaremos la situacion
-          </p>
-          <p
-            style={{
-              fontSize: isMobile ? "18px" : "25px",
-              textAlign: "center",
-            }}
-          >
-            ¡Muchas gracias!
-          </p>
-          <p
-            style={{
-              fontSize: isMobile ? "18px" : "25px",
-              textAlign: "center",
-              marginTop:'20px'
-            }}
-          >
-            Podes comunicarte con nuestro Whatsapp por cualquier consulta{" "}
-          </p>
-        </main>
-        {/* <main
-          style={{
             padding: "0px 0px",
           }}
         >
           {children}
-        </main> */}
+        </main>
         <div
           style={{
             position: "fixed",
@@ -185,7 +126,7 @@ export const ShopLayout = ({
           </a>
         </div>
         <FooterComponent isMobile={isMobile} />
-        {/* <Paper
+        <Paper
           sx={{
             position: "fixed",
             bottom: 0,
@@ -245,7 +186,7 @@ export const ShopLayout = ({
             />
            
           </BottomNavigation>
-        </Paper> */}
+        </Paper>
       </Box>
     </>
   );
