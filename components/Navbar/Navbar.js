@@ -46,7 +46,7 @@ export const Navbar = ({ isMobile }) => {
     "Indumentaria",
     // "Suplementos",
 //  "Equipamiento",
-    // "Accesorios",
+    "Accesorios",
     "FAQS",
   ];
   return (

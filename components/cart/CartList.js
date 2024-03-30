@@ -39,13 +39,8 @@ export const CartList = ({ editable = false, products, isMobile }) => {
   return (
     <>
       {productsToShow &&
-        productsToShow.map((product) => (
-          <Grid
-            container
-            spacing={2}
-            key={product.slug + product.size}
-            sx={{ mb: 1 }}
-          >
+        productsToShow.map((product, index) => (
+          <Grid container spacing={2} key={index} sx={{ mb: 1 }}>
             <Grid item xs={3}>
               <NextLink href={`/products/${product.slug}`} passHref>
                 <Link>
@@ -64,11 +59,14 @@ export const CartList = ({ editable = false, products, isMobile }) => {
                 <Typography variant="body1">
                   {capitalize(product.title)}
                 </Typography>
-                {
-                  <Typography variant="body1" sx={{my:2}}>
-                    Size: <strong style={{marginLeft:'4px'}}>{product.size}</strong>
+                {product.size && (
+                  <Typography variant="body1" sx={{ my: 2 }}>
+                    Size:{" "}
+                    <strong style={{ marginLeft: "4px" }}>
+                      {product.size}
+                    </strong>
                   </Typography>
-                }
+                )}
 
                 {editable ? (
                   <ItemCounter

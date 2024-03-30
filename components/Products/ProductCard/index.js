@@ -197,6 +197,8 @@ export const ProductCard = ({ product, isMobile }) => {
                   py: 1,
                   mx: 2,
                   borderRadius: "19px",
+                  color: "#f5f5f7",
+
                 }}
               >
                 {formattwo(product.precio)}
