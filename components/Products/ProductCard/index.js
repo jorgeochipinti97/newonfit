@@ -103,7 +103,7 @@ export const ProductCard = ({ product, isMobile }) => {
                 <CardMedia
                   component="div"
                   className="fadeIn"
-                  sx={{ overflow: "hidden" }}
+                  sx={{ overflow: "hidden", aspectRatio: "9/13" }}
                 >
                   <img
                     alt={product.titulo}
@@ -130,99 +130,102 @@ export const ProductCard = ({ product, isMobile }) => {
           display: "flex",
 
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "center",
+          flexDirection:'column'
         }}
       >
         <div
           style={{
             color: "rgb(254, 221, 45)",
-            position: "absolute",
-            bottom: 60,
-            padding: 10,
+
             fontWeight: 800,
             backdropFilter: "blur(2px)",
             fontSize: "15px",
-            backgroundColor: "rgba(0,0,0,0.6)",
+            backgroundColor: "black",
             borderRadius: "9px",
+            padding:5
           }}
         >
           {product.titulo}
         </div>
-        <div
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {product.precioDescuento > 0 ? (
-            // Si hay un precio de descuento, muestra ambos precios
-            <>
+        <div style={{display:'flex' , width:'100%', justifyContent:'space-around', marginTop:'15px'}}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              my: 1,
+            }}
+          >
+            {product.precioDescuento > 0 ? (
+              // Si hay un precio de descuento, muestra ambos precios
+              <>
+                <Typography
+                  variant="button"
+                  sx={{
+                    textDecoration: "line-through",
+                    fontWeight: 800,
+                    fontSize: "15px",
+                    color: "#ef4444",
+                    borderRadius: "19px",
+                    mx: 1,
+                  }}
+                >
+                  {formattwo(product.precio)}
+                </Typography>
+                <Typography
+                  variant="button"
+                  sx={{
+                    fontWeight: 800,
+                    fontSize: "15px",
+                    mx: 1,
+                    borderRadius: "19px",
+                    color: "#f5f5f7",
+                  }}
+                >
+                  {formattwo(product.precioDescuento)}
+                </Typography>
+              </>
+            ) : (
+              // Si no hay precio de descuento, muestra solo el precio original
               <Typography
                 variant="button"
                 sx={{
-                  textDecoration: "line-through",
                   fontWeight: 800,
-                  fontSize: "15px",
-                  color: "#ef4444",
+                  fontSize: "25px",
+                  px: 2,
+                  py: 1,
+                  mx: 2,
                   borderRadius: "19px",
-                  mx:1,
                 }}
               >
                 {formattwo(product.precio)}
               </Typography>
-              <Typography
-                variant="button"
-                sx={{
-                  fontWeight: 800,
-                  fontSize: "15px",
-mx:1,
-                  borderRadius: "19px",
-                  color: "#f5f5f7",
-                }}
-              >
-                {formattwo(product.precioDescuento)}
-              </Typography>
-            </>
-          ) : (
-            // Si no hay precio de descuento, muestra solo el precio original
-            <Typography
-              variant="button"
-              sx={{
-                fontWeight: 800,
-                fontSize: "25px",
-                px: 2,
-                py: 1,
-                mx: 2,
-                borderRadius: "19px",
-              }}
-            >
-              {formattwo(product.precio)}
-            </Typography>
-          )}{" "}
-        </div>
-        <div
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            sx={{ fontSize: "15px" }}
-            startIcon={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={20}
-                viewBox="0 0 24 24"
-              >
-                <title>shopping</title>
-                <path d="M12,13A5,5 0 0,1 7,8H9A3,3 0 0,0 12,11A3,3 0 0,0 15,8H17A5,5 0 0,1 12,13M12,3A3,3 0 0,1 15,6H9A3,3 0 0,1 12,3M19,6H17A5,5 0 0,0 12,1A5,5 0 0,0 7,6H5C3.89,6 3,6.89 3,8V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V8C21,6.89 20.1,6 19,6Z" />
-              </svg>
-            }
+            )}{" "}
+          </Box>
+          <div
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            Comprar ahora
-          </Button>
+            <Button
+              sx={{ fontSize: "15px" }}
+              startIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={20}
+                  viewBox="0 0 24 24"
+                >
+                  <title>shopping</title>
+                  <path d="M12,13A5,5 0 0,1 7,8H9A3,3 0 0,0 12,11A3,3 0 0,0 15,8H17A5,5 0 0,1 12,13M12,3A3,3 0 0,1 15,6H9A3,3 0 0,1 12,3M19,6H17A5,5 0 0,0 12,1A5,5 0 0,0 7,6H5C3.89,6 3,6.89 3,8V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V8C21,6.89 20.1,6 19,6Z" />
+                </svg>
+              }
+            >
+              Comprar ahora
+            </Button>
+          </div>
         </div>
       </Box>
     </Grid>
