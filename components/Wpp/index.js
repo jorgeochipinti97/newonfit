@@ -19,7 +19,7 @@ export const Wpp = () => {
         }}
 
       >
-        <Link href="#" target="_blank">
+        <Link href="https://wa.link/yavgcs" target="_blank">
           <Avatar
             sx={{
               width: "100%",

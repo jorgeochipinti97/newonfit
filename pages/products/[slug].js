@@ -57,7 +57,7 @@ const ProductsSlugPage = () => {
     _id: product && product._id,
     image: product && product.images[0],
     price: product && product.precio,
-    size: undefined,
+    size: '',
     slug: product && product.slug,
     title: product && product.titulo,
     gender: product && product.categoria,
@@ -175,7 +175,7 @@ const ProductsSlugPage = () => {
           product && product.precioDescuento > 0
             ? product.precioDescuento
             : product.precio,
-        size: undefined,
+        size: '',
         slug: product && product.slug,
         title: product && product.titulo,
         sku: sku_,
@@ -233,14 +233,14 @@ const ProductsSlugPage = () => {
     // entonces alertar al usuario para que seleccione un talle.
     if (product.categoria !== 'accesorios' && !tempCartProduct.size) {
       alert("Selecciona un talle");
-      return; // Detiene la ejecución de la función aquí para evitar agregar el producto.
+      return; // Detiene la ejecución de la  función aquí para evitar agregar el producto.
     }
   
     // Si el producto es un accesorio o ya se seleccionó un talle, proceder a agregar al carrito.
     addProductToCart({
       ...tempCartProduct,
-      // Solo intenta obtener el SKU por talle si se necesita (es decir, si tempCartProduct.size tiene valor).
-      sku: tempCartProduct.size ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size) : undefined,
+
+      sku: tempCartProduct.size ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size) : '',
     });
     console.log("agregado");
     setIsAdd(true);
