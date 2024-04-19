@@ -230,7 +230,7 @@ export const FormularioTarjeta = ({
             sx={{ width: "80%", textAlign: "center" }}
           />
 
-          <div style={{ display: discountCode.length > 5 ? "block" : "none" }}>
+          <div style={{ display: discountCode.length > 2 ? "block" : "none" }}>
             {discountObjet ? (
               !discountObjet.isUsed ? (
                 discountObjet.isPercentaje ? (
