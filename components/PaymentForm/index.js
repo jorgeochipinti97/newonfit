@@ -191,7 +191,7 @@ export const FormularioTarjeta = ({
               Cuota de{" "}
               <span style={{ fontWeight: "600", marginLeft: "5px" }}>
                 {" "}
-                {formattwo(total)}
+                {formattwo(newTotal)}
               </span>
             </MenuItem>
 
@@ -200,14 +200,14 @@ export const FormularioTarjeta = ({
               Cuotas sin interes de{" "}
               <span style={{ fontWeight: "600", marginLeft: "5px" }}>
                 {" "}
-                {formattwo(total / 3)}
+                {formattwo(newTotal / 3)}
               </span>
             </MenuItem>
             <MenuItem value={16}>
               <span style={{ fontWeight: "600", marginRight: "5px" }}>6</span>
               Cuotas de
               <span style={{ fontWeight: "600", marginLeft: "5px" }}>
-                {formattwo((total * 1.15) / 6)}{" "}
+                {formattwo((newTotal * 1.15) / 6)}{" "}
               </span>
             </MenuItem>
           </Select>
