@@ -57,7 +57,7 @@ const ProductsSlugPage = () => {
     _id: product && product._id,
     image: product && product.images[0],
     price: product && product.precio,
-    size: '',
+    size: "",
     slug: product && product.slug,
     title: product && product.titulo,
     gender: product && product.categoria,
@@ -175,7 +175,7 @@ const ProductsSlugPage = () => {
           product && product.precioDescuento > 0
             ? product.precioDescuento
             : product.precio,
-        size: '',
+        size: "",
         slug: product && product.slug,
         title: product && product.titulo,
         sku: sku_,
@@ -231,21 +231,22 @@ const ProductsSlugPage = () => {
   const onAddProduct = () => {
     // Si el producto NO es un accesorio Y no se ha seleccionado un talle,
     // entonces alertar al usuario para que seleccione un talle.
-    if (product.categoria !== 'accesorios' && !tempCartProduct.size) {
+    if (product.categoria !== "accesorios" && !tempCartProduct.size) {
       alert("Selecciona un talle");
       return; // Detiene la ejecución de la  función aquí para evitar agregar el producto.
     }
-  
+
     // Si el producto es un accesorio o ya se seleccionó un talle, proceder a agregar al carrito.
     addProductToCart({
       ...tempCartProduct,
 
-      sku: tempCartProduct.size ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size) : '',
+      sku: tempCartProduct.size
+        ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size)
+        : "",
     });
     console.log("agregado");
     setIsAdd(true);
   };
-  
 
   const formattwo = (value) => {
     // Crear formateador
@@ -299,14 +300,20 @@ const ProductsSlugPage = () => {
                 sm={6}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
-                {product && (
-                  <ProductSlideshow
-                    images={product && product.images}
-                    seconds={7000}
-                    height={isMobile ? 300 : 850}
-                    width={isMobile ? 300 : 550}
-                  />
-                )}
+{product && product.images.length === 1 ? (
+  <img
+    src={product.images[0]}
+    alt={product.titulo || "Product Image"}  // Agregué un alt descriptivo por accesibilidad
+style={{width:'80%'}}
+  />
+) : (
+  <ProductSlideshow
+    images={product && product.images}
+    seconds={7000}
+    height={isMobile ? 300 : 850}
+    width={isMobile ? 300 : 550}
+  />
+)}
               </Grid>
               <Grid item xs={12} sm={5}>
                 <Box display="flex" flexDirection="column">
@@ -523,7 +530,11 @@ const ProductsSlugPage = () => {
                         style={{
                           textAlign: "center",
                           marginTop: "5px",
-                          display: product.categoria !== 'accesorios' && !tempCartProduct.size ? "block" : "none",
+                          display:
+                            product.categoria !== "accesorios" &&
+                            !tempCartProduct.size
+                              ? "block"
+                              : "none",
                         }}
                       >
                         Selecciona un talle para continuar

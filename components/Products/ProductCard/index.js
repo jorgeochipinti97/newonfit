@@ -131,7 +131,7 @@ export const ProductCard = ({ product, isMobile }) => {
 
           alignItems: "center",
           justifyContent: "center",
-          flexDirection:'column'
+          flexDirection: "column",
         }}
       >
         <div
@@ -143,17 +143,24 @@ export const ProductCard = ({ product, isMobile }) => {
             fontSize: "15px",
             backgroundColor: "black",
             borderRadius: "9px",
-            padding:5
+            padding: 5,
           }}
         >
           {product.titulo}
         </div>
-        <div style={{display:'flex' , width:'100%', justifyContent:'space-around', marginTop:'15px'}}>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-around",
+            marginTop: "15px",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
+              alignItems: "end",
               my: 1,
             }}
           >
@@ -192,26 +199,19 @@ export const ProductCard = ({ product, isMobile }) => {
                 variant="button"
                 sx={{
                   fontWeight: 800,
-                  fontSize: "25px",
+                  fontSize: "15px",
                   px: 2,
                   py: 1,
                   mx: 2,
                   borderRadius: "19px",
                   color: "#f5f5f7",
-
                 }}
               >
                 {formattwo(product.precio)}
               </Typography>
             )}{" "}
           </Box>
-          <div
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <div style={{ display:'flex', alignItems:'center'}}>
             <Button
               sx={{ fontSize: "15px" }}
               startIcon={

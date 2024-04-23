@@ -87,7 +87,7 @@ export const ProductFilterPage = () => {
     "medias",
   ];
   const todasCategoriasSuplementos = ["proteina", "creatina"];
-  const todasCategoriasMaquinas = ["maquinas", "fitness"];
+  const todasCategoriasMaquinas = ["maquinas"];
 
   useEffect(() => {
     setType_(asPath.replace("/", ""));
