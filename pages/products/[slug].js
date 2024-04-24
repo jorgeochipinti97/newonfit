@@ -231,7 +231,11 @@ const ProductsSlugPage = () => {
   const onAddProduct = () => {
     // Si el producto NO es un accesorio Y no se ha seleccionado un talle,
     // entonces alertar al usuario para que seleccione un talle.
-    if (product.categoria !== "accesorios" && !tempCartProduct.size) {
+    if (
+      product.categoria !== "accesorios" &&
+      product.categoria !== "equipamiento" &&
+      !tempCartProduct.size
+    ) {
       alert("Selecciona un talle");
       return; // Detiene la ejecución de la  función aquí para evitar agregar el producto.
     }
@@ -300,20 +304,20 @@ const ProductsSlugPage = () => {
                 sm={6}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
-{product && product.images.length === 1 ? (
-  <img
-    src={product.images[0]}
-    alt={product.titulo || "Product Image"}  // Agregué un alt descriptivo por accesibilidad
-style={{width:'80%'}}
-  />
-) : (
-  <ProductSlideshow
-    images={product && product.images}
-    seconds={7000}
-    height={isMobile ? 300 : 850}
-    width={isMobile ? 300 : 550}
-  />
-)}
+                {product && product.images.length === 1 ? (
+                  <img
+                    src={product.images[0]}
+                    alt={product.titulo || "Product Image"} // Agregué un alt descriptivo por accesibilidad
+                    style={{ width: "80%" }}
+                  />
+                ) : (
+                  <ProductSlideshow
+                    images={product && product.images}
+                    seconds={7000}
+                    height={isMobile ? 300 : 850}
+                    width={isMobile ? 300 : 550}
+                  />
+                )}
               </Grid>
               <Grid item xs={12} sm={5}>
                 <Box display="flex" flexDirection="column">
@@ -418,6 +422,7 @@ style={{width:'80%'}}
                       sx={{ mx: 2 }}
                       disabled={
                         product.categoria !== "accesorios" &&
+                        product.categoria !== "equipamiento" &&
                         !tempCartProduct.size
                       }
                       startIcon={
@@ -457,7 +462,11 @@ style={{width:'80%'}}
                       <Box
                         sx={{
                           display:
-                            product.categoria == "accesorios" ? "none" : "flex",
+                            product.categoria !== "accesorios" &&
+                            product.categoria !== "equipamiento" &&
+                            !tempCartProduct.size
+                              ? "none"
+                              : "flex",
                           justifyContent: "center",
                         }}
                       >
@@ -532,6 +541,7 @@ style={{width:'80%'}}
                           marginTop: "5px",
                           display:
                             product.categoria !== "accesorios" &&
+                            product.categoria !== "equipamiento" &&
                             !tempCartProduct.size
                               ? "block"
                               : "none",
