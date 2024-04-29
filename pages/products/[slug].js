@@ -462,11 +462,9 @@ const ProductsSlugPage = () => {
                       <Box
                         sx={{
                           display:
-                            product.categoria !== "accesorios" &&
-                            product.categoria !== "equipamiento" &&
-                            !tempCartProduct.size
-                              ? "none"
-                              : "flex",
+                            product.categoria == "hombres"  ||
+                            product.categoria == "mujeres"  
+                            ? "flex" : "none",
                           justifyContent: "center",
                         }}
                       >
@@ -476,7 +474,7 @@ const ProductsSlugPage = () => {
                           color="primary"
                           sx={{ mb: 2 }}
                         >
-                          Ver guia de talles
+Guia de talles
                         </Button>
 
                         <Modal
