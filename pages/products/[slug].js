@@ -31,6 +31,7 @@ import { FormCheckout } from "@/components/FormCheckout";
 
 import Image from "next/image";
 import { useProduct } from "@/Hooks/UseProducts";
+import useFacebookPixel from "@/Hooks/usePixelFacebook";
 
 const ProductDescription = ({ descripcion }) => {
   return (
@@ -41,6 +42,8 @@ const ProductDescription = ({ descripcion }) => {
   );
 };
 const ProductsSlugPage = () => {
+  const trackEvent = useFacebookPixel();
+
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const [imgSize, setImgSize] = useState("");
 
@@ -247,6 +250,13 @@ const ProductsSlugPage = () => {
       sku: tempCartProduct.size
         ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size)
         : "",
+    });
+
+    trackEvent("AddToCart", {
+      content_ids: [product._id],
+      content_type: product.titulo,
+      value: product.precio,
+      currency: "ARS",
     });
     console.log("agregado");
     setIsAdd(true);
@@ -462,9 +472,10 @@ const ProductsSlugPage = () => {
                       <Box
                         sx={{
                           display:
-                            product.categoria == "hombres"  ||
-                            product.categoria == "mujeres"  
-                            ? "flex" : "none",
+                            product.categoria == "hombres" ||
+                            product.categoria == "mujeres"
+                              ? "flex"
+                              : "none",
                           justifyContent: "center",
                         }}
                       >
@@ -474,7 +485,7 @@ const ProductsSlugPage = () => {
                           color="primary"
                           sx={{ mb: 2 }}
                         >
-Guia de talles
+                          Guia de talles
                         </Button>
 
                         <Modal

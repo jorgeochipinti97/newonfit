@@ -20,9 +20,12 @@ import { Elastic, gsap, Power4, Power1, Back } from "gsap";
 
 import { useRouter } from "next/router";
 
+
 import { useInView } from "react-intersection-observer";
 
+
 export const ProductCard = ({ product, isMobile }) => {
+
   const formattwo = (value) => {
     // Crear formateador
     const formatter = new Intl.NumberFormat("en-US", {

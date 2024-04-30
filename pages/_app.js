@@ -1,3 +1,4 @@
+
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { CartProvider } from "@/context/cart/CartProvider";
 import { UiProvider } from "@/context/ui/UiProvider";
@@ -10,11 +11,13 @@ import { Analytics } from "@vercel/analytics/react"
 export default function App({ Component, pageProps }) {
   return (
     <>
-    <GoogleAnalytics/>
       <CartProvider>
         <UiProvider>
           <ThemeProvider theme={lightTheme}>
             <CssBaseline />
+    <GoogleAnalytics/>
+
+
             <Component {...pageProps} />
             <Analytics />
           </ThemeProvider>
