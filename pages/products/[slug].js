@@ -246,7 +246,6 @@ const ProductsSlugPage = () => {
       sku: tempCartProduct.size
         ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size)
         : "",
-        
     });
 
     trackEvent("AddToCart", {
@@ -355,7 +354,11 @@ const ProductsSlugPage = () => {
                   >
                     <span style={{ display: "flex", justifyCenter: "center" }}>
                       Llevala en 3 cuotas sin interés de{" "}
-                      <span style={{fontWeight:'bold',marginLeft:'5px'}}>{formattwo(product.precioDescuento / 3)}</span>{" "}
+                      <span style={{ fontWeight: "bold", marginLeft: "5px" }}>
+                        {precioDescuento
+                          ? formattwo(product.precioDescuento / 3)
+                          : formattwo(product.precio / 3)}
+                      </span>{" "}
                     </span>
                   </Box>
                   <Box
