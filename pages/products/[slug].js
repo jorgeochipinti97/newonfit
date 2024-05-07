@@ -178,7 +178,7 @@ const ProductsSlugPage = () => {
           product && product.precioDescuento > 0
             ? product.precioDescuento
             : product.precio,
-        size: "",
+        size: "M",
         slug: product && product.slug,
         title: product && product.titulo,
         sku: sku_,
@@ -258,7 +258,7 @@ const ProductsSlugPage = () => {
       value: product.precio,
       currency: "ARS",
     });
-    console.log("agregado");
+
     setIsAdd(true);
   };
 
@@ -351,11 +351,20 @@ const ProductsSlugPage = () => {
                       </Typography>
                     </Box>
                   </Box>
-
                   <Box
                     display="flex"
                     justifyContent="center"
-                    sx={{ mt: 3, width: "100%" }}
+                    sx={{ width: "100%" }}
+                  >
+                    <span style={{ display: "flex", justifyCenter: "center" }}>
+                      Llevala en 3 cuotas sin interés de{" "}
+                      <span style={{fontWeight:'bold',marginLeft:'5px'}}>{formattwo(product.precioDescuento / 3)}</span>{" "}
+                    </span>
+                  </Box>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    sx={{ width: "100%" }}
                   >
                     <Typography
                       variant="button"
@@ -370,7 +379,6 @@ const ProductsSlugPage = () => {
                       }}
                     >
                       {product.precioDescuento > 0 ? (
-                        // Si hay un precio de descuento, muestra ambos precios
                         <>
                           <Typography
                             variant="button"

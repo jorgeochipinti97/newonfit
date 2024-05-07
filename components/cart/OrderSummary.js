@@ -36,6 +36,11 @@ export const OrderSummary = ({ orderValues }) => {
           {formattwo(summaryValues.total)}
         </Typography>
       </Grid>
+      <Grid item xs={12} sx={{  }} display="flex" justifyContent="end">
+        <Typography variant="subtitle1">
+          3 cuotas de <span style={{fontWeight:'bold', marginLeft:'5px'}}>{formattwo(summaryValues.total /3)}</span>
+        </Typography>
+      </Grid>
     </Grid>
   );
 };

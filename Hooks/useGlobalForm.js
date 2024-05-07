@@ -248,6 +248,7 @@ function useGlobalForm() {
       return total - valor;
     }
   };
+  
   const totalConDescuento = calculateTotalWithDiscount(
     total,
     globalFormData.paymentDetails.discountCode
@@ -374,7 +375,7 @@ function useGlobalForm() {
         cuotas: `${globalFormData.paymentDetails.cuotas}`,
         discountCode: globalFormData.paymentDetails.discountCode
           ? globalFormData.paymentDetails.discountCode
-          : "",
+          : "-",
       });
 
       const stockUpdatePromises = cart.map((item) =>
@@ -402,6 +403,7 @@ function useGlobalForm() {
     } catch (err) {
       console.log(err);
     }
+
   };
 
   const generarToken = async () => {

@@ -6,19 +6,11 @@ import {
   capitalize,
   Box,
   Button,
-  Divider,
-  Typography,
   ButtonGroup,
   Grid,
-  Slider,
   useMediaQuery,
 } from "@mui/material";
 import axios from "axios";
-import { BorderRight } from "@mui/icons-material";
-
-function valuetext(value) {
-  return `${value}°C`;
-}
 
 const minDistance = 10;
 
@@ -69,12 +61,14 @@ export const ProductFilterPage = () => {
     "short",
     "medias",
   ];
+
   const todasCategoriasIndumentaria = [
     "remera oversize",
     "buzo",
     "short",
     "musculosa",
   ];
+
   const todasCategoriasMujer = [
     "remera oversize",
     "remera deportiva",
@@ -221,28 +215,6 @@ export const ProductFilterPage = () => {
                 </Button>
               ))}
             </ButtonGroup>
-
-            {/* <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                mt: 4,
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="subtitle1">Filtrar por precio</Typography>
-              <Box sx={{ width: 300 }}>
-                <Slider
-                  getAriaLabel={() => "Minimum distance shift"}
-                  value={value2}
-                  onChange={handleChange2}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  disableSwap
-                />
-              </Box>
-            </Box> */}
           </Box>
         </Grid>
         <Grid

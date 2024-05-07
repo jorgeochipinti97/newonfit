@@ -8,9 +8,9 @@ export const SizeSelector = ({ selectedSize, sizes, onSelectedSize }) => {
           <Button
             key={size}
             size="small"
+            sx={{ border: "1px solid black", m: 1 }}
             color={selectedSize === size ? "secondary" : "primary"}
             onClick={() => onSelectedSize(size)}
-            sx={{ m: 1 }}
           >
             {size}
           </Button>
