@@ -314,7 +314,9 @@ const ProductsSlugPage = () => {
                   <img
                     src={product.images[0]}
                     alt={product.titulo || "Product Image"} // Agregué un alt descriptivo por accesibilidad
-                    style={{ width: "50%" }}
+                    height={isMobile ? 300 : 850}
+                    width={isMobile ? 300 : 650}
+                    style={{borderRadius:'40px'}}
                   />
                 ) : (
                   <ProductSlideshow
