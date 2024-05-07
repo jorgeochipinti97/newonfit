@@ -314,7 +314,7 @@ const ProductsSlugPage = () => {
                   <img
                     src={product.images[0]}
                     alt={product.titulo || "Product Image"} // Agregué un alt descriptivo por accesibilidad
-                    style={{ width: "80%" }}
+                    style={{ width: "50%" }}
                   />
                 ) : (
                   <ProductSlideshow
@@ -355,7 +355,7 @@ const ProductsSlugPage = () => {
                     <span style={{ display: "flex", justifyCenter: "center" }}>
                       Llevala en 3 cuotas sin interés de{" "}
                       <span style={{ fontWeight: "bold", marginLeft: "5px" }}>
-                        {precioDescuento
+                        {product && product.precioDescuento
                           ? formattwo(product.precioDescuento / 3)
                           : formattwo(product.precio / 3)}
                       </span>{" "}
