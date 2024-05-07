@@ -5,14 +5,13 @@ import { CartContext } from "@/context/cart/CartContext";
 import { v4 as uuidv4 } from "uuid";
 import SendIcon from "@mui/icons-material/Send";
 import { useRouter } from "next/router";
+import useFacebookPixel from "@/Hooks/usePixelFacebook";
 
-export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
+export const FormCheckout = ({ updateFormData, setIsCheckout }) => {
   const trackId = uuidv4();
   const { push } = useRouter();
   const { cart, numberOfItems } = useContext(CartContext);
-
-
-
+  const trackEvent = useFacebookPixel();
 
   const [shippingData, setShippingData] = useState({
     firstName: "",
@@ -26,8 +25,8 @@ export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
     provincia: "",
     mobile: "",
     postalCode: "",
-    localidad:"",
-    piso:"",
+    localidad: "",
+    piso: "",
     deliveryNote: "",
   });
 
@@ -43,12 +42,17 @@ export const FormCheckout = ({ updateFormData,setIsCheckout }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+ 
 
+    
     updateFormData({ cart: cart }, "shippingDetails");
-    setIsCheckout(true)
+    trackEvent("Lead", {
+      content_name: "shippingDetails",
+      value: 1.0,
+      currency: "ARS",
+    });
+    setIsCheckout(true);
   };
-
-
 
   return (
     <form onSubmit={handleSubmit}>

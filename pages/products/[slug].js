@@ -3,8 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 
 import NextLink from "next/link";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import PaymentIcon from "@mui/icons-material/Payment";
-import { useInView } from "react-intersection-observer";
 import Chip from "@mui/material/Chip";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { Power1, gsap } from "gsap";
@@ -21,7 +19,6 @@ import {
   Modal,
 } from "@mui/material";
 
-import { CartList, OrderSummary } from "@/components/cart";
 import { CartContext } from "@/context/cart/CartContext";
 import { ProductSlideshow } from "@/components/Products/ProductSlideshow";
 import { ShopLayout } from "@/components/layout/shopLayout";
@@ -43,7 +40,6 @@ const ProductDescription = ({ descripcion }) => {
 };
 const ProductsSlugPage = () => {
   const trackEvent = useFacebookPixel();
-
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const [imgSize, setImgSize] = useState("");
 
@@ -250,6 +246,7 @@ const ProductsSlugPage = () => {
       sku: tempCartProduct.size
         ? obtenerSkuPorIdYTalle(tempCartProduct._id, tempCartProduct.size)
         : "",
+        
     });
 
     trackEvent("AddToCart", {

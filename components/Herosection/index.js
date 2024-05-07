@@ -96,18 +96,11 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 Te presentamos nuestros diseños de selección.
               </Typography>
             </div>
-            <div
-              style={{
-                marginBottom: "1rem",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Box
+            <Box
                 sx={{
                   backgroundColor: "black",
                   width: "fit-content",
-                  mt: isMobile ? 4 : 10,
+                  mt: isMobile ? 4 : 5,
                   borderRadius: "90px",
                   display: "flex",
                   alignItems: "center",
@@ -130,8 +123,42 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                   3 Cuotas sin interes y envio gratis a todo el país.
                 </Typography>
               </Box>
+            <div
+              style={{
+                marginBottom: "1rem",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Box
+                sx={{
+
+                  width: "fit-content",
+                  borderRadius: "15px",
+                  mt:5,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  component="h1"
+                  sx={{
+color:'black',
+                    fontSize: isMobile ? "1.9rem" : "2rem",
+                    p: 2,
+
+                    fontFamily: "Bebas Neue",
+                    textAlign: "center",
+                    lineHeight:'35px'
+                  }}
+                >
+No te olvides que con tu compra te llevas un regalito de OnFit...
+                </Typography>
+              </Box>
             </div>
           </Grid>
+
           <Grid item xs={12} lg={4} xl={4}>
             <Box
               style={{

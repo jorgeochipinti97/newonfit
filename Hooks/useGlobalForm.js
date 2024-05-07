@@ -4,8 +4,11 @@ import gsap, { Power1 } from "gsap";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import useFacebookPixel from "./usePixelFacebook";
 
 function useGlobalForm() {
+  const trackEvent = useFacebookPixel();
+
   const [globalFormData, setGlobalFormData] = useState({
     shippingDetails: {
       firstName: "",
@@ -104,7 +107,6 @@ function useGlobalForm() {
   useEffect(() => {
     if (trackId !== undefined) {
       console.log("trackId actualizado:", trackId);
-
     }
   }, [trackId]);
 
@@ -248,7 +250,7 @@ function useGlobalForm() {
       return total - valor;
     }
   };
-  
+
   const totalConDescuento = calculateTotalWithDiscount(
     total,
     globalFormData.paymentDetails.discountCode
@@ -396,14 +398,23 @@ function useGlobalForm() {
         `/api/orders?_id=${createOrder_.data._id}`,
         {
           codGestion: cargaCliente.data.codGestion,
-
         }
       );
+      
       response && push(`/orders/${createOrder_.data._id}`);
+      response &&
+        trackEvent("Purchase", {
+          content_ids: cart.map((product) => product._id), // Obtiene los IDs de todos los productos en el carrito
+          content_type: "product", // Asumiendo que todos los elementos son productos
+          value: cart.reduce(
+            (total, product) => total + product.precio,
+            0
+          ),
+          currency: "ARS",
+        });
     } catch (err) {
       console.log(err);
     }
-
   };
 
   const generarToken = async () => {
