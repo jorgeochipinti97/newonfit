@@ -1,6 +1,5 @@
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 
-
 import React, { useEffect, useState } from "react";
 
 import Alert from "@mui/material/Alert";
@@ -58,10 +57,7 @@ export const FormularioTarjeta = ({
         nombreTitular,
         tipoIdentificacion,
         numeroIdentificacion,
-        discountCode:
-          discountObjet && !discountObjet.isUsed && total > 29990
-            ? discountObjet
-            : "",
+        discountCode: discountCode ? discountCode : "",
         mesExpiracion,
         anioExpiracion,
         cuotas,
@@ -78,11 +74,8 @@ export const FormularioTarjeta = ({
 
   const { codes } = useCodes();
 
-
   useEffect(() => {
-
     let data = codes.find((e) => e._id === discountCode);
-
 
     if (!data) {
       data = codes.find((e) => e.name === discountCode);
@@ -99,7 +92,6 @@ export const FormularioTarjeta = ({
         data.isPercentaje ? total * (1 - data.valor / 100) : total - data.valor
       );
       setIsUsed(false);
-
     }
   }, [discountCode, codes, total]);
   return (
@@ -214,7 +206,7 @@ export const FormularioTarjeta = ({
         </div>
         <div
           style={{
-            display: total > 29900 ? "flex" : "none",
+            display: "flex",
             flexDirection: "column",
             marginTop: "10px",
             alignItems: "start",
