@@ -29,6 +29,7 @@ import { FormCheckout } from "@/components/FormCheckout";
 import Image from "next/image";
 import { useProduct } from "@/Hooks/UseProducts";
 import useFacebookPixel from "@/Hooks/usePixelFacebook";
+import EmblaCarousel from "@/components/EmblemaSlider/EmblaCarousel";
 
 const ProductDescription = ({ descripcion }) => {
   return (
@@ -315,6 +316,22 @@ const ProductsSlugPage = () => {
                     src={product.images[0]}
                     alt={product.titulo || "Product Image"} // Agregué un alt descriptivo por accesibilidad
                     height={isMobile ? 300 : 850}
+
+                    style={{ borderRadius: "40px" }}
+                  />
+                ) : (
+                  <>
+                    <EmblaCarousel
+                      images={product.images}
+                      options={{ loop: true }}
+                    />
+                  </>
+                )}
+                {/* {product && product.images.length === 1 ? (
+                  <img
+                    src={product.images[0]}
+                    alt={product.titulo || "Product Image"} // Agregué un alt descriptivo por accesibilidad
+                    height={isMobile ? 300 : 850}
                     width={isMobile ? 300 : 650}
                     style={{borderRadius:'40px'}}
                   />
@@ -325,7 +342,7 @@ const ProductsSlugPage = () => {
                     height={isMobile ? 300 : 850}
                     width={isMobile ? 300 : 550}
                   />
-                )}
+                )} */}
               </Grid>
               <Grid item xs={12} sm={5}>
                 <Box display="flex" flexDirection="column">

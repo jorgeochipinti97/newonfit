@@ -146,7 +146,7 @@ export const ProductCard = ({ product, isMobile }) => {
             fontSize: "15px",
             backgroundColor: "black",
             borderRadius: "9px",
-            padding: 5,
+
           }}
         >
           {product.titulo}
@@ -156,7 +156,7 @@ export const ProductCard = ({ product, isMobile }) => {
             display: "flex",
             width: "100%",
             justifyContent: "space-around",
-            marginTop: "15px",
+
           }}
         >
           <Box
@@ -202,7 +202,7 @@ export const ProductCard = ({ product, isMobile }) => {
                 variant="button"
                 sx={{
                   fontWeight: 800,
-                  fontSize: "15px",
+                  fontSize: "20px",
                   px: 2,
                   py: 1,
                   mx: 2,
@@ -216,7 +216,7 @@ export const ProductCard = ({ product, isMobile }) => {
           </Box>
           <div style={{ display:'flex', alignItems:'center'}}>
             <Button
-              sx={{ fontSize: "15px" }}
+              sx={{ fontSize: "11px",mx:1 }}
               startIcon={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -228,10 +228,13 @@ export const ProductCard = ({ product, isMobile }) => {
                 </svg>
               }
             >
-              Comprar ahora
+              Comprar ya
             </Button>
           </div>
         </div>
+          <div>
+            <Typography capitalize sx={{color:'white',fontSize:'15px', fontWeight:'bold'}}>llevala por 3 cuotas de { product.precioDescuento ? formattwo(product.precioDescuento/3) :  formattwo(product.precio/3)}</Typography>
+          </div>
       </Box>
     </Grid>
   );
