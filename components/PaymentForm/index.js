@@ -78,9 +78,10 @@ export const FormularioTarjeta = ({
     let data = codes.find((e) => e._id === discountCode);
 
     if (!data) {
-      data = codes.find((e) => e.name === discountCode);
+      data = codes.find(
+        (e) => e.name.toLowerCase() === discountCode.toLowerCase()
+      );
     }
-    console.log(data);
 
     if (!data || (data && data.isUsed)) {
       setdiscountObjet(data);
