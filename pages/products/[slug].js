@@ -372,11 +372,11 @@ const ProductsSlugPage = () => {
                     sx={{ width: "100%" }}
                   >
                     <span style={{ display: "flex", justifyCenter: "center" }}>
-                      Llevala en 3 cuotas sin interés de{" "}
+                      Llevala en  hasta 12 cuotas sin interés de{" "}
                       <span style={{ fontWeight: "bold", marginLeft: "5px" }}>
                         {product && product.precioDescuento
-                          ? formattwo(product.precioDescuento / 3)
-                          : formattwo(product.precio / 3)}
+                          ? formattwo(product.precioDescuento / 12)
+                          : formattwo(product.precio / 12)}
                       </span>{" "}
                     </span>
                   </Box>
