@@ -371,7 +371,7 @@ function useGlobalForm() {
         ciudad: globalFormData.shippingDetails.city,
         provincia: globalFormData.shippingDetails.provincia,
         phone: globalFormData.shippingDetails.mobile,
-        dniTitular: `${globalFormData.paymentDetails.numeroIdentificacion}`,
+        dniTitular: `${globalFormData.shippingDetails.idNumber}`,
         postalCode: globalFormData.shippingDetails.postalCode,
         discountPrice: totalConDescuento,
         cuotas: `${globalFormData.paymentDetails.cuotas}`,
