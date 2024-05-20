@@ -233,7 +233,7 @@ export const ProductCard = ({ product, isMobile }) => {
           </div>
         </div>
           <div>
-            <Typography capitalize sx={{color:'white',fontSize:'15px', fontWeight:'bold'}}>llevala por 3 cuotas de { product.precioDescuento ? formattwo(product.precioDescuento/3) :  formattwo(product.precio/3)}</Typography>
+            <Typography capitalize sx={{color:'white',fontSize:'15px', fontWeight:'bold'}}>llevala por 12 cuotas de { product.precioDescuento ? formattwo(product.precioDescuento/12) :  formattwo(product.precio/12)}</Typography>
           </div>
       </Box>
     </Grid>
