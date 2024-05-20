@@ -277,7 +277,7 @@ const ProductsSlugPage = () => {
         sx={{
           position: "fixed",
           bottom: isMobile ? 100 : 50,
-          right: 10,
+          left: 10,
           opacity: "0",
           zIndex: "999",
         }}
