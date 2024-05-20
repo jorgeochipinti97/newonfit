@@ -211,7 +211,7 @@ export const FormularioTarjeta = ({
               </span>
             </MenuItem> */}
             <MenuItem value={7}>
-              <span style={{ fontWeight: "600", marginRight: "5px" }}>9</span>
+              <span style={{ fontWeight: "600", marginRight: "5px" }}>12</span>
 Cuotas de
               <span style={{ fontWeight: "600", marginLeft: "5px" }}>
                 {formattwo(newTotal  / 12)}{" "}
