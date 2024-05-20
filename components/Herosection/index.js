@@ -120,7 +120,7 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                     textAlign: "center",
                   }}
                 >
-                  12 Cuotas sin interes y envio gratis a todo el país.
+                  Hasta 12 Cuotas sin interes y envio gratis a todo el país.
                 </Typography>
               </Box>
             <div
