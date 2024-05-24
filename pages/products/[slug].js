@@ -451,7 +451,9 @@ const ProductsSlugPage = () => {
                     display="flex"
                     justifyContent="space-around "
                     sx={{ mt: 2 }}
-                  >
+                  >{
+                    
+                  }
                     <Button
                       color="success"
                       size={isMobile ? "small" : "large"}
@@ -480,22 +482,7 @@ const ProductsSlugPage = () => {
                   <Divider sx={{ my: 2 }} />
                   {product && (
                     <>
-                      {/* <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Chip
-                      icon={<PaymentIcon />}
-                      sx={{
-                        fontWeight: "800",
-                        p: 2,
-                        fontSize: isMobile ? "15px" : "20px",
-                        mb: 2,
-                      }}
-                      label={`3 cuotas sin interés de ${formattwo(
-                        product.precio / 3
-                      )}`}
-                      color="success"
-                      variant="outlined"
-                    />
-                  </div> */}
+
                       <Box
                         sx={{
                           display:
