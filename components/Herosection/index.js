@@ -97,32 +97,32 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
               </Typography>
             </div>
             <Box
+              sx={{
+                backgroundColor: "black",
+                width: "fit-content",
+                mt: isMobile ? 4 : 5,
+                borderRadius: "90px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                component="h1"
                 sx={{
-                  backgroundColor: "black",
-                  width: "fit-content",
-                  mt: isMobile ? 4 : 5,
-                  borderRadius: "90px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  fontWeight: "900",
+                  fontSize: isMobile ? "1.9rem" : "3rem",
+                  color: "rgb(254, 221, 45)",
+                  lineHeight: { xs: "35px", md: "50px" },
+                  p: 2,
+
+                  fontFamily: "Bebas Neue",
+                  textAlign: "center",
                 }}
               >
-                <Typography
-                  component="h1"
-                  sx={{
-                    fontWeight: "900",
-                    fontSize: isMobile ? "1.9rem" : "3rem",
-                    color: "rgb(254, 221, 45)",
-                    lineHeight:{xs:"35px", md:'50px'},
-                    p: 2,
-
-                    fontFamily: "Bebas Neue",
-                    textAlign: "center",
-                  }}
-                >
-                  Hasta 12 Cuotas sin interes y envio gratis a todo el país.
-                </Typography>
-              </Box>
+                Hasta 12 Cuotas sin interes y envio gratis a todo el país.
+              </Typography>
+            </Box>
             <div
               style={{
                 marginBottom: "1rem",
@@ -132,10 +132,9 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
             >
               <Box
                 sx={{
-
                   width: "fit-content",
                   borderRadius: "15px",
-                  mt:5,
+                  mt: 5,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -144,16 +143,17 @@ export const HeroSectionComponent = ({ products, isMobile }) => {
                 <Typography
                   component="h1"
                   sx={{
-color:'black',
+                    color: "black",
                     fontSize: isMobile ? "1.9rem" : "2rem",
                     p: 2,
 
                     fontFamily: "Bebas Neue",
                     textAlign: "center",
-                    lineHeight:'35px'
+                    lineHeight: "35px",
                   }}
                 >
-No te olvides que con tu compra te llevas un regalito de OnFit...
+                  No te olvides que con tu compra te llevas un regalito de
+                  OnFit...
                 </Typography>
               </Box>
             </div>
@@ -227,7 +227,7 @@ No te olvides que con tu compra te llevas un regalito de OnFit...
                   <Box
                     key={e.slug}
                     style={{
-                      backgroundImage: `linear-gradient(to bottom, transparent 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.1)), url(${e.images[0]})`,
+                      backgroundImage: `linear-gradient(to bottom, transparent 40%, black),linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0, 0, 0, 0.1)), url(https://d2hh41w9oz00ab.cloudfront.net/${e.images[0]})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
@@ -272,7 +272,7 @@ No te olvides que con tu compra te llevas un regalito de OnFit...
                                 borderRadius: "9px",
                               }}
                               alt={e.titulo}
-                              src={e.images[0]}
+                              src={`https://d2hh41w9oz00ab.cloudfront.net/${e.images[0]}`}
                             />
                           </CardMedia>
                         </Box>

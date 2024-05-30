@@ -83,7 +83,7 @@ const EmblaCarousel = (props) => {
             <div className="embla__slide" key={index}>
               <img
                 className="embla__slide__img"
-                src={`${src}`}
+                src={`https://d2hh41w9oz00ab.cloudfront.net/${src}`}
                 alt="Your alt text"
               />
             </div>

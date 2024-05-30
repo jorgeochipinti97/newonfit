@@ -313,9 +313,11 @@ const ProductsSlugPage = () => {
               >
                 {product && product.images.length === 1 ? (
                   <img
-                    src={product.images[0]}
+                    src={`https://d2hh41w9oz00ab.cloudfront.net/${product.images[0]}`}
                     alt={product.titulo || "Product Image"} // Agregué un alt descriptivo por accesibilidad
                     height={isMobile ? 300 : 850}
+                    width={'90%' 
+                    }
 
                     style={{ borderRadius: "40px" }}
                   />

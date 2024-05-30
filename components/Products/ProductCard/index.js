@@ -110,7 +110,7 @@ export const ProductCard = ({ product, isMobile }) => {
                 >
                   <img
                     alt={product.titulo}
-                    src={productImage || ""}
+                    src={`https://d2hh41w9oz00ab.cloudfront.net/${productImage}` || ""}
                     style={{ width: "100%" }}
                   />
                 </CardMedia>

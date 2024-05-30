@@ -46,7 +46,7 @@ export const CartList = ({ editable = false, products, isMobile }) => {
                 <Link>
                   <CardActionArea>
                     <CardMedia
-                      image={product.image}
+                      image={`https://d2hh41w9oz00ab.cloudfront.net/${product.image}`}
                       component="img"
                       sx={{ borderRadius: "5px" }}
                     />
