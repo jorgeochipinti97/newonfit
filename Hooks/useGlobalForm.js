@@ -104,11 +104,6 @@ function useGlobalForm() {
 
   const [trackId, setTrackId] = useState();
 
-  useEffect(() => {
-    if (trackId !== undefined) {
-      console.log("trackId actualizado:", trackId);
-    }
-  }, [trackId]);
 
   // En el componente de React:
   useEffect(() => {
@@ -355,6 +350,9 @@ function useGlobalForm() {
   };
 
   const createOrder = async (token, transactionId) => {
+    if (!products || !total || !shippingDetails || !paymentDetails) {
+      throw new Error("Faltan datos necesarios para crear la orden.");
+    }
     try {
       const createOrder_ = await axios.post("/api/orders", {
         orderItems: cart,
